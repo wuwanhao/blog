@@ -52,7 +52,9 @@ body {
 .m-margin-top-large {
     margin-top: 2em !important;
 }
-
+.m-margin-bottom-small {
+    margin-bottom: 0.5em !important;
+}
 
 
 /*-----margin-----*/
@@ -108,7 +110,9 @@ body {
     top: 0;
     right: 0;
 }
-
+.m-mobile-wide {
+    width: 100% !important;
+}
 .m-mobile-show {
     display: none !important;
 }
