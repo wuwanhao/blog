@@ -1,0 +1,5 @@
+2019-10-19 21:21:56.196  INFO 16332 --- [restartedMain] com.wwh.DemoApplication                  : Starting DemoApplication on WWH-PC with PID 16332 (F:\project\blog\target\classes started by DELL in F:\project\blog)
+2019-10-19 21:21:56.199  INFO 16332 --- [restartedMain] com.wwh.DemoApplication                  : The following profiles are active: pro
+2019-10-19 21:21:58.273  WARN 16332 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-10-19 21:21:58.323  WARN 16332 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-10-19 21:21:58.423  INFO 16332 --- [restartedMain] com.wwh.DemoApplication                  : Started DemoApplication in 2.561 seconds (JVM running for 4.132)
