@@ -71,9 +71,9 @@
                     <div class="ui basic teal right pointing label">方法论</div>
                 </div>
                 <!--赞赏按钮（先不使用）-->
-<!--                <div class="ui center aligned basic segment">-->
-<!--                    <button id="payButton" class="ui basic orange circular button">赞赏</button>-->
-<!--                </div>-->
+                <div class="ui center aligned basic segment">
+                    <button id="payButton" class="ui basic orange circular button">赞赏</button>
+                </div>
                 <!--赞赏二维码-->
                 <div class="ui payQR flowing popup transition hidden">
                     <div class="ui orange basic label">
@@ -248,7 +248,9 @@
         </div>
     </footer>
 
-    <!--移动端适配有问题-->
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
@@ -260,7 +262,5 @@
             position : 'bottom center'
         })
     </script>
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
 </body>
 </html>

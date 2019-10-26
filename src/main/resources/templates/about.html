@@ -71,6 +71,9 @@
                     <!--联系方式圆形按钮-->
                     <!--鼠标指针悬浮弹出-->
                     <div class="ui bottom attached segment">
+<!--                        <button class="ui green button m-margin-tb-tiny"><i class="wechat icon"></i>微信</button>-->
+<!--                        <button class="ui blue button m-margin-tb-tiny"><i class="qq icon"></i>QQ</button>-->
+<!--                        <button class="ui purple button m-margin-tb-tiny"><i class="github icon"></i>GitHub</button>-->
                         <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
                         <a href="#" class="ui circular icon button" data-content="1461282363"><i class="qq icon"></i></a>
                         <a href="#" class="ui circular icon button"><i class="wechat icon"></i></a>
@@ -119,16 +122,15 @@
         </div>
     </footer>
 
-    <!--移动端适配有问题-->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
     <script>
+        $('.qq').popup()
+
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
         });
 
-        // $('.qq').popup();
-        
     </script>
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 </body>
 </html>
