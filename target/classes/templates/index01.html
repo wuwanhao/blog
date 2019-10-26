@@ -9,11 +9,11 @@
 </head>
 <body>
     <!--导航-->
-    <nav class="ui inverted attached segment m-padded-tb-mini">
+    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
+                <a href="#" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
@@ -409,13 +409,13 @@
         </div>
     </footer>
 
-    <!--移动端适配有问题-->
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
         })
     </script>
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
 </body>
 </html>

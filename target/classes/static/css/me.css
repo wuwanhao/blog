@@ -119,6 +119,12 @@ body {
 .m-mobile-hide {
     display: block;
 }
+
+/*--------阴影shadow--------*/
+.m-shadow-small {
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
 /*-----媒体查询-------*/
 @media screen and (max-width: 768px){
     .m-mobile-hide {
@@ -127,8 +133,14 @@ body {
     .m-mobile-show {
         display: block !important;
     }
+    .m-mobile-lr-clear {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
     .m-padded-lr-responsive {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+
+
 }
