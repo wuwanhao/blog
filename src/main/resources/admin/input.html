@@ -48,24 +48,43 @@
         <div class="ui container">
             <form method="post" action="#" class="ui form">
                 <!--标题部分-->
-                <div class="ui left labeled input">
-                    <div class="ui selection teal basic compact dropdown label">
-                        <input type="hidden" value="原创">
-                        <i class="dropdown icon"></i>
-                        <div class="text">原创</div>
-                        <div class="menu">
-                            <div class="item" data-value="原创">原创</div>
-                            <div class="item" data-value="转载">转载</div>
-                            <div class="item" data-value="翻译">翻译</div>
+                <div class="field">
+                    <div class="ui left labeled input">
+                        <div class="ui selection teal basic compact dropdown label">
+                            <input type="hidden" value="原创">
+                            <i class="dropdown icon"></i>
+                            <div class="text">原创</div>
+                            <div class="menu">
+                                <div class="item" data-value="原创">原创</div>
+                                <div class="item" data-value="转载">转载</div>
+                                <div class="item" data-value="翻译">翻译</div>
+                            </div>
                         </div>
+                        <input type="text" name="title" placeholder="标题">
                     </div>
                 </div>
+                <!--博客内容部分-->
                 <div class="field">
-                    <input type="text" name="title" placeholder="标题">
+                    <textarea placeholder="博客内容" name="content"></textarea>
                 </div>
-                <!--内容部分-->
-                <div class="field">
-                    <textarea placeholder="内容"></textarea>
+                <div class="two fields">
+                    <div class="field">
+                        <div class="ui left lebaled input">
+                            <label class="ui compact teal basic label">分类</label>
+                            <div class="ui selection dropdown">
+                                <input type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">分类</div>
+                                <div class="menu">
+                                    <div class="item" data-value="1">错误日志</div>
+                                    <div class="item" data-value="2">开发者手册</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+
+                    </div>
                 </div>
 
             </form>
