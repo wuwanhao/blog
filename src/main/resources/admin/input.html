@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客新增</title>
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
@@ -48,7 +49,7 @@
         <div class="ui container">
             <form method="post" action="#" class="ui form">
                 <!--标题部分-->
-                <div class="field">
+                <div class="required field">
                     <div class="ui left labeled input">
                         <div class="ui selection teal basic compact dropdown label">
                             <input type="hidden" value="原创">
@@ -64,11 +65,15 @@
                     </div>
                 </div>
                 <!--博客内容部分-->
-                <div class="field">
-                    <textarea placeholder="博客内容" name="content"></textarea>
+                <div class="required field">
+                    <!--Markdown编辑器-->
+                    <div id="md-content" style="z-index: 1 !important;">
+                        <!--Markdown编辑器内容部分-->
+                        <textarea placeholder="博客内容" name="content" style="display: none"></textarea>
+                    </div>
                 </div>
                 <div class="two fields">
-                    <div class="field">
+                    <div class="required field">
                         <div class="ui left lebaled input">
                             <label class="ui compact teal basic label">分类</label>
                             <div class="ui fluid selection dropdown">
@@ -82,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="field">
+                    <div class="required field">
                         <div class="ui left lebaled input">
                             <label class="ui compact teal basic label">标签</label>
                             <div class="ui fluid multiple search selection dropdown">
@@ -97,11 +102,12 @@
                         </div>
                     </div>
                 </div>
-                <!--首页图片引用地址-->
+                <!--首图引用地址：博客详情页面最上方的图片和博客列表里右边的图片-->
                 <div class="field">
                     <div class="ui left labeled input">
-                        <label class="ui teal basic label"></label>
+                        <label class="ui teal basic label">首图</label>
                     </div>
+                    <input type="text" name="indexPicture" placeholder="首图引用地址">
                 </div>
                 <div class="inline fields">
                     <div class="field">
@@ -129,6 +135,10 @@
                         </div>
                     </div>
                 </div>
+
+                <!--表单验证错误区域-->
+                <div class="ui error message"></div>
+
                 <div class="ui right aligned container">
                     <!--返回按钮-->
                     <button class="ui button" type="button" onclick="window.history.go(-1)">返回</button>
@@ -139,6 +149,8 @@
         </div>
     </div>
     <br><br>
+
+
 
     <!--底部-->
     <footer class="ui inverted vertical segment m-padded-tb-massive">
@@ -180,14 +192,64 @@
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js"></script>
     <script>
+
+        //初始化markdown编辑器
+        var contentEditor;
+        $(function() {
+            contentEditor = editormd("md-content", {
+                width   : "100%",
+                height  : 640,
+                syncScrolling : "single",
+                path    : "../static/lib/editormd/lib/"
+            });
+        });
+
+        //首页一级标题移动端自适应
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
         });
 
+        //头像下拉菜单
         $('.ui.dropdown').dropdown();
 
+        //表单验证
+        $('.ui.form').form({
+            fields : {
+                title : {
+                    identifier : 'title',
+                    rules: [{
+                        type : 'empty',
+                        prompt: '博客标题不能为空'
+                    }]
+                },
+                content : {
+                    identifier : 'content',
+                    rules : [{
+                        type : 'empty',
+                        prompt: "博客内容不能为空"
+                    }]
+                },
+                type : {
+                    identifier : 'type',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请选择博客类型'
+                    }]
+                },
+                tags : {
+                    identifier : 'tags',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请选择博客标签'
+                    }]
+                }
+            }
+        })
 
     </script>
+
+
 </body>
 </html>
