@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../static/css/me.css">
     <link rel="stylesheet" href="../static/css/animate.min.css">
     <link rel="stylesheet" href="../static/lib/prism/prism.css">
-    <script src="../static/lib/prism/prism.js"></script>
+
 
 </head>
 <body>
@@ -311,7 +311,7 @@ h5,h6{font-size:1em;}
                     </div>
                 </div>
             </div>
-            <div class="ui bottom attached segment">
+            <div class="ui bottom attached segment" id="comment-container">
                 <!--留言区域列表-->
                 <div class="ui teal segment">
                     <div class="ui comments">
@@ -415,6 +415,11 @@ h5,h6{font-size:1em;}
         </div>
     </div>
     <br><br>
+    <!--目录生成，留言锚点，平滑滚动等功能先不做！！！！-->
+<!--    <div class="ui vertical icon buttons">-->
+<!--        <button type="button" class="ui teal button">目录</button>-->
+<!--        <a href="#comment-container" class="ui teal button">留言</a>-->
+<!--    </div>-->
 
     <!--底部-->
     <footer class="ui inverted vertical segment m-padded-tb-massive">
@@ -453,7 +458,7 @@ h5,h6{font-size:1em;}
         </div>
     </footer>
 
-
+    <script src="../static/lib/prism/prism.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
