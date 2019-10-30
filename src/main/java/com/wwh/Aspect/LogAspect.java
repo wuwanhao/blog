@@ -19,13 +19,11 @@ public class LogAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //切点:web包下所有类的所有方法
+    //切点:execution的内容：web包下所有类的所有方法
     @Pointcut("execution(* com.wwh.Controller.*.*(..))")
-    public void log() {
+    public void log() {}
 
-    }
-
-    //切点之前
+    //切点之前，取得请求数据
     @Before("log()")
     public void doBefore(JoinPoint joinpoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
