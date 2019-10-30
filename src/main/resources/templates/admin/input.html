@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客新增</title>
@@ -153,7 +153,7 @@
 
 
     <!--底部-->
-    <footer class="ui inverted vertical segment m-padded-tb-massive">
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
         <div class="ui center aligned container">
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
@@ -202,7 +202,7 @@
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "../static/lib/editormd/lib/"
+                path    : "../../static/lib/editormd/lib/"
             });
         });
 

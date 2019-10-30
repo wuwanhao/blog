@@ -34,5 +34,109 @@
     </a>
 </nav>
 
+<!--底部-->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：1461282363@qq.com</a>
+                    <a href="#" class="item">WeChat/Tel：15127735324</a>
+                    <a href="#" class="item">QQ：1461282363</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">About Blog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客，分享关于编程，思考相关的内容，希望可以给来到这里的人有所帮助...</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 WWH Designed by WWH</p>
+    </div>
+</footer>
+
+<th:block th:fragment="script">
+    <script th:src="@{/lib/prism/prism.js}"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
+    <script>
+        //支付码弹出
+        $('#payButton').popup({
+            popup: ('.payQR.popup'),
+            on : 'click',
+            position : 'bottom center'
+        })
+        //初始化markdown编辑器
+        var contentEditor;
+        $(function() {
+            contentEditor = editormd("md-content", {
+                width   : "100%",
+                height  : 640,
+                syncScrolling : "single",
+                path    : "@{/lib/editormd/lib/}"
+            });
+        });
+
+        //首页一级标题移动端自适应
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+
+        //头像下拉菜单
+        $('.ui.dropdown').dropdown();
+
+        //表单验证
+        $('.ui.form').form({
+            fields : {
+                title : {
+                    identifier : 'title',
+                    rules: [{
+                        type : 'empty',
+                        prompt: '博客标题不能为空'
+                    }]
+                },
+                content : {
+                    identifier : 'content',
+                    rules : [{
+                        type : 'empty',
+                        prompt: "博客内容不能为空"
+                    }]
+                },
+                type : {
+                    identifier : 'type',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请选择博客类型'
+                    }]
+                },
+                tags : {
+                    identifier : 'tags',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请选择博客标签'
+                    }]
+                }
+            }
+        })
+
+    </script>
+</th:block>
+
 </body>
 </html>

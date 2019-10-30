@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class indexController {
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "admin/input";
     }
 }
