@@ -765,3 +765,39 @@ org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as express
 2019-10-30 19:54:43.095  INFO 15900 --- [http-nio-8080-exec-8] com.wwh.Aspect.LogAspect                 : Request : RequestLog{url='http://localhost:8080/', ip='0:0:0:0:0:0:0:1', classMethod='com.wwh.Controller.indexController.index', args=[]}
 2019-10-30 19:54:43.095  INFO 15900 --- [http-nio-8080-exec-8] com.wwh.Aspect.LogAspect                 : -------------doAfter-------------
 2019-10-30 19:54:43.095  INFO 15900 --- [http-nio-8080-exec-8] com.wwh.Aspect.LogAspect                 : Result : admin/input
+2019-10-30 19:55:56.563  INFO 13336 --- [restartedMain] com.wwh.DemoApplication                  : Starting DemoApplication on WWH-PC with PID 13336 (F:\blog\target\classes started by DELL in F:\blog)
+2019-10-30 19:55:56.565 DEBUG 13336 --- [restartedMain] com.wwh.DemoApplication                  : Running with Spring Boot v2.1.9.RELEASE, Spring v5.1.10.RELEASE
+2019-10-30 19:55:56.566  INFO 13336 --- [restartedMain] com.wwh.DemoApplication                  : The following profiles are active: dev
+2019-10-30 19:55:56.611  INFO 13336 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-10-30 19:55:56.611  INFO 13336 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-10-30 19:55:57.179  INFO 13336 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-10-30 19:55:57.195  INFO 13336 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+2019-10-30 19:55:57.445  INFO 13336 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9ad21d60] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-10-30 19:55:57.789  INFO 13336 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-10-30 19:55:57.802  INFO 13336 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-10-30 19:55:57.802  INFO 13336 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2019-10-30 19:55:57.900  INFO 13336 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-10-30 19:55:57.900  INFO 13336 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1289 ms
+2019-10-30 19:55:58.069  INFO 13336 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-10-30 19:55:58.142  INFO 13336 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-10-30 19:55:58.171  INFO 13336 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-10-30 19:55:58.211  INFO 13336 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.12.Final}
+2019-10-30 19:55:58.211  INFO 13336 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-10-30 19:55:58.292  INFO 13336 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-10-30 19:55:58.397  INFO 13336 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2019-10-30 19:55:58.563  INFO 13336 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-10-30 19:55:58.608  INFO 13336 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-10-30 19:55:58.862  INFO 13336 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-10-30 19:55:58.896  WARN 13336 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-10-30 19:55:58.931  INFO 13336 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-10-30 19:55:58.970  WARN 13336 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-10-30 19:55:59.183  INFO 13336 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-10-30 19:55:59.186  INFO 13336 --- [restartedMain] com.wwh.DemoApplication                  : Started DemoApplication in 2.983 seconds (JVM running for 4.49)
+2019-10-30 19:56:02.342  INFO 13336 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-30 19:56:02.342  INFO 13336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-10-30 19:56:02.350  INFO 13336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-10-30 19:56:02.405  INFO 13336 --- [http-nio-8080-exec-1] com.wwh.Aspect.LogAspect                 : Request : RequestLog{url='http://localhost:8080/', ip='0:0:0:0:0:0:0:1', classMethod='com.wwh.Controller.indexController.index', args=[]}
+2019-10-30 19:56:02.407  INFO 13336 --- [http-nio-8080-exec-1] com.wwh.Aspect.LogAspect                 : -------------doAfter-------------
+2019-10-30 19:56:02.407  INFO 13336 --- [http-nio-8080-exec-1] com.wwh.Aspect.LogAspect                 : Result : admin/input
