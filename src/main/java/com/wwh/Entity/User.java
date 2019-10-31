@@ -2,10 +2,8 @@ package com.wwh.Entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,9 +16,24 @@ public class User {
 
     private String nickname;
 
+    @Column(nullable = false)
     private String userName;
 
+    @Column(nullable = false)
     private String password;
 
     private String email;
+    
+    private String avatar;
+
+    //用户类型
+    private int type;
+
+    //时间戳
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    //时间戳
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateTime;
 }
