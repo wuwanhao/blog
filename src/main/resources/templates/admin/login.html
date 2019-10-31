@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客后台管理登录</title>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+    <br><br>
+    <div class="m-container-small m-padded-tb-massive" style="width: 30em !important;">
+        <div class="ui container">
+            <div class="ui middle aligned center aligned grid">
+                <div class="column">
+                    <h2 class="ui teal image header">
+                        <div class="content">
+                            登录到博客后台
+                        </div>
+                    </h2>
+                    <form class="ui large form" method="post" action="#">
+                        <div class="ui segment">
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="username" placeholder="用户名">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="lock icon"></i>
+                                    <input type="password" name="password" placeholder="密码">
+                                </div>
+                            </div>
+                            <div class="ui fluid large teal submit button">登录</div>
+                        </div>
+
+                        <div class="ui error message"></div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
+
+</body>
+</html>
