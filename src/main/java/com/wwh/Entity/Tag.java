@@ -2,6 +2,8 @@ package com.wwh.Entity;
 
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class Tag {
     @Column(nullable = false)
     private String name;
 
+    @Fetch(FetchMode.SELECT)
     @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
-    private List<Blog> blogs = new ArrayList<>();
+    private List<Blog> blogs;
 }

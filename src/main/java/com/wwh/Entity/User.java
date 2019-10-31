@@ -2,6 +2,8 @@ package com.wwh.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,6 +40,7 @@ public class User implements UserDetails {
 
     //角色
     @Column
+    @Fetch(FetchMode.SELECT)
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
@@ -49,8 +52,9 @@ public class User implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
+    @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private List<Blog> blogs = new ArrayList<>();
+    private List<Blog> blogs;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

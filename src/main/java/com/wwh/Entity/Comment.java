@@ -1,6 +1,8 @@
 package com.wwh.Entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,8 +38,9 @@ public class Comment {
     private Blog blog;
 
     //自包含，代表包含多个回复的子类对象
+    @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER)
-    private List<Comment> replyComments = new ArrayList<>();
+    private List<Comment> replyComments;
 
     @ManyToOne
     private Comment parentComment;

@@ -1,6 +1,8 @@
 package com.wwh.Entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -63,10 +65,12 @@ public class Blog {
     @ManyToOne
     private User user;
 
+    @Fetch(FetchMode.SELECT)
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    private List<Tag> tags = new ArrayList<>();
+    private List<Tag> tags;
 
+    @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments;
 
 }
