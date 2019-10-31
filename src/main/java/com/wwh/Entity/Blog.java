@@ -3,7 +3,9 @@ package com.wwh.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 //博客实体
@@ -25,15 +27,12 @@ public class Blog {
     private String content;
 
     //首图
-    @Column(nullable = false)
     private String firstPicture;
 
     //标记
-    @Column(nullable = false)
     private String flag;
 
     //浏览次数
-    @Column(nullable = false)
     private Integer views;
 
 
@@ -57,5 +56,17 @@ public class Blog {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
+
+    @ManyToOne
+    private Type type;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    private List<Tag> tags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "blog")
+    private List<Comment> comments = new ArrayList<>();
 
 }

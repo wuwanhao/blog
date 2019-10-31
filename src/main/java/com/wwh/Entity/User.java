@@ -3,7 +3,9 @@ package com.wwh.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +25,7 @@ public class User {
     private String password;
 
     private String email;
-    
+
     private String avatar;
 
     //用户类型
@@ -36,4 +38,7 @@ public class User {
     //时间戳
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
+
+    @OneToMany(mappedBy = "user")
+    private List<Blog> blogs = new ArrayList<>();
 }

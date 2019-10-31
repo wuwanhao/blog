@@ -3,6 +3,8 @@ package com.wwh.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,4 +18,7 @@ public class Type {
     //分类名
     @Column(nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "type")
+    private List<Blog> blogs = new ArrayList<>();
 }
