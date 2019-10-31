@@ -167,3 +167,4 @@ Caused by: org.hibernate.AnnotationException: Illegal attempt to map a non colle
 2019-10-31 16:15:32.028  WARN 8364 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
 2019-10-31 16:15:32.248  INFO 8364 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2019-10-31 16:15:32.251  INFO 8364 --- [restartedMain] com.wwh.DemoApplication                  : Started DemoApplication in 3.578 seconds (JVM running for 5.244)
+2019-10-31 18:24:41.134  WARN 8364 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h21m46s237ms104µs900ns).
