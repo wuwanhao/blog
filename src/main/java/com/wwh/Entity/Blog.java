@@ -63,10 +63,10 @@ public class Blog {
     @ManyToOne
     private User user;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "blog")
+    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
     private List<Comment> comments = new ArrayList<>();
 
 }
