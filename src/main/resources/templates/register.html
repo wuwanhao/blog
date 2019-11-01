@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客后台管理登录</title>
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
-    <link rel="stylesheet" href="../../static/css/me.css">
+    <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
     <br><br>
@@ -15,10 +15,10 @@
                 <div class="column">
                     <h2 class="ui teal image header">
                         <div class="content">
-                            登录到博客后台
+                            注册
                         </div>
                     </h2>
-                    <form class="ui large form" method="post" action="/login" >
+                    <form id="registerForm" class="ui large form" method="post" action="/admin/login" >
                         <div class="ui segment">
                             <div class="field">
                                 <div class="ui left icon input">
@@ -28,11 +28,17 @@
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="nickname" placeholder="昵称">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui left icon input">
                                     <i class="lock icon"></i>
                                     <input type="password" name="password" placeholder="密码">
                                 </div>
                             </div>
-                            <button class="ui fluid large teal submit button" type="submit">登录</button>
+                            <button class="ui fluid large teal submit button" id="register">注册</button>
                         </div>
                         <div class="ui error message"></div>
                     </form>
@@ -41,10 +47,27 @@
         </div>
     </div>
 
-    <th:block th:replace="admin/_fragments :: script">
-        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-        <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
-    </th:block>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
+
+    <script>
+        <!-- 添加用户动作 -->
+        $("#register").click(function () {
+            let addUserForm = {};
+            let form = $("#registerForm");
+
+            // 将序列化数组转换为对象
+            for (let field of form.serializeArray()) {
+                addUserForm[field.name] = field.value;
+            }
+
+            $.post("/user/add", addUserForm, function (res) {
+                window.location.reload(true);
+            })
+        })
+
+    </script>
 
 
 </body>

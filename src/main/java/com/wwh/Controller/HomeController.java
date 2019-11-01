@@ -22,6 +22,11 @@ public class HomeController {
         return "admin/login";
     }
 
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+
 
     @RequestMapping("/admin/index")
     public String successfulPage() {

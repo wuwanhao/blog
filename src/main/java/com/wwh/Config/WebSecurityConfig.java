@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/admin/login")
                 .successForwardUrl("/admin/index")
-                .loginProcessingUrl("/admin/login")
+                .loginProcessingUrl("/login")
                 .permitAll();
 
         //路由权限设置
