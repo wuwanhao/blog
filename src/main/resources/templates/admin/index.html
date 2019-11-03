@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +49,7 @@
 
             <div class="ui success large message">
                 <h2>Hi,</h2>
-                <p>武万浩，欢迎登录</p>
+                <p><strong><span sec:authentication="name"></span></strong>，你好，欢迎登录</p>
             </div>
 
             <img src="https://picsum.photos/1400/1000?image=1005" class="ui rounded bordered fluid image" alt="#">

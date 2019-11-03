@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
@@ -12,12 +13,12 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public String index() {
         return "index";
     }
 
-    @GetMapping("/admin/login")
+    @GetMapping("/auth/login")
     public String loginPage(){
         return "admin/login";
     }
@@ -28,7 +29,7 @@ public class HomeController {
     }
 
 
-    @RequestMapping("/admin/index")
+    @RequestMapping(value = "/admin/index", method = RequestMethod.POST)
     public String successfulPage() {
         return "admin/index";
     }

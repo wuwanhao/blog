@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <div href="#" class="item">注销</div>
+                        <div th:href="@{/logout}" class="item" sec:authorize="isAuthenticated()">注销</div>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,6 @@ public class UserRestController {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(user.getPassword());
-        newUser.setNickname(user.getNickname());
         newUser.setRoles(roles);
 
         //保存
