@@ -308,3 +308,13 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_181]
 
 2019-11-14 19:32:18.525  WARN 6681 --- [http-nio-8081-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2019-11-19 14:39:43.949  INFO 46092 --- [restartedMain] com.wwh.DemoApplication                  : Starting DemoApplication on WWH-PC with PID 46092 (F:\blog\target\classes started by DELL in F:\blog)
+2019-11-19 14:39:43.968  INFO 46092 --- [restartedMain] com.wwh.DemoApplication                  : The following profiles are active: pro
+2019-11-19 14:39:50.729  WARN 46092 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-11-19 14:39:50.805  WARN 46092 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-11-19 14:39:51.208  INFO 46092 --- [restartedMain] com.wwh.DemoApplication                  : Started DemoApplication in 7.747 seconds (JVM running for 9.474)
+2019-11-19 14:40:55.831  INFO 47452 --- [restartedMain] com.wwh.DemoApplication                  : Starting DemoApplication on WWH-PC with PID 47452 (F:\blog\target\classes started by DELL in F:\blog)
+2019-11-19 14:40:55.834  INFO 47452 --- [restartedMain] com.wwh.DemoApplication                  : The following profiles are active: pro
+2019-11-19 14:41:01.941  WARN 47452 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-11-19 14:41:02.013  WARN 47452 --- [restartedMain] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2019-11-19 14:41:02.418  INFO 47452 --- [restartedMain] com.wwh.DemoApplication                  : Started DemoApplication in 6.951 seconds (JVM running for 8.406)

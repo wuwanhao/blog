@@ -1,6 +1,7 @@
 package com.wwh.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity
 @Table(name = "t_role")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Role {
 
     @Id

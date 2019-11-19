@@ -1,5 +1,6 @@
 package com.wwh.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -14,6 +15,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "t_blog")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Blog {
 
     @Id

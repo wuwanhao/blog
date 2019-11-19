@@ -32,6 +32,13 @@ public class TypeService {
         typeRepository.save(type);
     }
 
+    //分类查询
+    public Type getType(Long id) throws Exception {
+        Type type = typeRepository.getOne(id);
+        return type;
+    }
+
+
     //分类列表
     public List<Type> getTypeList(Pageable pageable) throws Exception {
         Page<Type> page = typeRepository.findAll(pageable);
