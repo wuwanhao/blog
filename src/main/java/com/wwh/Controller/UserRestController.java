@@ -36,7 +36,7 @@ public class UserRestController {
         newUser.setUsername(user.getUsername());
         newUser.setPassword(user.getPassword());
         newUser.setRoles(roles);
-
+        
         //保存
         userService.addUser(newUser);
         return new Result(200,"添加成功");
