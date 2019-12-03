@@ -4,6 +4,7 @@ import com.wwh.DTO.OpBlogDTO;
 import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
+import com.wwh.VO.BlogListVO;
 import com.wwh.VO.BlogNameVO;
 import com.wwh.utils.Result;
 import org.springframework.beans.BeanUtils;
@@ -24,13 +25,27 @@ public class BlogService {
     @Autowired
     BlogRepository blogRepository;
 
-//    //构造查询对象
-//    public Example<Blog> buildBlogExample(BlogQO blogQO) throws Exception {
-//
-//    }
+    //列出博客（管理界面）
+    public List<BlogListVO> getBlogVOList(BlogQO blogQO) throws Exception {
+
+        // 分页
+        Sort sort = Sort.by(Sort.Order.desc("createTime"));
+        Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
+
+        List<Blog> blogs  = blogRepository.findAll(pageable).getContent();
+
+        //映射VO
+        List<BlogListVO> blogVOList = blogs.stream().map((blog) -> {
+            BlogListVO blogListVO = new BlogListVO();
+            BeanUtils.copyProperties(blog, blogListVO);
+            return blogListVO;
+        }).collect(Collectors.toList());
+        return blogVOList;
+
+    }
 
 
-    //列出所有博客(给前端)
+    //列出所有博客(展示界面)
     public List<BlogNameVO> getBlogNameList(BlogQO blogQO) throws Exception {
 
         // 分页
@@ -50,25 +65,28 @@ public class BlogService {
     }
 
     //添加新博客
-    public Result addBlog(OpBlogDTO opBlogDTO) throws Exception {
+    public Blog addBlog(OpBlogDTO opBlogDTO) throws Exception {
         Blog newBlog = new Blog();
         BeanUtils.copyProperties(opBlogDTO, newBlog);
         newBlog.setCreateTime(new Date());
-        blogRepository.save(newBlog);
-        return new Result(200,"博客添加成功");
+        return blogRepository.save(newBlog);
     }
 
 
     //删除博客
-    public Result deleteBlog(Long id) throws Exception {
+    public void deleteBlog(Long id) throws Exception {
         blogRepository.deleteById(id);
-        return new Result(200,"博客删除成功");
     }
 
     //修改博客
-    public Result editBlog(Long id, OpBlogDTO opBlogDTO) throws Exception {
+    public Blog editBlog(Long id, OpBlogDTO opBlogDTO) throws Exception {
         Blog blog = blogRepository.findById(id).get();
         BeanUtils.copyProperties(opBlogDTO,blog);
-        return new Result(200,"博客修改成功");
+        return blog;
+    }
+
+    //获取博客详情
+    public Blog getDetail(Long id) throws Exception {
+        return blogRepository.getOne(id);
     }
 }
