@@ -15,8 +15,8 @@
 <nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">Blog</h2>
-            <a href="#" class="active m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>首页</a>
+            <h1 class="ui teal header item">隔壁老憨的Blog</h1>
+            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>首页</a>
             <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
             <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
             <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini clone icon"></i>归档</a>
@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+    <!--移动端时侧边三道线-->
     <a class="ui menu toggle black icon button m-top-right m-mobile-show" href="#">
         <i class="sidebar icon"></i>
     </a>
