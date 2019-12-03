@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/login")
                 .successForwardUrl("/admin/index")
-                .failureForwardUrl("/auth/login")
+                //.failureForwardUrl("/auth/login")
                 .loginProcessingUrl("/login")
                 .permitAll();
 

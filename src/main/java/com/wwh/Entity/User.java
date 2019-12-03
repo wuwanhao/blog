@@ -26,7 +26,7 @@ public class User implements UserDetails {
 //    @Column(nullable = false)
 //    private String nickname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "username")
     private String username;
 
     @Column(nullable = false)

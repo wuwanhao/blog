@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -30,6 +29,12 @@ public class TypeController {
         // Collections.sort(type);
         model.addAttribute("typeList",type);
         return "admin/types";
+    }
+
+    //分类新增页面跳转
+    @GetMapping("/types/input")
+    public String addInput() {
+        return "admin/types_input";
     }
 
 }

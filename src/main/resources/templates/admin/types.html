@@ -74,9 +74,10 @@
                             <div class="ui mini right floated pagination menu">
                                 <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">上一页</a>
                                 <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">下一页</a>
+
                             </div>
-                            <div class="field">
-                                <button class="ui mini blue basic button"><i class="add icon"></i>新增</button>
+                            <div class="ui mini right floated pagination menu">
+                                <a class="item" th:href="@{/admin/types/input}">新增</a>
                             </div>
                         </th>
                     </tr>

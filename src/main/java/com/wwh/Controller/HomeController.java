@@ -20,7 +20,7 @@ public class HomeController {
 
     @GetMapping("/auth/login")
     public String loginPage(){
-        return "admin/login";
+        return "login";
     }
 
     @GetMapping("/register")
@@ -29,7 +29,8 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value = "/admin/index", method = RequestMethod.POST)
+    //登陆成功后处理
+    @RequestMapping(value = "/admin/index")
     public String successfulPage() {
         return "admin/index";
     }
