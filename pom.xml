@@ -43,6 +43,21 @@
             <version>2.1.6.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-models -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>1.5.22</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.22</version>
+        </dependency>
+
+
+
 
 
         <dependency>

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class OpBlogDTO {
+public class BlogDTO {
 
 
     //标题

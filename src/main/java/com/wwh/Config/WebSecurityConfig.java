@@ -54,14 +54,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/auth/login")
                 .successForwardUrl("/admin/index")
-                //.failureForwardUrl("/auth/login")
                 .loginProcessingUrl("/login")
                 .permitAll();
 
         //路由权限设置
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasRole("USER");          // 需要有USER角色才可以登录到后台管理页面
+                .antMatchers("/admin/**").permitAll();          // 需要有USER角色才可以登录到后台管理页面
 
         // 退出登录
         http.authorizeRequests()

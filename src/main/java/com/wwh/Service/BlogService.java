@@ -1,15 +1,14 @@
 package com.wwh.Service;
 
-import com.wwh.DTO.OpBlogDTO;
+import com.wwh.DTO.BlogDTO;
 import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
+import com.wwh.VO.BlogDetailVO;
 import com.wwh.VO.BlogListVO;
 import com.wwh.VO.BlogNameVO;
-import com.wwh.utils.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -65,9 +64,9 @@ public class BlogService {
     }
 
     //添加新博客
-    public Blog addBlog(OpBlogDTO opBlogDTO) throws Exception {
+    public Blog addBlog(BlogDTO blogDTO) throws Exception {
         Blog newBlog = new Blog();
-        BeanUtils.copyProperties(opBlogDTO, newBlog);
+        BeanUtils.copyProperties(blogDTO, newBlog);
         newBlog.setCreateTime(new Date());
         return blogRepository.save(newBlog);
     }
@@ -79,14 +78,24 @@ public class BlogService {
     }
 
     //修改博客
-    public Blog editBlog(Long id, OpBlogDTO opBlogDTO) throws Exception {
+    public Blog editBlog(Long id, BlogDTO blogDTO) throws Exception {
         Blog blog = blogRepository.findById(id).get();
-        BeanUtils.copyProperties(opBlogDTO,blog);
+        BeanUtils.copyProperties(blogDTO,blog);
         return blog;
     }
 
     //获取博客详情
-    public Blog getDetail(Long id) throws Exception {
-        return blogRepository.getOne(id);
+    public BlogDetailVO getDetail(Long id) throws Exception {
+        Blog blog = blogRepository.findById(id).orElse(null);
+
+        if (blog == null) {
+            throw new Exception("找不到该博客");
+        }
+
+        BlogDetailVO blogDetailVO = new BlogDetailVO();
+        BeanUtils.copyProperties(blog, blogDetailVO);
+
+        return blogDetailVO;
+
     }
 }

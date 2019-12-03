@@ -1,6 +1,6 @@
 package com.wwh.Controller;
 
-import com.wwh.DTO.OpBlogDTO;
+import com.wwh.DTO.BlogDTO;
 import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
 import com.wwh.Service.BlogService;
@@ -25,11 +25,11 @@ public class BlogAdminController {
 
     //增加博客
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody OpBlogDTO opBlogDTO, BindingResult bindingResult) throws Exception {
+    public Result add(@Valid @RequestBody BlogDTO blogDTO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
             throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
         }
-        blogService.addBlog(opBlogDTO);
+        blogService.addBlog(blogDTO);
         return new Result(200,"博客添加成功");
     }
 
@@ -43,10 +43,10 @@ public class BlogAdminController {
     }
 
     //获取详情
-    @GetMapping("/{id}/detail")
-    public Blog getDetail(@PathVariable Long id) throws Exception {
-        return blogService.getDetail(id);
-    }
+//    @GetMapping("/{id}/detail")
+//    public Blog getDetail(@PathVariable Long id) throws Exception {
+//        return blogService.getDetail(id);
+//    }
 
     //删除博客
     @DeleteMapping("/{id}/delete")
@@ -57,11 +57,11 @@ public class BlogAdminController {
 
     //更改博客
     @PostMapping("{id}/modify")
-    public Blog edit(@PathVariable Long id, @Valid @RequestBody OpBlogDTO opBlogDTO, BindingResult bindingResult) throws Exception {
+    public Blog edit(@PathVariable Long id, @Valid @RequestBody BlogDTO blogDTO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
             throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
         }
-        return blogService.editBlog(id, opBlogDTO);
+        return blogService.editBlog(id, blogDTO);
     }
 
 
