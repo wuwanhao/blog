@@ -41,9 +41,6 @@ public class User implements UserDetails {
 
 
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Blog> blogs;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

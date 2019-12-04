@@ -56,11 +56,13 @@ public class Blog {
 
     //类型
     @ManyToOne
+    @JoinColumn(name = "type_id")
     private Type type;
 
-    //作者（用户）
+    //作者
     @ManyToOne
-    private User user;
+    @JoinColumn(name = "auther_id")
+    private User auther;
 
     //标签
     @ManyToMany
@@ -72,7 +74,7 @@ public class Blog {
     private List<Tag> tags;
 
     //评论
-    @OneToMany(mappedBy = "blog")
+    @OneToMany
     private List<Comment> comments;
 
 }
