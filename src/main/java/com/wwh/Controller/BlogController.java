@@ -4,8 +4,10 @@ import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
 import com.wwh.Service.BlogService;
 import com.wwh.VO.BlogDetailVO;
+import com.wwh.VO.BlogNameItemVO;
 import com.wwh.VO.BlogNameVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,7 +23,10 @@ public class BlogController {
 
     //列出博客
     @GetMapping("/list")
-    public List<BlogNameVO> getBlogNameList(@Valid @PathVariable BlogQO blogQO) throws Exception {
+    public BlogNameItemVO getBlogNameList(@Valid BlogQO blogQO, BindingResult bindingResult) throws Exception {
+        if (bindingResult.hasFieldErrors()) {
+            throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
+        }
         return blogService.getBlogNameList(blogQO);
     }
 

@@ -1,12 +1,8 @@
 package com.wwh.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,8 +10,6 @@ import java.util.List;
 //博客实体
 @Data
 @Entity
-@Table(name = "t_blog")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Blog {
 
     @Id
@@ -51,28 +45,34 @@ public class Blog {
     //是否推荐
     private boolean recommend;
 
+
     //创建时间
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     //更新时间
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
+    //类型
     @ManyToOne
     private Type type;
 
+    //作者（用户）
     @ManyToOne
     private User user;
 
-    @Fetch(FetchMode.SELECT)
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    //标签
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "blog_tags",
+            joinColumns = @JoinColumn(name = "blog_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
     private List<Tag> tags;
 
-    @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
+    //评论
+    @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
 }

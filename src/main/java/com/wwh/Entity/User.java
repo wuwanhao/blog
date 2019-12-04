@@ -15,16 +15,11 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "t_user")
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue
     private Long id;
-
-//    @Column(nullable = false)
-//    private String nickname;
 
     @Column(nullable = false, name = "username")
     private String username;
@@ -41,20 +36,12 @@ public class User implements UserDetails {
 
     //角色
     @Column
-    @Fetch(FetchMode.SELECT)
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> roles;
 
-    //时间戳
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime;
 
-    //时间戳
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateTime;
 
-    @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<Blog> blogs;
 
     @Override

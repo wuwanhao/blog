@@ -12,8 +12,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "t_comment")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Comment {
 
     @Id
@@ -33,14 +31,12 @@ public class Comment {
     private String avatar;
 
     //评论创建时间,对应到数据库中的时间戳
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     @ManyToOne
     private Blog blog;
 
     //自包含，代表包含多个回复的子类对象
-    @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER)
     private List<Comment> replyComments;
 

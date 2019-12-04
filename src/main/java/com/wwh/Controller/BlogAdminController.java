@@ -15,6 +15,7 @@ import java.util.List;
 
 
 //博客后端管理接口
+//@Api(value = "Blog",tags = "博客后端管理接口")
 @RestController
 @RequestMapping("/admin/blog")
 public class BlogAdminController {
@@ -24,6 +25,7 @@ public class BlogAdminController {
     BlogService blogService;
 
     //增加博客
+    //@ApiOperation("增加博客")
     @PostMapping("/add")
     public Result add(@Valid @RequestBody BlogDTO blogDTO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
@@ -34,6 +36,7 @@ public class BlogAdminController {
     }
 
     //获取列表
+    //@ApiOperation("获取列表")
     @GetMapping("/list")
     public List<BlogListVO> list(@Valid BlogQO blogQO,BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {

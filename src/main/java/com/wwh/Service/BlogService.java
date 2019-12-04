@@ -6,9 +6,11 @@ import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.VO.BlogDetailVO;
 import com.wwh.VO.BlogListVO;
+import com.wwh.VO.BlogNameItemVO;
 import com.wwh.VO.BlogNameVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -45,21 +47,28 @@ public class BlogService {
 
 
     //列出所有博客(展示界面)
-    public List<BlogNameVO> getBlogNameList(BlogQO blogQO) throws Exception {
+    public BlogNameItemVO getBlogNameList(BlogQO blogQO) throws Exception {
 
         // 分页
         Sort sort = Sort.by(Sort.Order.desc("createTime"));
         Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
 
-        List<Blog> blogs  = blogRepository.findAll(pageable).getContent();
+        Page<Blog> page = blogRepository.findAll(pageable);
+        List<Blog> list = page.getContent();
+        Long total = page.getTotalElements();
 
         //映射VO
-        List<BlogNameVO> blogNameVOList = blogs.stream().map((blog) -> {
+        List<BlogNameVO> blogNameVOList = list.stream().map((blog) -> {
             BlogNameVO blogNameVO = new BlogNameVO();
             BeanUtils.copyProperties(blog, blogNameVO);
             return blogNameVO;
         }).collect(Collectors.toList());
-        return blogNameVOList;
+
+
+        BlogNameItemVO blogNameItemVO = new BlogNameItemVO();
+        blogNameItemVO.setBlogNameVOList(blogNameVOList);
+        blogNameItemVO.setNumber(total);
+        return blogNameItemVO;
 
     }
 

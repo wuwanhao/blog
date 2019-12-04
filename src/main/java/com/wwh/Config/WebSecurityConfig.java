@@ -40,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
         web.ignoring()
-                .antMatchers("static/**");
+                .antMatchers("static/**")
+                .antMatchers("/swagger-ui.html");
     }
 
     @Override
@@ -59,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //路由权限设置
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/admin/**").permitAll();          // 需要有USER角色才可以登录到后台管理页面
 
         // 退出登录
