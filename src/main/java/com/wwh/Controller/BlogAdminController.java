@@ -4,18 +4,17 @@ import com.wwh.DTO.BlogDTO;
 import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
 import com.wwh.Service.BlogService;
-import com.wwh.VO.BlogListVO;
+import com.wwh.VO.BlogDetailVO;
+import com.wwh.VO.BlogListItemVO;
 import com.wwh.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 //博客后端管理接口
-//@Api(value = "Blog",tags = "博客后端管理接口")
 @RestController
 @RequestMapping("/admin/blog")
 public class BlogAdminController {
@@ -25,7 +24,6 @@ public class BlogAdminController {
     BlogService blogService;
 
     //增加博客
-    //@ApiOperation("增加博客")
     @PostMapping("/add")
     public Result add(@Valid @RequestBody BlogDTO blogDTO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
@@ -36,9 +34,8 @@ public class BlogAdminController {
     }
 
     //获取列表
-    //@ApiOperation("获取列表")
     @GetMapping("/list")
-    public List<BlogListVO> list(@Valid BlogQO blogQO,BindingResult bindingResult) throws Exception {
+    public BlogListItemVO list(@Valid BlogQO blogQO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
             throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
         }
@@ -46,10 +43,10 @@ public class BlogAdminController {
     }
 
     //获取详情
-//    @GetMapping("/{id}/detail")
-//    public Blog getDetail(@PathVariable Long id) throws Exception {
-//        return blogService.getDetail(id);
-//    }
+    @GetMapping("/{id}/detail")
+    public BlogDetailVO getDetail(@PathVariable Long id) throws Exception {
+        return blogService.getDetail(id);
+    }
 
     //删除博客
     @DeleteMapping("/{id}/delete")

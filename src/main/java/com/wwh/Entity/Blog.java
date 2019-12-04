@@ -63,7 +63,7 @@ public class Blog {
     private User user;
 
     //标签
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "blog_tags",
             joinColumns = @JoinColumn(name = "blog_id"),
@@ -72,7 +72,7 @@ public class Blog {
     private List<Tag> tags;
 
     //评论
-    @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "blog")
     private List<Comment> comments;
 
 }

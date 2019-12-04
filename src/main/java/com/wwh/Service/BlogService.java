@@ -4,16 +4,10 @@ import com.wwh.DTO.BlogDTO;
 import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
-import com.wwh.VO.BlogDetailVO;
-import com.wwh.VO.BlogListVO;
-import com.wwh.VO.BlogNameItemVO;
-import com.wwh.VO.BlogNameVO;
+import com.wwh.VO.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -26,22 +20,43 @@ public class BlogService {
     @Autowired
     BlogRepository blogRepository;
 
+
+    //构造查询对象
+    public Example<Blog> buildBlogExample(BlogQO blogQO) throws Exception {
+        Blog blog = new Blog();
+
+        BeanUtils.copyProperties(blogQO, blog);
+
+        return Example.of(blog);
+    }
+
     //列出博客（管理界面）
-    public List<BlogListVO> getBlogVOList(BlogQO blogQO) throws Exception {
+    public BlogListItemVO getBlogVOList(BlogQO blogQO) throws Exception {
 
         // 分页
         Sort sort = Sort.by(Sort.Order.desc("createTime"));
         Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
 
-        List<Blog> blogs  = blogRepository.findAll(pageable).getContent();
+        //构造例子
+        Example<Blog> blogExample = this.buildBlogExample(blogQO);
+
+        //查询
+        Page<Blog> blogs = blogRepository.findAll(blogExample, pageable);
+        List<Blog> list = blogs.getContent();
+        Long total = blogs.getTotalElements();
 
         //映射VO
-        List<BlogListVO> blogVOList = blogs.stream().map((blog) -> {
+        List<BlogListVO> blogVOList = list.stream().map((blog) -> {
             BlogListVO blogListVO = new BlogListVO();
             BeanUtils.copyProperties(blog, blogListVO);
             return blogListVO;
         }).collect(Collectors.toList());
-        return blogVOList;
+
+        BlogListItemVO blogListItemVO = new BlogListItemVO();
+        blogListItemVO.setBlogListVOList(blogVOList);
+        blogListItemVO.setNumber(total);
+
+        return blogListItemVO;
 
     }
 
@@ -53,7 +68,11 @@ public class BlogService {
         Sort sort = Sort.by(Sort.Order.desc("createTime"));
         Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
 
-        Page<Blog> page = blogRepository.findAll(pageable);
+        //构造例子
+        Example<Blog> blogExample = this.buildBlogExample(blogQO);
+
+        //查询
+        Page<Blog> page = blogRepository.findAll(blogExample, pageable);
         List<Blog> list = page.getContent();
         Long total = page.getTotalElements();
 

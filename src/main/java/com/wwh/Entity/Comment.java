@@ -36,11 +36,5 @@ public class Comment {
     @ManyToOne
     private Blog blog;
 
-    //自包含，代表包含多个回复的子类对象
-    @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER)
-    private List<Comment> replyComments;
-
-    @ManyToOne
-    private Comment parentComment;
 
 }

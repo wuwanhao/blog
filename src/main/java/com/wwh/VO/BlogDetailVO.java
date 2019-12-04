@@ -5,10 +5,7 @@ import com.wwh.Entity.Tag;
 import com.wwh.Entity.Type;
 import com.wwh.Entity.User;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
