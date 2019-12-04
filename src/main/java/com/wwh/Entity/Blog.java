@@ -51,7 +51,6 @@ public class Blog {
     private Date createTime;
 
     //更新时间
-    @Column(nullable = false)
     private Date updateTime;
 
     //类型

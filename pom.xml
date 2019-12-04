@@ -14,6 +14,21 @@
     <name>demo</name>
     <description>Demo project for Spring Boot</description>
 
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <compilerArguments>
+                <verbose />
+                <bootclasspath>${java.home}\lib\rt.jar;${java.home}\lib\jce.jar</bootclasspath>
+            </compilerArguments>
+        </configuration>
+
+    </plugin>
+
     <repositories>
         <repository>
             <id>alimaven</id>

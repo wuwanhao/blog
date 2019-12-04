@@ -43,6 +43,8 @@ public class BlogService {
         //查询
         Page<Blog> blogs = blogRepository.findAll(blogExample, pageable);
         List<Blog> list = blogs.getContent();
+
+        System.out.println(list);
         Long total = blogs.getTotalElements();
 
         //映射VO
@@ -73,7 +75,10 @@ public class BlogService {
 
         //查询
         Page<Blog> page = blogRepository.findAll(blogExample, pageable);
+        System.out.println(page.getTotalElements());
         List<Blog> list = page.getContent();
+
+        System.out.println(list);
         Long total = page.getTotalElements();
 
         //映射VO
