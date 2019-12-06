@@ -2,6 +2,7 @@ package com.wwh.Controller;
 
 import com.wwh.Entity.Blog;
 import com.wwh.QO.BlogQO;
+import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.BlogService;
 import com.wwh.VO.BlogDetailVO;
 import com.wwh.VO.BlogNameItemVO;
@@ -21,6 +22,15 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
+    @Autowired
+    BlogRepository blogRepository;
+
+    //findAll
+    @GetMapping("/findAll")
+    public List<Blog> findAll() {
+        return blogRepository.findAll();
+    }
+
     //列出博客
     @GetMapping("/list")
     public BlogNameItemVO getBlogNameList(@Valid BlogQO blogQO, BindingResult bindingResult) throws Exception {
@@ -38,7 +48,7 @@ public class BlogController {
 
     //搜索博客
     @GetMapping("/search")
-    public List<Blog> search(String keyWord) throws Exception {
+    public List<BlogNameVO> search(String keyWord) throws Exception {
         return blogService.search(keyWord);
     }
 

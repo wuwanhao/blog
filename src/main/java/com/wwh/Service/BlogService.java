@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,28 +34,24 @@ public class BlogService {
     //列出博客（管理界面）
     public BlogListItemVO getBlogVOList(BlogQO blogQO) throws Exception {
 
-        System.out.println(blogRepository.findAll());
-
         // 分页
         Sort sort = Sort.by(Sort.Order.desc("createTime"));
-        Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
-
-        //构造例子
-        Example<Blog> blogExample = this.buildBlogExample(blogQO);
+        Pageable pageable = new PageRequest(blogQO.getPage(), blogQO.getSize(), sort);
 
         //查询
-        Page<Blog> blogs = blogRepository.findAll(blogExample, pageable);
+        Page<Blog> blogs = blogRepository.findAll(pageable);
         List<Blog> list = blogs.getContent();
 
-        System.out.println(list);
+        System.out.println("查询结果：" + list);
         Long total = blogs.getTotalElements();
 
         //映射VO
-        List<BlogListVO> blogVOList = list.stream().map((blog) -> {
+        List<BlogListVO> blogVOList = new ArrayList<>();
+        for (int i=0; i<total; i++) {
             BlogListVO blogListVO = new BlogListVO();
-            BeanUtils.copyProperties(blog, blogListVO);
-            return blogListVO;
-        }).collect(Collectors.toList());
+            BeanUtils.copyProperties(list.get(i), blogListVO);
+            blogVOList.add(blogListVO);
+        }
 
         BlogListItemVO blogListItemVO = new BlogListItemVO();
         blogListItemVO.setBlogListVOList(blogVOList);
@@ -136,7 +133,16 @@ public class BlogService {
 
 
     //博客搜索
-    public List<Blog> search(String keyWord) throws Exception {
-        return blogRepository.searchBlog(keyWord);
+    public List<BlogNameVO> search(String keyWord) throws Exception {
+        List<Blog> blogs = blogRepository.searchBlog(keyWord);
+        List<BlogNameVO> blogNameVOS = new ArrayList<>();
+
+        for (int i=0; i<blogs.size(); i++) {
+            BlogNameVO blogNameVO = new BlogNameVO();
+            BeanUtils.copyProperties(blogs.get(i), blogNameVO);
+            blogNameVOS.add(blogNameVO);
+        }
+
+        return blogNameVOS;
     }
 }
