@@ -33,6 +33,8 @@ public class BlogService {
     //列出博客（管理界面）
     public BlogListItemVO getBlogVOList(BlogQO blogQO) throws Exception {
 
+        System.out.println(blogRepository.findAll());
+
         // 分页
         Sort sort = Sort.by(Sort.Order.desc("createTime"));
         Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
