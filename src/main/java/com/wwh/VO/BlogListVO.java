@@ -1,10 +1,11 @@
 package com.wwh.VO;
 
 import com.wwh.Entity.Type;
+import lombok.Data;
 
 import java.util.Date;
 
-
+@Data
 public class BlogListVO {
 
     //标题

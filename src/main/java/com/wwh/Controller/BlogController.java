@@ -33,7 +33,7 @@ public class BlogController {
 
     //列出博客
     @GetMapping("/list")
-    public BlogNameItemVO getBlogNameList(@Valid BlogQO blogQO, BindingResult bindingResult) throws Exception {
+    public BlogNameItemVO getBlogNameList(@Valid @RequestBody BlogQO blogQO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
             throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
         }

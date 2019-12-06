@@ -36,7 +36,7 @@ public class BlogAdminController {
 
     //获取列表
     @GetMapping("/list")
-    public BlogListItemVO list(@Valid BlogQO blogQO, BindingResult bindingResult) throws Exception {
+    public BlogListItemVO list(@Valid @RequestBody BlogQO blogQO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
             throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
         }

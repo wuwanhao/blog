@@ -67,17 +67,15 @@ public class BlogService {
 
         // 分页
         Sort sort = Sort.by(Sort.Order.desc("createTime"));
-        Pageable pageable = PageRequest.of(blogQO.getPage(), blogQO.getSize(), sort);
+        Pageable pageable = new PageRequest(blogQO.getPage(), blogQO.getSize(), sort);
 
-        //构造例子
-        Example<Blog> blogExample = this.buildBlogExample(blogQO);
 
         //查询
-        Page<Blog> page = blogRepository.findAll(blogExample, pageable);
+        Page<Blog> page = blogRepository.findAll(pageable);
         System.out.println(page.getTotalElements());
         List<Blog> list = page.getContent();
 
-        System.out.println(list);
+        System.out.println("查询结果：" + list);
         Long total = page.getTotalElements();
 
         //映射VO
