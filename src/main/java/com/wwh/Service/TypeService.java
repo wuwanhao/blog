@@ -4,8 +4,10 @@ import com.wwh.Entity.Blog;
 import com.wwh.Entity.Type;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.Repository.TypeRepository;
+import com.wwh.VO.BlogNameVO;
 import com.wwh.VO.TypeNameVO;
 import com.wwh.utils.Result;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,8 +27,10 @@ public class TypeService {
     BlogRepository blogRepository;
 
     //添加分类
-    public Type addType(Type type) throws Exception {
-        return typeRepository.save(type);
+    public void addType(String name) throws Exception {
+        Type type = new Type();
+        type.setName(name);
+        typeRepository.save(type);
     }
 
     //分类删除
@@ -59,10 +63,8 @@ public class TypeService {
     public List<TypeNameVO> getTypeListAndNum() throws Exception {
         //查询分类名
         List<Type> types = typeRepository.findAll();
-
         //获取blog
         List<Blog> blogs = blogRepository.findAll();
-
 
         List<TypeNameVO> typeNameVOList = new ArrayList<>();
 
@@ -79,6 +81,20 @@ public class TypeService {
 
         return typeNameVOList;
 
+    }
+
+    //获取该分类下文章
+    public List<BlogNameVO> getBlogsOfTypeByTypeId(Long typeId) throws Exception {
+
+        List<Blog> blogList = blogRepository.getBlogOfType(typeId);
+
+        List<BlogNameVO> blogNameVOList = new ArrayList<>();
+
+        for (int i=0; i<blogList.size(); i++) {
+            BeanUtils.copyProperties(blogList.get(i), blogNameVOList.get(i));
+        }
+
+        return blogNameVOList;
     }
 
 

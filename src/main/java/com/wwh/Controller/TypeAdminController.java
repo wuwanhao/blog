@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/admin/type")
 public class TypeAdminController {
 
@@ -22,28 +22,29 @@ public class TypeAdminController {
     @Autowired
     TypeRepository typeRepository;
 
-    //后台分类列表(thymeleaf渲染)
-    @GetMapping("/list")
-    public String list(Model model) throws Exception {
-        //查询所有分类
-        List<Type> type = typeRepository.findAll();
-        // Collections.sort(type);
-        model.addAttribute("typeList",type);
-        return "admin/types";
-    }
+//    //后台分类列表(thymeleaf渲染)
+//    @GetMapping("/list")
+//    public String list(Model model) throws Exception {
+//        //查询所有分类
+//        List<Type> type = typeRepository.findAll();
+//        // Collections.sort(type);
+//        model.addAttribute("typeList",type);
+//        return "admin/types";
+//    }
 
 
 
 
     //分类添加
     @PostMapping("/add")
-    public Type addType(@RequestBody Type type) throws Exception {
-        return typeService.addType(type);
+    public Result addType(String name) throws Exception {
+        typeService.addType(name);
+        return new Result(200,"博客类型添加成功");
     }
 
     //分类名称修改
-    @PostMapping("/edit/{id}/{name}")
-    public Result editType(@PathVariable Long id, @PathVariable String name) throws Exception {
+    @PostMapping("/{id}/edit")
+    public Result editType(@PathVariable Long id, String name) throws Exception {
         typeService.updateType(id, name);
         return new Result(200,"分类更新成功");
     }

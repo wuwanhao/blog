@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Type {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //分类名

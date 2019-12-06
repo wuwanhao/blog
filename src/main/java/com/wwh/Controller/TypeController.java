@@ -3,9 +3,9 @@ package com.wwh.Controller;
 import com.wwh.Entity.Type;
 import com.wwh.Repository.TypeRepository;
 import com.wwh.Service.TypeService;
+import com.wwh.VO.BlogNameVO;
 import com.wwh.VO.TypeNameVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,9 +41,15 @@ public class TypeController {
 
 
     //获取分类列表+分类下文章个数
-    @GetMapping("/list")
+    @GetMapping("/getTypeListAndNum")
     public List<TypeNameVO> getTypeListAndNum() throws Exception {
         return typeService.getTypeListAndNum();
+    }
+
+    //获取某分类下文章
+    @GetMapping("/{typeId}/getBlogsByTypeId")
+    public List<BlogNameVO> getBlogsOfTypeByTypeId(@PathVariable Long typeId) throws Exception {
+        return typeService.getBlogsOfTypeByTypeId(typeId);
     }
 
 
