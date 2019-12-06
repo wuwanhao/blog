@@ -36,4 +36,13 @@ public class HomeController {
     }
 
 
+    //页面跳转
+
+    //分类新增页面跳转
+    @GetMapping("/types/input")
+    public String addInput() {
+        return "admin/types_input";
+    }
+
+
 }

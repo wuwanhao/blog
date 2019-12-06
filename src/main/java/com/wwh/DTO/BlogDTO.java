@@ -34,6 +34,7 @@ public class BlogDTO {
     private boolean recommend;
 
 
+    //分类
     private Type type;
 
     private User user;

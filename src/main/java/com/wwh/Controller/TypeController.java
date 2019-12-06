@@ -3,38 +3,49 @@ package com.wwh.Controller;
 import com.wwh.Entity.Type;
 import com.wwh.Repository.TypeRepository;
 import com.wwh.Service.TypeService;
+import com.wwh.VO.TypeNameVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/admin/type")
+@RestController
+@RequestMapping("/type")
 public class TypeController {
+
+    @Autowired
+    TypeRepository typeRepository;
 
     @Autowired
     TypeService typeService;
 
     @Autowired
-    TypeRepository typeRepository;
 
-    //后台分类列表
+
+    //分类总数（分类页面右上角个数）
+    @GetMapping("/number")
+    public Integer getTypeNumber() throws Exception {
+        return typeRepository.findAll().size();
+    }
+
+
+    //分类查询
+    @GetMapping("/{id}/detail")
+    public Type getType(@PathVariable Long id) throws Exception {
+        return typeService.getType(id);
+    }
+
+
+    //获取分类列表+分类下文章个数
     @GetMapping("/list")
-    public String list(Model model) throws Exception {
-        //查询所有分类
-        List<Type> type = typeRepository.findAll();
-        // Collections.sort(type);
-        model.addAttribute("typeList",type);
-        return "admin/types";
+    public List<TypeNameVO> getTypeListAndNum() throws Exception {
+        return typeService.getTypeListAndNum();
     }
 
-    //分类新增页面跳转
-    @GetMapping("/types/input")
-    public String addInput() {
-        return "admin/types_input";
-    }
+
 
 }
