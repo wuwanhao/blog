@@ -1,10 +1,8 @@
 package com.wwh.DTO;
 
-import com.wwh.Entity.Tag;
 import com.wwh.Entity.Type;
 import com.wwh.Entity.User;
 import lombok.Data;
-import java.util.List;
 
 @Data
 public class BlogDTO {
@@ -39,8 +37,6 @@ public class BlogDTO {
 
     private User user;
 
-
-    private List<Tag> tags;
 
 
 }

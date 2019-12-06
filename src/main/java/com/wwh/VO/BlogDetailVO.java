@@ -1,7 +1,6 @@
 package com.wwh.VO;
 
 import com.wwh.Entity.Comment;
-import com.wwh.Entity.Tag;
 import com.wwh.Entity.Type;
 import com.wwh.Entity.User;
 import lombok.Data;
@@ -38,8 +37,6 @@ public class BlogDetailVO {
     //作者
     private User user;
 
-    //标签
-    private List<Tag> tags;
 
     //评论
     private List<Comment> comments;

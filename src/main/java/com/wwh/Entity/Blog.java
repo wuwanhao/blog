@@ -63,14 +63,6 @@ public class Blog {
     @JoinColumn(name = "auther_id")
     private User auther;
 
-    //标签
-    @ManyToMany
-    @JoinTable(
-            name = "blog_tags",
-            joinColumns = @JoinColumn(name = "blog_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    private List<Tag> tags;
 
     //评论
     @OneToMany
