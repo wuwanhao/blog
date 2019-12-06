@@ -3,6 +3,7 @@ package com.wwh.Controller;
 import com.wwh.Entity.Type;
 import com.wwh.Repository.TypeRepository;
 import com.wwh.Service.TypeService;
+import com.wwh.VO.TypeSearchResultVO;
 import com.wwh.utils.Result;
 import org.apache.logging.log4j.message.ReusableMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,12 @@ public class TypeAdminController {
         typeService.deleteType(id);
         return new Result(200,"分类删除成功");
     }
+
+//    //分类搜索
+//    @GetMapping("/search")
+//    public List<TypeSearchResultVO> search(String keyWords) throws Exception {
+//        return typeService.search(keyWords);
+//    }
 
 
 

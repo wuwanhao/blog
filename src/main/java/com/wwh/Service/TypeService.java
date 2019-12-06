@@ -6,6 +6,7 @@ import com.wwh.Repository.BlogRepository;
 import com.wwh.Repository.TypeRepository;
 import com.wwh.VO.BlogNameVO;
 import com.wwh.VO.TypeNameVO;
+import com.wwh.VO.TypeSearchResultVO;
 import com.wwh.utils.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,24 @@ public class TypeService {
 
         return blogNameVOList;
     }
+
+
+
+//    //分类搜索+获取分类下的文章
+////    public List<TypeSearchResultVO> search(String keyWord) throws Exception {
+////        List<Type> typeList = typeRepository.searchType(keyWord);
+////
+////        List<TypeSearchResultVO> searchResultVOList = new ArrayList<>();
+////
+////        //遍历分类列表，返回每种分类下的文章
+////        for (int i=0; i<typeList.size(); i++) {
+////
+////            //第i种分类下的文章列表
+////            List<BlogNameVO> list = this.getBlogsOfTypeByTypeId(typeList.get(i).getId());
+////            searchResultVOList.add().setBlogNameVOS(list);
+////        }
+////        return searchResultVOList;
+////    }
 
 
 

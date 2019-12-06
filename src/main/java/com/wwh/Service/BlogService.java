@@ -133,4 +133,10 @@ public class BlogService {
         return blogDetailVO;
 
     }
+
+
+    //博客搜索
+    public List<Blog> search(String keyWord) throws Exception {
+        return blogRepository.searchBlog(keyWord);
+    }
 }

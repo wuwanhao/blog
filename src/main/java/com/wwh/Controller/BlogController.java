@@ -36,6 +36,12 @@ public class BlogController {
         return blogService.getDetail(id);
     }
 
+    //搜索博客
+    @GetMapping("/search")
+    public List<Blog> search(String keyWord) throws Exception {
+        return blogService.search(keyWord);
+    }
+
 
 
 }

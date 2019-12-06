@@ -13,4 +13,9 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
     //某一分类下文章个数
     @Query(value = "select * from blog where blog.type_id = ?1", nativeQuery = true)
     List<Blog> getBlogOfType(Long id);
+
+
+    //博客模糊搜索
+    @Query(value = "select * from blog where blog.title like %?1%", nativeQuery = true)
+    List<Blog> searchBlog(String keyWord);
 }
