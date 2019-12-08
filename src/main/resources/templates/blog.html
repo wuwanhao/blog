@@ -12,13 +12,12 @@
 </head>
 <body>
     <!--导航-->
-    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <nav th:replace="_fragments :: nav(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i>关于我</a>
                 <div class="right m-item item m-mobile-hide">
                     <div class="ui icon inverted transparent input">
@@ -451,22 +450,24 @@ h5,h6{font-size:1em;}
         </div>
     </footer>
 
-    <th:block th:replace="_fragments :: script">
-        <script src="../../static/lib/prism/prism.js"></script>
-        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-        <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
-        <script>
-            $('.menu.toggle').click(function () {
-                $('.m-item').toggleClass('m-mobile-hide');
-            });
-            //支付码弹出有问题
-            $('#payButton').popup({
-                popup: ('.payQR.popup'),
-                on : 'click',
-                position : 'bottom center'
-            })
-        </script>
-    </th:block>
+
+    <script src="../../static/lib/prism/prism.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        //支付码弹出
+        $('#payButton').popup({
+            popup: ('.payQR.popup'),
+            on : 'click',
+            position : 'bottom center'
+        })
+    </script>
+
 
 </body>
 </html>
