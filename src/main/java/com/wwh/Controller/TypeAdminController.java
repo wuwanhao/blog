@@ -40,7 +40,7 @@ public class TypeAdminController {
     @PostMapping("/add")
     public Result addType(String name) throws Exception {
         typeService.addType(name);
-        return new Result(200,"博客类型添加成功");
+        return new Result(200,"分类添加成功","");
     }
 
     //分类名称修改
@@ -57,11 +57,11 @@ public class TypeAdminController {
         return new Result(200,"分类删除成功");
     }
 
-//    //分类搜索
-//    @GetMapping("/search")
-//    public List<TypeSearchResultVO> search(String keyWords) throws Exception {
-//        return typeService.search(keyWords);
-//    }
+    //分类搜索
+    @GetMapping("/search")
+    public List<TypeSearchResultVO> search(String keyWords) throws Exception {
+        return typeService.search(keyWords);
+    }
 
 
 

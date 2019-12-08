@@ -49,7 +49,7 @@ public class TypeService {
 
     //分类查询
     public Type getType(Long id) throws Exception {
-        Type type = typeRepository.getOne(id);
+        Type type = typeRepository.findById(id).get();
         return type;
     }
 
@@ -73,6 +73,7 @@ public class TypeService {
             TypeNameVO typeNameVO = new TypeNameVO();
             //获取该分类下文章个数
             int blogNumOfType = blogRepository.getBlogOfType(types.get(i).getId()).size();
+
             //封装
             typeNameVO.setNumberOfType(blogNumOfType);
             typeNameVO.setType(types.get(i));
@@ -92,7 +93,9 @@ public class TypeService {
         List<BlogNameVO> blogNameVOList = new ArrayList<>();
 
         for (int i=0; i<blogList.size(); i++) {
-            BeanUtils.copyProperties(blogList.get(i), blogNameVOList.get(i));
+            BlogNameVO blogNameVO = new BlogNameVO();
+            BeanUtils.copyProperties(blogList.get(i), blogNameVO);
+            blogNameVOList.add(blogNameVO);
         }
 
         return blogNameVOList;
@@ -100,21 +103,29 @@ public class TypeService {
 
 
 
-//    //分类搜索+获取分类下的文章
-////    public List<TypeSearchResultVO> search(String keyWord) throws Exception {
-////        List<Type> typeList = typeRepository.searchType(keyWord);
-////
-////        List<TypeSearchResultVO> searchResultVOList = new ArrayList<>();
-////
-////        //遍历分类列表，返回每种分类下的文章
-////        for (int i=0; i<typeList.size(); i++) {
-////
-////            //第i种分类下的文章列表
-////            List<BlogNameVO> list = this.getBlogsOfTypeByTypeId(typeList.get(i).getId());
-////            searchResultVOList.add().setBlogNameVOS(list);
-////        }
-////        return searchResultVOList;
-////    }
+    //分类搜索+获取分类下的文章
+    public List<TypeSearchResultVO> search(String keyWord) throws Exception {
+        List<Type> typeList = typeRepository.searchType(keyWord);
+        System.out.println("搜索到的分类列表： " + typeList);
+
+        //总表
+        List<TypeSearchResultVO> searchResultVOList = new ArrayList<>();
+
+        //遍历分类列表，返回每种分类下的文章
+        for (int i=0; i<typeList.size(); i++) {
+            TypeSearchResultVO typeSearchResultVO = new TypeSearchResultVO();
+
+            //第i种分类下的文章列表
+            List<BlogNameVO> list = this.getBlogsOfTypeByTypeId(typeList.get(i).getId());
+            System.out.println("第" + (i+1) + "种分类下的文章列表： " + typeList);
+            typeSearchResultVO.setBlogNameVOS(list);
+            typeSearchResultVO.setNumber(list.size());
+
+            searchResultVOList.add(typeSearchResultVO);
+        }
+        System.out.println("每种分类下的文章： " +  searchResultVOList);
+        return searchResultVOList;
+    }
 
 
 

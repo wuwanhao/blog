@@ -24,13 +24,7 @@ public class GlobalReturnConfig implements WebMvcConfigurer {
 
         @Override
         public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-            if (body instanceof Result) {
-                return body;
-            } else if (body instanceof ResponseEntity) {
-                return body;
-            }
-
-            return new Result<>(body);
+            return body;
         }
     }
 }

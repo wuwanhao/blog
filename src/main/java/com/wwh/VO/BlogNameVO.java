@@ -8,6 +8,9 @@ import java.util.Date;
 @Data
 public class BlogNameVO {
 
+    //id
+    private Long id;
+
     //标题
     private String title;
 
