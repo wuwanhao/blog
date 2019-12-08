@@ -285,32 +285,30 @@
             <div class="ui inverted section divider"></div>
             <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 WWH Designed by WWH</p>
         </div>
+        <div id="app"></div>
     </footer>
 
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script>
-        // //axios
-        // function onLoad(){
-        //     axios({
-        //         method: 'get',
-        //         url: '/blog/list',
-        //         data: {
-        //             page: 0,
-        //             size: 10
-        //         }
-        //             .then(function (response) {
-        //                 console.log(response)
-        //             })
-        //             .catch(function (error) {
-        //                 console.log(error);
-        //             })
-        //
-        //     })
-        // }
+    <script type="text/javascript">
+
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    info: null
+                }
+            },
+            mounted () {
+                axios
+                .get("/blog/list?page=0&size=10")
+                .then(response => (this.info = response))
+                .catch(function (error) { // 请求失败处理
+                    console.log(error);
+                });
+            }
+        })
 
 
 

@@ -7,6 +7,8 @@ import com.wwh.Service.BlogService;
 import com.wwh.VO.BlogDetailVO;
 import com.wwh.VO.BlogListItemVO;
 import com.wwh.utils.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,7 @@ import javax.validation.Valid;
 
 //博客后端管理接口
 @RestController
+@Api(tags = "博客后台管理")
 @RequestMapping("/admin/blog")
 public class BlogAdminController {
 
@@ -25,6 +28,7 @@ public class BlogAdminController {
     BlogService blogService;
 
     //增加博客
+    @ApiOperation("增加博客")
     @PostMapping("/add")
     public Result add(@Valid @RequestBody BlogDTO blogDTO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
@@ -35,6 +39,7 @@ public class BlogAdminController {
     }
 
     //获取列表
+    @ApiOperation("获取列表")
     @GetMapping("/list")
     public BlogListItemVO list(@Valid @RequestBody BlogQO blogQO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
@@ -44,12 +49,14 @@ public class BlogAdminController {
     }
 
     //获取详情
+    @ApiOperation("获取详情")
     @GetMapping("/{id}/detail")
     public BlogDetailVO getDetail(@PathVariable Long id) throws Exception {
         return blogService.getDetail(id);
     }
 
     //删除博客
+    @ApiOperation("删除博客")
     @DeleteMapping("/{id}/delete")
     public Result deleteBlog(@PathVariable Long id) throws Exception {
         blogService.deleteBlog(id);
@@ -57,6 +64,7 @@ public class BlogAdminController {
     }
 
     //更改博客
+    @ApiOperation("更改博客")
     @PostMapping("{id}/modify")
     public Blog edit(@PathVariable Long id, @Valid @RequestBody BlogDTO blogDTO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {

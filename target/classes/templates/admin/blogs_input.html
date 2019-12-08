@@ -87,27 +87,26 @@
                         </div>
                     </div>
                     <div class="required field">
-                        <div class="ui left lebaled input">
-                            <label class="ui compact teal basic label">标签</label>
-                            <div class="ui fluid multiple search selection dropdown">
-                                <input type="hidden" name="tags">
-                                <i class="dropdown icon"></i>
-                                <div class="default text">标签</div>
-                                <div class="menu">
-                                    <div class="item" data-value="1">java</div>
-                                    <div class="item" data-value="2">JavaScript</div>
-                                </div>
-                            </div>
+<!--                        <div class="ui left lebaled input">-->
+<!--                            <label class="ui compact teal basic label">标签</label>-->
+<!--                            <div class="ui fluid multiple search selection dropdown">-->
+<!--                                <input type="hidden" name="tags">-->
+<!--                                <i class="dropdown icon"></i>-->
+<!--                                <div class="default text">标签</div>-->
+<!--                                <div class="menu">-->
+<!--                                    <div class="item" data-value="1">java</div>-->
+<!--                                    <div class="item" data-value="2">JavaScript</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <!--首图引用地址：博客详情页面最上方的图片和博客列表里右边的图片-->
+                        <div class="ui left labeled input">
+                            <label class="ui teal basic label">首图</label>
+                            <input type="text" name="indexPicture" placeholder="首图引用地址">
                         </div>
                     </div>
                 </div>
-                <!--首图引用地址：博客详情页面最上方的图片和博客列表里右边的图片-->
-                <div class="field">
-                    <div class="ui left labeled input">
-                        <label class="ui teal basic label">首图</label>
-                        <input type="text" name="indexPicture" placeholder="首图引用地址">
-                    </div>
-                </div>
+
                 <div class="inline fields">
                     <div class="field">
                         <div class="ui checked checkbox">
@@ -188,67 +187,67 @@
         </div>
     </footer>
 
-    <th:block th:replace="admin/_fragments :: script">
-        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-        <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
-        <script src="../../static/lib/editormd/editormd.min.js"></script>
-        <script>
 
-            //初始化markdown编辑器
-            var contentEditor;
-            $(function() {
-                contentEditor = editormd("md-content", {
-                    width   : "100%",
-                    height  : 640,
-                    syncScrolling : "single",
-                    path    : "../../static/lib/editormd/lib/"
-                });
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
+    <script src="../../static/lib/editormd/editormd.min.js"></script>
+    <script>
+
+        //初始化markdown编辑器
+        var contentEditor;
+        $(function() {
+            contentEditor = editormd("md-content", {
+                width   : "100%",
+                height  : 640,
+                syncScrolling : "single",
+                path    : "../../static/lib/editormd/lib/"
             });
+        });
 
-            //首页一级标题移动端自适应
-            $('.menu.toggle').click(function () {
-                $('.m-item').toggleClass('m-mobile-hide');
-            });
+        //首页一级标题移动端自适应
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
 
-            //头像下拉菜单
-            $('.ui.dropdown').dropdown();
+        //头像下拉菜单
+        $('.ui.dropdown').dropdown();
 
-            //表单验证
-            $('.ui.form').form({
-                fields : {
-                    title : {
-                        identifier : 'title',
-                        rules: [{
-                            type : 'empty',
-                            prompt: '博客标题不能为空'
-                        }]
-                    },
-                    content : {
-                        identifier : 'content',
-                        rules : [{
-                            type : 'empty',
-                            prompt: "博客内容不能为空"
-                        }]
-                    },
-                    type : {
-                        identifier : 'type',
-                        rules : [{
-                            type : 'empty',
-                            prompt : '请选择博客类型'
-                        }]
-                    },
-                    tags : {
-                        identifier : 'tags',
-                        rules : [{
-                            type : 'empty',
-                            prompt : '请选择博客标签'
-                        }]
-                    }
+        //表单验证
+        $('.ui.form').form({
+            fields : {
+                title : {
+                    identifier : 'title',
+                    rules: [{
+                        type : 'empty',
+                        prompt: '博客标题不能为空'
+                    }]
+                },
+                content : {
+                    identifier : 'content',
+                    rules : [{
+                        type : 'empty',
+                        prompt: "博客内容不能为空"
+                    }]
+                },
+                type : {
+                    identifier : 'type',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请选择博客类型'
+                    }]
+                },
+                tags : {
+                    identifier : 'tags',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请选择博客标签'
+                    }]
                 }
-            })
+            }
+        })
 
-        </script>
-    </th:block>
+    </script>
+
 
 
 
