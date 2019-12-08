@@ -6,6 +6,7 @@
     <title>首页</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
+
 </head>
 <body>
     <!--导航-->
@@ -301,12 +302,7 @@
                 }
             },
             mounted () {
-                axios
-                .get("/blog/list?page=0&size=10")
-                .then(response => (this.info = response))
-                .catch(function (error) { // 请求失败处理
-                    console.log(error);
-                });
+                $.ajax()
             }
         })
 
