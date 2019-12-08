@@ -1,5 +1,6 @@
 package com.wwh.Service;
 
+import com.sun.xml.bind.v2.TODO;
 import com.wwh.Entity.Blog;
 import com.wwh.Entity.Type;
 import com.wwh.Repository.BlogRepository;
@@ -103,9 +104,9 @@ public class TypeService {
 
 
 
-    //分类搜索+获取分类下的文章
+    //分类搜索+获取分类下的文章(有问题)
     public List<TypeSearchResultVO> search(String keyWord) throws Exception {
-        List<Type> typeList = typeRepository.searchType(keyWord);
+        List<Type> typeList = typeRepository.search(keyWord);
         System.out.println("搜索到的分类列表： " + typeList);
 
         //总表

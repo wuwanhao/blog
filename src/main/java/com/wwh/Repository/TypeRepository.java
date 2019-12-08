@@ -9,8 +9,9 @@ import java.util.List;
 
 @Repository
 public interface TypeRepository extends JpaRepository<Type, Long> {
+    List<Type> findAll();
 
     //分类模糊搜索
-    @Query(value = "select * from Type as type where type.name like %?1%", nativeQuery = true)
-    List<Type> searchType(String name);
+    @Query(value = "select * from type where type.id like %?1%", nativeQuery = true)
+    List<Type> search(String name);
 }
