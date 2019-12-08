@@ -18,6 +18,16 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/types")
+    public String type() {
+        return "types";
+    }
+
+    @RequestMapping("/about")
+    public String about() {
+        return "about";
+    }
+
     @GetMapping("/auth/login")
     public String loginPage(){
         return "login";
@@ -35,12 +45,23 @@ public class HomeController {
         return "admin/index";
     }
 
+    @RequestMapping(value = "/admin/blogs")
+    public String adminBlog() {
+        return "admin/blogs";
+    }
 
-    //页面跳转
+    @RequestMapping(value = "/admin/blogs_input")
+    public String adminBlogInput() {
+        return "admin/blogs_input";
+    }
 
-    //分类新增页面跳转
-    @GetMapping("/types/input")
-    public String addInput() {
+    @RequestMapping(value = "/admin/types")
+    public String adminType() {
+        return "admin/types";
+    }
+
+    @GetMapping(value = "/admin/types_input")
+    public String adminTypeInput() {
         return "admin/types_input";
     }
 

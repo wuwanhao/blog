@@ -40,8 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
         web.ignoring()
-                .antMatchers("static/**")
-                .antMatchers("/swagger-ui.html");
+                .antMatchers("static/**");
+
     }
 
     @Override

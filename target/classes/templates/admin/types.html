@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments :: head(~{::title})">
+<head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>分类管理</title>
@@ -10,7 +10,7 @@
 <!-- 分类管理页面 -->
 <body>
     <!--导航-->
-    <nav th:replace="admin/_fregments :: menu(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <nav th:replace="admin/_fragments :: nav(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">管理后台</h2>
@@ -58,12 +58,12 @@
                 </thead>
                 <tbody>
                     <!--thymeleaf模板循环渲染-->
-                    <tr th:each="type,typeStat: ${typeList}">
-                        <td th:text="${typeStat.count}">1</td>
-                        <td th:text="${type.name}">刻意练习清单</td>
+                    <tr>
+                        <td>1</td>
+                        <td>刻意练习清单</td>
                         <td>
-                            <a class="ui mini teal button" th:href="@{/admin/types/{id}/input(id=${type.id})}">编辑</a>
-                            <a class="ui mini red button" th:href="@{/admin/types/{id}/delete(id=${type.id})}">删除</a>
+                            <a class="ui mini teal button" thref="#">编辑</a>
+                            <a class="ui mini red button" href="#">删除</a>
                         </td>
                     </tr>
                 </tbody>
@@ -71,9 +71,11 @@
                     <tr>
                         <th colspan="6">
                             <div class="ui mini right floated pagination menu">
-                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">上一页</a>
-                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">下一页</a>
+<!--                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">上一页</a>-->
+<!--                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">下一页</a>-->
 
+                                <a class="item" href="#">上一页</a>
+                                <a class="item" href="#">下一页</a>
                             </div>
                             <div class="ui mini right floated pagination menu">
                                 <a class="item" th:href="@{/admin/types/input}">新增</a>

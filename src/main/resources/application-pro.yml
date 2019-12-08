@@ -12,6 +12,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  thymeleaf:
+    　　prefix: classpath:/templates/
 
 
 #logging:
