@@ -9,12 +9,12 @@
 </head>
 <body>
     <!--导航-->
-    <nav th:replace="_fragments :: nav(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">Blog</h2>
+                <h2 class="ui teal header item">隔壁老憨的Blog</h2>
                 <a th:href="@{/}" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+                <a th:href="@{/types}" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
                 <a th:href="@{/about}" class="m-item item m-mobile-hide"><i class="mini info icon"></i>关于我</a>
                 <div class="right m-item item m-mobile-hide">
                     <div class="ui icon inverted transparent input">
@@ -35,34 +35,27 @@
             <div class="ui top attached segment">
                 <div class="ui middle aligned two column grid">
                     <div class="column">
-                        <h3 class="ui teal header">分类</h3>
+                        <h3 class="ui teal header">搜索结果</h3>
                     </div>
                     <div class="column right aligned">
-                        共 <h2 class="ui orange header m-inline-block m-text-thin">{{typeNumber}}</h2>个
+                        共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${blogSearchNum}">66</h2>个
                     </div>
                 </div>
             </div>
-            <!--分类标签区域-->
-            <div class="ui bottom attached segment m-padded-tb-large">
-                <div class="ui labeled button m-margin-tb-tiny" v-for="typename in typeNames">
-                    <a href="#" class="ui basic teal button">{{typename.type.name}}</a>
-                    <div class="ui basic teal left pointing label">{{typename.numberOfType}}篇</div>
-                </div>
-            </div>
-            <!--该分类下内容区域-->
+            <!--内容区域-->
             <div class="ui top attached teal segment">
-                <div class="ui attached segment m-padded-tb-large">
+                <div class="ui attached segment m-padded-tb-large" th:each="blog : ${blogSearchList}">
                     <div class="ui padded vertical segment">
-                        <div class="ui mobile reversed stackable grid">
+                        <div class="ui mobile reversed stackable grid" >
                             <div class="eleven wide column">
-                                <h3 class="ui header">走向单体地狱</h3>
-                                <p class="m-text">本阶段课程对应千锋 Java 的第三阶段的学习内容，经过本轮学习，我们会掌握 Intellij IDEA、Maven、Bootstrap、Spring、Spring MVC、MyBatis、HttpClient 等工具与框架的使用，并开始引入架构的概念，为“微服务架构”阶段打下坚实的基础。</p>
+                                <h3 class="ui header" th:text="${blog.title}">走向单体地狱</h3>
+                                <p class="m-text" th:text="${blog.content}">本阶段课程对应千锋 Java 的第三阶段的学习内容，经过本轮学习，我们会掌握 Intellij IDEA、Maven、Bootstrap、Spring、Spring MVC、MyBatis、HttpClient 等工具与框架的使用，并开始引入架构的概念，为“微服务架构”阶段打下坚实的基础。</p>
                                 <div class="ui grid">
                                     <div class="nine wide column">
                                         <div class="ui mini horizontal link list">
                                             <div class="item">
-                                                <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                                                <div class="content"><a class="header" href="#">武万浩</a></div>
+                                                <img class="ui avatar image" th:src="${blog.firstPicture}">
+                                                <div class="content"><a class="header" th:href="@{/about}">武万浩</a></div>
                                             </div>
                                             <div class="item">
 
@@ -75,47 +68,8 @@
                                     <div class="right aligned seven wide column">
                                         <div class="ui mini horizontal link list">
                                             <div class="item">
-                                                <i class="calendar icon"></i> 2017-10-1
-                                                <i class="eye icon"></i> 2342
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="five wide column">
-                                <a href="#" target="_blank">
-                                    <img class="ui rounded image" src="https://picsum.photos/800/450?image=1005" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui attached segment m-padded-tb-large">
-                    <div class="ui padded vertical segment">
-                        <div class="ui mobile reversed stackable grid">
-                            <div class="eleven wide column">
-                                <h3 class="ui header">走向单体地狱</h3>
-                                <p class="m-text">本阶段课程对应千锋 Java 的第三阶段的学习内容，经过本轮学习，我们会掌握 Intellij IDEA、Maven、Bootstrap、Spring、Spring MVC、MyBatis、HttpClient 等工具与框架的使用，并开始引入架构的概念，为“微服务架构”阶段打下坚实的基础。</p>
-                                <div class="ui grid">
-                                    <div class="nine wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                                                <div class="content"><a class="header" href="#">武万浩</a></div>
-                                            </div>
-                                            <div class="item">
-
-                                            </div>
-                                            <div class="item">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right aligned seven wide column">
-                                        <div class="ui mini horizontal link list">
-                                            <div class="item">
-                                                <i class="calendar icon"></i> 2017-10-1
-                                                <i class="eye icon"></i> 2342
+                                                <i class="calendar icon"></i> <span th:text="${blog.createTime}">5555</span>
+                                                <i class="eye icon"></i> <span th:text="${blog.views}">5555</span>
                                             </div>
                                         </div>
                                     </div>

@@ -1,17 +1,26 @@
 package com.wwh.Controller;
 
+import com.wwh.Entity.Blog;
+import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BlogRepository blogRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -65,5 +74,14 @@ public class HomeController {
         return "admin/types_input";
     }
 
+
+    @GetMapping("/search")
+    public String search(String keyWord, Model model) throws Exception {
+        List<Blog> blogs = blogRepository.searchBlog(keyWord);
+        model.addAttribute("blogSearchNum", blogs.size());
+        model.addAttribute("blogSearchList",blogs);
+
+        return "search_result";
+    }
 
 }
