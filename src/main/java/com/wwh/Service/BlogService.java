@@ -143,4 +143,20 @@ public class BlogService {
 
         return blogNameVOS;
     }
+
+
+    //推荐博客
+    public List<BlogNameVO> recommend() throws Exception {
+        List<Blog> blogs = blogRepository.recommendBlog();
+        List<BlogNameVO> blogNameVOS = new ArrayList<>();
+
+
+        for (int i=0; i<blogs.size(); i++) {
+            BlogNameVO blogNameVO = new BlogNameVO();
+            BeanUtils.copyProperties(blogs.get(i), blogNameVO);
+            blogNameVOS.add(blogNameVO);
+        }
+
+        return blogNameVOS;
+    }
 }

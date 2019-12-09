@@ -58,6 +58,12 @@ public class BlogController {
         return blogService.search(keyWord);
     }
 
+    @ApiOperation("推荐博客")
+    @GetMapping("/recommend")
+    public List<BlogNameVO> recommend() throws Exception {
+        return blogService.recommend();
+    }
+
 
 
 }

@@ -302,12 +302,7 @@
                 }
             },
             mounted () {
-                axios
-                .get("/blog/list?page=0&size=10")
-                .then(response => (this.info = response))
-                .catch(function (error) { // 请求失败处理
-                    console.log(error);
-                });
+                $.ajax()
             }
         })
 
