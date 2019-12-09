@@ -36,7 +36,7 @@ public class BlogController {
 
     //列出博客
     @ApiOperation("列出博客")
-    @GetMapping("/list")
+    @PostMapping("/list")
     public BlogNameItemVO getBlogNameList(@Valid @RequestBody BlogQO blogQO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasFieldErrors()) {
             throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());

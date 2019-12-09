@@ -30,11 +30,11 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-padded-tb-big m-container">
+    <div class="m-padded-tb-big m-container" id="app">
         <div class="ui container">
             <div class="ui stackable grid">
                 <!--左边列表内容-->
-                <div class="eleven wide column">
+                <div class="eleven wide column" >
                     <!--header-->
                     <div class="ui top attached segment">
                         <div class="ui middle aligned two column grid">
@@ -42,23 +42,23 @@
                                 <h3 class="ui teal header">博客</h3>
                             </div>
                             <div class="column right aligned">
-                                共 <h2 class="ui orange header m-inline-block m-text-thin">14</h2>篇
+                                共 <h2 class="ui orange header m-inline-block m-text-thin">{{blogTotalNumber}}</h2>篇
                             </div>
                         </div>
                     </div>
                     <!--content-->
                     <div class="ui attached segment m-padded-tb-large">
-                        <div class="ui padded vertical segment">
-                            <div class="ui mobile reversed stackable grid">
+                        <div class="ui padded vertical segment" v-for="list in blogNameList">
+                            <div class="ui mobile reversed stackable grid" >
                                 <div class="eleven wide column">
-                                    <h3 class="ui header">走向单体地狱</h3>
-                                    <p class="m-text">本阶段课程对应千锋 Java 的第三阶段的学习内容，经过本轮学习，我们会掌握 Intellij IDEA、Maven、Bootstrap、Spring、Spring MVC、MyBatis、HttpClient 等工具与框架的使用，并开始引入架构的概念，为“微服务架构”阶段打下坚实的基础。</p>
+                                    <h3 class="ui header">{{list.title}}</h3>
+                                    <p class="m-text">{{list.content}}</p>
                                     <div class="ui grid">
                                         <div class="nine wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
                                                     <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                                                    <div class="content"><a class="header" href="#">武万浩</a></div>
+                                                    <div class="content"><a class="header" href="#">{{list.user}}</a></div>
                                                 </div>
                                                 <div class="item">
 
@@ -71,8 +71,8 @@
                                         <div class="right aligned seven wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <i class="calendar icon"></i> 2017-10-1
-                                                    <i class="eye icon"></i> 2342
+                                                    <i class="calendar icon"></i> {{list.createTime}}
+                                                    <i class="eye icon"></i> {{list.views}}
                                                 </div>
                                             </div>
                                         </div>
@@ -80,85 +80,7 @@
                                 </div>
                                 <div class="five wide column">
                                     <a href="#" target="_blank">
-                                        <img class="ui rounded image" src="https://picsum.photos/800/450?image=1005" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui attached segment m-padded-tb-large">
-                        <div class="ui padded vertical segment">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">走向单体地狱</h3>
-                                    <p class="m-text">本阶段课程对应千锋 Java 的第三阶段的学习内容，经过本轮学习，我们会掌握 Intellij IDEA、Maven、Bootstrap、Spring、Spring MVC、MyBatis、HttpClient 等工具与框架的使用，并开始引入架构的概念，为“微服务架构”阶段打下坚实的基础。</p>
-                                    <div class="ui grid">
-                                        <div class="nine wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                                                    <div class="content"><a class="header" href="#">武万浩</a></div>
-                                                </div>
-                                                <div class="item">
-
-                                                </div>
-                                                <div class="item">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned seven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2017-10-1
-                                                    <i class="eye icon"></i> 2342
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img class="ui rounded image" src="https://picsum.photos/800/450?image=1005" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui attached segment m-padded-tb-large">
-                        <div class="ui padded vertical segment">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">走向单体地狱</h3>
-                                    <p class="m-text">本阶段课程对应千锋 Java 的第三阶段的学习内容，经过本轮学习，我们会掌握 Intellij IDEA、Maven、Bootstrap、Spring、Spring MVC、MyBatis、HttpClient 等工具与框架的使用，并开始引入架构的概念，为“微服务架构”阶段打下坚实的基础。</p>
-                                    <div class="ui grid">
-                                        <div class="nine wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                                                    <div class="content"><a class="header" href="#">武万浩</a></div>
-                                                </div>
-                                                <div class="item">
-
-                                                </div>
-                                                <div class="item">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned seven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <i class="calendar icon"></i> 2017-10-1
-                                                    <i class="eye icon"></i> 2342
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img class="ui rounded image" src="https://picsum.photos/800/450?image=1005" alt="">
+                                        <img class="ui rounded image" v-bind:src="list.firstPicture" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -192,29 +114,9 @@
                         </div>
                         <div class="ui teal segment">
                             <div class="ui fluid vertical menu">
-                                <a class="item" href="#">
-                                    学习日志
-                                    <div class="ui teal basic left pointing label">115</div>
-                                </a>
-                                <a class="item" href="#">
-                                    学习日志
-                                    <div class="ui teal basic left pointing label">15</div>
-                                </a>
-                                <a class="item" href="#">
-                                    学习日志
-                                    <div class="ui teal basic left pointing label">15</div>
-                                </a>
-                                <a class="item" href="#">
-                                    学习日志
-                                    <div class="ui teal basic left pointing label">15</div>
-                                </a>
-                                <a class="item" href="#">
-                                    学习日志
-                                    <div class="ui teal basic left pointing label">15</div>
-                                </a>
-                                <a class="item" href="#">
-                                    学习日志
-                                    <div class="ui teal basic left pointing label">15</div>
+                                <a class="item" href="#" v-for="typename in typeNames">
+                                    {{typename.type.name}}
+                                    <div class="ui teal basic left pointing label">{{typename.numberOfType}}</div>
                                 </a>
                             </div>
                         </div>
@@ -227,17 +129,8 @@
                                 <i class="bookmark icon"></i>推荐
                             </div>
                         </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-black m-text-thin">用户故事</a>
-                        </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-black m-text-thin">用户故事</a>
-                        </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-black m-text-thin">用户故事</a>
-                        </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-black m-text-thin">用户故事</a>
+                        <div class="ui segment" v-for="recommend in blogRecommend">
+                            <a href="#" target="_blank" class="m-black m-text-thin">{{recommend.title}}</a>
                         </div>
                     </div>
                     <!--二维码-->
@@ -286,7 +179,6 @@
             <div class="ui inverted section divider"></div>
             <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 WWH Designed by WWH</p>
         </div>
-        <div id="app"></div>
     </footer>
 
 
@@ -298,16 +190,39 @@
             el: '#app',
             data() {
                 return {
-                    info: null
+                    blogNameList:[],
+                    blogNameListNumber: "",
+                    blogTotalNumber: "",
+                    firstPicture: "",
+                    blogRecommend:[],
+                    typeNames:[]
                 }
             },
-            mounted () {
-                $.ajax()
+            methods: {
+                //自定义方法（按钮等）
+
+            },
+            //钩子函数
+            mounted() {
+                axios.post("/blog/list",{"page": 0, "size": 10})
+                    .then(res=>{
+                        console.log(res.data),
+                        this.blogNameList = res.data.blogNameVOList
+                        this.blogTotalNumber = res.data.blogNameVOList.length
+                    })
+                axios.get("/type/getTypeListAndNum")
+                .then(res=>{
+                    console.log(res.data),
+                    this.typeNames = res.data
+                })
+                axios.get("/blog/recommend")
+                .then(res=>{
+                    console.log(res.data)
+                    this.blogRecommend = res.data
+                })
             }
+
         })
-
-
-
 
 
         //移动端适应
