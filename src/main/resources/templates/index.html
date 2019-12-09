@@ -114,7 +114,7 @@
                         </div>
                         <div class="ui teal segment">
                             <div class="ui fluid vertical menu">
-                                <a class="item" href="#" v-for="typename in typeNames">
+                                <a class="item" href="#" v-for="(typename,index) in typeNames.slice(0,2)">
                                     {{typename.type.name}}
                                     <div class="ui teal basic left pointing label">{{typename.numberOfType}}</div>
                                 </a>
@@ -230,6 +230,7 @@
             $('.m-item').toggleClass('m-mobile-hide');
         })
     </script>
+
 
 </body>
 </html>

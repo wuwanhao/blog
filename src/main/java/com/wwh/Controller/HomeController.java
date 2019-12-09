@@ -2,14 +2,14 @@ package com.wwh.Controller;
 
 import com.wwh.Entity.Blog;
 import com.wwh.Repository.BlogRepository;
+import com.wwh.Service.BlogService;
 import com.wwh.Service.UserService;
+import com.wwh.VO.BlogDetailVO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +21,9 @@ public class HomeController {
 
     @Autowired
     BlogRepository blogRepository;
+
+    @Autowired
+    BlogService blogService;
 
     @RequestMapping("/")
     public String index() {
@@ -83,5 +86,26 @@ public class HomeController {
 
         return "search_result";
     }
+
+    //查看博客详细信息
+    @ApiOperation("查看博客详细信息")
+    @GetMapping("/{id}/detail")
+    public String getDetail(@PathVariable Long id, Model model) throws Exception {
+        BlogDetailVO blogDetailVO = blogService.getDetail(id);
+        model.addAttribute("title", blogDetailVO.getTitle());
+        model.addAttribute("content", blogDetailVO.getContent());
+        model.addAttribute("firstPicture", blogDetailVO.getFirstPicture());
+        model.addAttribute("flag", blogDetailVO.getFlag());
+        model.addAttribute("views", blogDetailVO.getViews());
+        model.addAttribute("createTime", blogDetailVO.getCreateTime());
+        model.addAttribute("type", blogDetailVO.getType().getName());
+        model.addAttribute("user", blogDetailVO.getUser());
+
+        return "blog";
+
+
+    }
+
+
 
 }
