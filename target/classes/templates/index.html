@@ -49,7 +49,7 @@
                     <!--content-->
                     <div class="ui attached segment m-padded-tb-large">
                         <div class="ui padded vertical segment" v-for="list in blogNameList">
-                            <div class="ui mobile reversed stackable grid" >
+                            <div class="ui mobile reversed stackable grid" v-bind:href="'/' + list.id + '/detail'">
                                 <div class="eleven wide column">
                                     <h3 class="ui header">{{list.title}}</h3>
                                     <p class="m-text">{{list.content}}</p>
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="five wide column">
-                                    <a href="#" target="_blank">
+                                    <a v-bind:href="'/' + list.id + '/detail'" target="_blank">
                                         <img class="ui rounded image" v-bind:src="list.firstPicture" alt="">
                                     </a>
                                 </div>
