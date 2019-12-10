@@ -61,7 +61,7 @@ public class Blog {
     //作者
     @ManyToOne
     @JoinColumn(name = "auther_id")
-    private User auther;
+    private User user;
 
 
     //评论

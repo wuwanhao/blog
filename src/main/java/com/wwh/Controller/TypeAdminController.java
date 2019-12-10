@@ -48,7 +48,7 @@ public class TypeAdminController {
     }
 
     //分类名称修改
-    @ApiOperation("分类名称修改")
+    @ApiOperation("分类修改")
     @PostMapping("/{id}/edit")
     public Result editType(@PathVariable Long id, String name) throws Exception {
         typeService.updateType(id, name);

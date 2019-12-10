@@ -14,4 +14,5 @@ public interface TypeRepository extends JpaRepository<Type, Long> {
     //分类模糊搜索
     @Query(value = "select * from type where type.id like %?1%", nativeQuery = true)
     List<Type> search(String name);
+
 }

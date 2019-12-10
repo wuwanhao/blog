@@ -58,12 +58,12 @@
                 </thead>
                 <tbody>
                     <!--thymeleaf模板循环渲染-->
-                    <tr>
-                        <td>1</td>
-                        <td>刻意练习清单</td>
+                    <tr th:each="type, iterStat : ${page.content}">
+                        <td th:text="${iterStat.count}">1</td>
+                        <td th:text="${type.name}">刻意练习清单</td>
                         <td>
-                            <a class="ui mini teal button" thref="#">编辑</a>
-                            <a class="ui mini red button" href="#">删除</a>
+                            <a class="ui mini teal button" th:href="@{/admin/types/{id}/input(id=${type.id})" >编辑</a>
+                            <a class="ui mini red button" th:href="@{/admin/types/{id}/input(id=${type.id})">删除</a>
                         </td>
                     </tr>
                 </tbody>
@@ -71,8 +71,8 @@
                     <tr>
                         <th colspan="6">
                             <div class="ui mini right floated pagination menu">
-<!--                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">上一页</a>-->
-<!--                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">下一页</a>-->
+                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">上一页</a>
+                                <a class="item" th:href="@{/admin/types/page(page=${page.number}-1)}">下一页</a>
 
                                 <a class="item" href="#">上一页</a>
                                 <a class="item" href="#">下一页</a>

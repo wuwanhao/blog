@@ -47,18 +47,18 @@
                         </div>
                     </div>
                     <!--content-->
-                    <div class="ui attached segment m-padded-tb-large">
-                        <div class="ui padded vertical segment" v-for="list in blogNameList">
-                            <div class="ui mobile reversed stackable grid" v-bind:href="'/' + list.id + '/detail'">
+                    <div class="ui attached segment m-padded-tb-large" v-for="list in blogNameList">
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
                                 <div class="eleven wide column">
-                                    <h3 class="ui header">{{list.title}}</h3>
+                                    <h3 class="ui header" >{{list.title}}</h3>
                                     <p class="m-text">{{list.content}}</p>
                                     <div class="ui grid">
                                         <div class="nine wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                                                    <div class="content"><a class="header" th:href="@{/about}">{{list.user}}</a></div>
+                                                    <img class="ui avatar image" v-bind:src="list.user.avatar">
+                                                    <div class="content"><a class="header" th:href="@{/about}">{{list.auther.username}}</a></div>
                                                 </div>
                                                 <div class="item">
 
@@ -84,7 +84,9 @@
                                     </a>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
                     <!--bottom-->
                     <div class="ui bottom attached segment">

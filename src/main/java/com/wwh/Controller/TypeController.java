@@ -60,5 +60,8 @@ public class TypeController {
     }
 
 
+    //分类分页
+
+
 
 }

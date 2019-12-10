@@ -36,9 +36,9 @@
         <div class="ui container">
             <div class="ui top attached segment">
                 <div class="ui horizontal link list">
-                    <div class="item">
-                        <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                        <div class="content"><a class="header" th:href="@{/about}">武万浩</a></div>
+                    <div class="item" th:href="@{/about}">
+                        <img class="ui avatar image" th:src="${userAvatar}">
+                        <div class="content"><a class="header" ><span th:text="${username}">武万浩</span></a></div>
                     </div>
                     <div class="item">
                         <i class="calendar icon"></i> <span th:text="${createTime}"></span>
@@ -87,8 +87,8 @@
                     <!--11宽文字说明部分，上线时加超链接-->
                     <div class="eleven wide column">
                         <ul class="list">
-                            <li>作者：武万浩01</li>
-                            <li>作者：武万浩02</li>
+                            <li>作者：<span th:text="${username}">武万浩001</span></li>
+                            <li>友情链接：<a href="http://www.baidu.com">百度</a></li>
                             <li>作者：武万浩03</li>
                             <li>作者：武万浩04</li>
                         </ul>
@@ -203,11 +203,6 @@
         </div>
     </div>
     <br><br>
-    <!--目录生成，留言锚点，平滑滚动等功能先不做！！！！-->
-<!--    <div class="ui vertical icon buttons">-->
-<!--        <button type="button" class="ui teal button">目录</button>-->
-<!--        <a href="#comment-container" class="ui teal button">留言</a>-->
-<!--    </div>-->
 
     <!--底部-->
     <footer th:replace="_fragments :: footer"  class="ui inverted vertical segment m-padded-tb-massive">

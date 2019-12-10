@@ -92,6 +92,7 @@ public class HomeController {
     @GetMapping("/{id}/detail")
     public String getDetail(@PathVariable Long id, Model model) throws Exception {
         BlogDetailVO blogDetailVO = blogService.getDetail(id);
+        System.out.println("999" + blogDetailVO);
         model.addAttribute("title", blogDetailVO.getTitle());
         model.addAttribute("content", blogDetailVO.getContent());
         model.addAttribute("firstPicture", blogDetailVO.getFirstPicture());
@@ -99,7 +100,9 @@ public class HomeController {
         model.addAttribute("views", blogDetailVO.getViews());
         model.addAttribute("createTime", blogDetailVO.getCreateTime());
         model.addAttribute("type", blogDetailVO.getType().getName());
-        model.addAttribute("user", blogDetailVO.getUser());
+        model.addAttribute("username", blogDetailVO.getUser().getUsername());
+        System.out.println("666" + blogDetailVO.getUser().getUsername());
+        model.addAttribute("userAvatar",blogDetailVO.getUser().getAvatar());
 
         return "blog";
 

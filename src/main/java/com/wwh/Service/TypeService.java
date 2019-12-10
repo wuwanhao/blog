@@ -50,15 +50,14 @@ public class TypeService {
 
     //分类查询
     public Type getType(Long id) throws Exception {
-        Type type = typeRepository.findById(id).get();
-        return type;
+       return typeRepository.findById(id).get();
+
     }
 
 
-    //分类列表
-    public List<Type> getTypeList() throws Exception {
-        List<Type> typeList = typeRepository.findAll();
-        return typeList;
+    //分类列表分页
+    public Page<Type> getTypeList(Pageable pageable) throws Exception {
+        return typeRepository.findAll(pageable);
     }
 
     //获取分类列表+分类下文章个数
