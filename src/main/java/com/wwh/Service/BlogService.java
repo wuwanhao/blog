@@ -2,15 +2,22 @@ package com.wwh.Service;
 
 import com.wwh.DTO.BlogDTO;
 import com.wwh.Entity.Blog;
+import com.wwh.Entity.Type;
 import com.wwh.Entity.User;
+import com.wwh.Exception.NotFoundException;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.VO.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,86 +29,44 @@ public class BlogService {
     @Autowired
     BlogRepository blogRepository;
 
-
-    //构造查询对象
-    public Example<Blog> buildBlogExample(BlogQO blogQO) throws Exception {
-        Blog blog = new Blog();
-
-        BeanUtils.copyProperties(blogQO, blog);
-
-        return Example.of(blog);
+    public Blog getBlog(Long id){
+        return blogRepository.findById(id).get();
     }
 
-    //列出博客（管理界面）
-    public BlogListItemVO getBlogVOList(BlogQO blogQO) throws Exception {
+    public Page<Blog> listBlog(Pageable pageable){
 
-        // 分页
-        Sort sort = Sort.by(Sort.Order.desc("createTime"));
-        Pageable pageable = new PageRequest(blogQO.getPage(), blogQO.getSize(), sort);
-
-        //查询
-        Page<Blog> blogs = blogRepository.findAll(pageable);
-        List<Blog> list = blogs.getContent();
-
-        System.out.println("查询结果：" + list);
-        Long total = blogs.getTotalElements();
-
-        //映射VO
-        List<BlogListVO> blogVOList = new ArrayList<>();
-        for (int i=0; i<total; i++) {
-            BlogListVO blogListVO = new BlogListVO();
-            BeanUtils.copyProperties(list.get(i), blogListVO);
-            blogVOList.add(blogListVO);
-        }
-
-        BlogListItemVO blogListItemVO = new BlogListItemVO();
-        blogListItemVO.setBlogListVOList(blogVOList);
-        blogListItemVO.setNumber(total);
-
-        return blogListItemVO;
+        return blogRepository.findAll(pageable);
 
     }
 
 
-    //列出所有博客(展示界面)
-    public BlogNameItemVO getBlogNameList(BlogQO blogQO) throws Exception {
+//    public Page<Blog> listBlog(Pageable pageable, Blog blog){
+//
+//        //动态查询
+//        return blogRepository.findAll(new Specification<Blog>() {
+//            @Override
+//            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//                List<Predicate> list = new ArrayList<>();
+//                if (!"".equals(blog.getTitle()) && blog.getTitle() != null ) {
+//                    list.add(criteriaBuilder.like(root.<String>get("title"), "%" + blog.getTitle() + "%"));
+//                }
+//                if (blog.getType().getId() != null) {
+//                    list.add(criteriaBuilder.equal(root.<Type>get("type").get("id"), blog.getType().getId()));
+//                }
+//                if (blog.isRecommend()) {
+//                    list.add(criteriaBuilder.equal(root.<Boolean>get("recommend"), blog.isRecommend()));
+//                }
+//                query.where(list.toArray(new Predicate[list.size()]));
+//                return null;
+//            }
+//        }, pageable);
+//
+//    }
 
-        // 分页
-        Sort sort = Sort.by(Sort.Order.desc("createTime"));
-        Pageable pageable = new PageRequest(blogQO.getPage(), blogQO.getSize(), sort);
 
-
-        //查询
-        Page<Blog> page = blogRepository.findAll(pageable);
-        System.out.println(page.getTotalElements());
-        List<Blog> list = page.getContent();
-
-        System.out.println("查询结果：" + list);
-        Long total = page.getTotalElements();
-
-        //映射VO
-        List<BlogNameVO> blogNameVOList = list.stream().map((blog) -> {
-            BlogNameVO blogNameVO = new BlogNameVO();
-            BeanUtils.copyProperties(blog, blogNameVO);
-            return blogNameVO;
-        }).collect(Collectors.toList());
-
-
-        BlogNameItemVO blogNameItemVO = new BlogNameItemVO();
-        blogNameItemVO.setBlogNameVOList(blogNameVOList);
-        blogNameItemVO.setNumber(total);
-        return blogNameItemVO;
-
+    public Blog saveBlog(Blog blog) {
+        return blogRepository.save(blog);
     }
-
-    //添加新博客
-    public Blog addBlog(BlogDTO blogDTO) throws Exception {
-        Blog newBlog = new Blog();
-        BeanUtils.copyProperties(blogDTO, newBlog);
-        newBlog.setCreateTime(new Date());
-        return blogRepository.save(newBlog);
-    }
-
 
     //删除博客
     public void deleteBlog(Long id) throws Exception {
@@ -109,10 +74,13 @@ public class BlogService {
     }
 
     //修改博客
-    public Blog editBlog(Long id, BlogDTO blogDTO) throws Exception {
-        Blog blog = blogRepository.findById(id).get();
-        BeanUtils.copyProperties(blogDTO,blog);
-        return blog;
+    public Blog updateBlog(Long id, Blog blog) throws Exception {
+        Blog b = blogRepository.findById(id).get();
+        if (b == null) {
+            throw new NotFoundException("博客不存在");
+        }
+        BeanUtils.copyProperties(blog, b);
+        return blogRepository.save(b);
     }
 
     //获取博客详情

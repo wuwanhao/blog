@@ -1,6 +1,7 @@
 package com.wwh.Controller;
 
 import com.wwh.Entity.Blog;
+import com.wwh.Entity.Type;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.BlogService;
@@ -10,16 +11,24 @@ import com.wwh.VO.BlogNameVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
-@Api(tags = "博客前台")
-@RequestMapping("/blog")
+@Controller
+@RequestMapping("/admin")
 public class BlogController {
+
+
+
 
 
     @Autowired
@@ -28,41 +37,71 @@ public class BlogController {
     @Autowired
     BlogRepository blogRepository;
 
-    //findAll
-    @GetMapping("/findAll")
-    public List<Blog> findAll() {
-        return blogRepository.findAll();
+    //按照更新时间倒序排列
+    @GetMapping("/blogs")
+    public String blogs(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model){
+        model.addAttribute("page", blogService.listBlog(pageable));
+        return "admin/blogs";
     }
 
-    //列出博客
-    @ApiOperation("列出博客")
-    @PostMapping("/list")
-    public BlogNameItemVO getBlogNameList(@Valid @RequestBody BlogQO blogQO, BindingResult bindingResult) throws Exception {
-        if (bindingResult.hasFieldErrors()) {
-            throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
+
+    @GetMapping("/blogs/input")
+    public String input(){
+        return "admin/blogs_input";
+    }
+
+    @PostMapping("/blogs")
+    public String post(Blog blog, RedirectAttributes redirectAttributes){
+        Blog b = blogService.saveBlog(blog);
+        if (b == null) {
+            redirectAttributes.addFlashAttribute("message","操作失败");
+        } else {
+            redirectAttributes.addFlashAttribute("message","操作成功");
         }
-        return blogService.getBlogNameList(blogQO);
+        return "redirect:/admin/blogs";
     }
 
-    //查看博客详细信息
-    @ApiOperation("查看博客详细信息")
-    @GetMapping("/{id}/detail")
-    public Blog getDetail(@PathVariable Long id) throws Exception {
-        return blogService.getBlogDetail(id);
+    @GetMapping("/blogs/{id}/input")
+    public String editInput(@PathVariable Long id, Model model) {
+        model.addAttribute("type",blogService.getBlog(id));
+        return "admin/blogs_input";
+
     }
 
-    //搜索博客
-    @ApiOperation("搜索博客")
-    @GetMapping("/search")
-    public List<BlogNameVO> search(String keyWord) throws Exception {
-        return blogService.search(keyWord);
+    @PostMapping("/blogs/{id}")
+    public String editPost(Blog blog, @PathVariable Long id,RedirectAttributes redirectAttributes) throws Exception {
+        Blog b = blogService.updateBlog(id, blog);
+        if (b == null) {
+            redirectAttributes.addFlashAttribute("message","操作失败");
+        } else {
+            redirectAttributes.addFlashAttribute("message","操作成功");
+        }
+        return "redirect:/admin/blogs";
     }
 
-    @ApiOperation("推荐博客")
-    @GetMapping("/recommend")
-    public List<BlogNameVO> recommend() throws Exception {
-        return blogService.recommend();
+
+    @GetMapping("/blogs/{id}/delete")
+    public String delete(@PathVariable Long id) throws Exception {
+        blogService.deleteBlog(id);
+        return "redirect:/admin/blogs";
     }
+
+
+
+
+//    //定义局部渲染
+//    @GetMapping("/blogs/search")
+//    public String search(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+//                                Pageable pageable, Blog blog, Model model){
+//        model.addAttribute("blog", blogService.listBlog(pageable));
+//        return "admin/blogs :: blogList";
+//    }
+
+
+
+
+
 
 
 

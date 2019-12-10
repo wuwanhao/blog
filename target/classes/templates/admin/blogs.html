@@ -45,42 +45,43 @@
     <!--中间内容-->
     <div class="m-container-small m-padded-tb-big">
         <div class="ui container">
-            <form class="ui segment form" action="#" method="post">
-                <div class="inline fields">
-                    <div class="field">
-                        <input type="text" name="title" placeholder="标题">
-                    </div>
-                    <!--功能下拉框-->
-                    <div class="field">
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="type">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">分类</div>
-                            <div class="menu">
-                                <div class="item" data-value="1">错误日志</div>
-                                <div class="item" data-value="2">开发者手册</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--是否推荐-->
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="recommend" id="recommend">
-                            <label for="recommend">推荐</label>
-                        </div>
-                    </div>
-                    <!--按钮-->
-                    <div class="field">
-                        <button class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
-                    </div>
-                    <div class="field">
-                        <button class="ui mini blue basic button" ><i class="add icon"></i>新增</button>
-                    </div>
-                </div>
-            </form>
+<!--            <form class="ui segment form" action="#" method="post">-->
+<!--                <input type="hidden" name="page">-->
+<!--                <div class="inline fields">-->
+<!--                    <div class="field">-->
+<!--                        <input type="text" name="title" placeholder="标题">-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;功能下拉框&ndash;&gt;-->
+<!--                    <div class="field">-->
+<!--                        <div class="ui selection dropdown">-->
+<!--                            <input type="hidden" name="type">-->
+<!--                            <i class="dropdown icon"></i>-->
+<!--                            <div class="default text">分类</div>-->
+<!--                            <div class="menu">-->
+<!--                                <div class="item" data-value="1">错误日志</div>-->
+<!--                                <div class="item" data-value="2">开发者手册</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;是否推荐&ndash;&gt;-->
+<!--                    <div class="field">-->
+<!--                        <div class="ui checkbox">-->
+<!--                            <input type="checkbox" name="recommend" id="recommend">-->
+<!--                            <label for="recommend">推荐</label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;按钮&ndash;&gt;-->
+<!--                    <div class="field">-->
+<!--                        <button class="ui mini teal basic button"><i class="search icon"></i>搜索</button>-->
+<!--                    </div>-->
+<!--                    <div class="field">-->
+<!--                        <button class="ui mini blue basic button" th:href="@{/admin/blogs/input}"><i class="add icon"></i>新增</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
 
-            <!--信息表格-->
-            <table class="ui celled table">
+            <!--信息表格(局部渲染)-->
+            <table th:fragment="blogList" class="ui compact table">
                 <thead>
                     <tr>
                         <th>序号</th>
@@ -92,24 +93,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>刻意练习清单</td>
-                        <td>清单类型</td>
-                        <td>是</td>
-                        <td>2015/8/8</td>
+                    <tr th:each="blog, iterStat : ${page.content}">
+                        <td th:text="${iterStat.count}">1</td>
+                        <td th:text="${blog.title}">刻意练习清单</td>
+                        <td th:text="${blog.type.name}">清单类型</td>
+                        <td th:text="${blog.recommend} ? '是' : '否'">是</td>
+                        <td th:text="${blog.updateTime}">2015/8/8</td>
                         <td>
-                            <a class="ui mini teal button" href="#">编辑</a>
-                            <a class="ui mini red button" href="#">删除</a>
+                            <a class="ui mini teal button" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}">编辑</a>
+                            <a class="ui mini red button" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}">删除</a>
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th colspan="6">
-                            <div class="ui mini right floated pagination menu">
-                                <a class="item">上一页</a>
-                                <a class="item">下一页</a>
+                            <div class="ui mini right floated pagination menu" th:if="${page.totalPages}>1">
+                                <a class="item" th:href="@{/admin/blogs(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                                <a class="item" th:href="@{/admin/blogs(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
                             </div>
                         </th>
                     </tr>
@@ -160,11 +161,40 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    BlogList:[],
+                }
+            },
+            methods: {
+                //自定义方法按钮等
+            },
+            //钩子函数
+            mounted() {
+                axios.get("")
+
+            }
+        })
+
+
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
         });
 
         $('.ui.dropdown').dropdown();
+
+
+        // function page() {
+        //     $("[name='page']").val($(obj).data("page"));
+        // }
+        //
+        // function loadData() {
+        //     $("#table-container").load()
+        //
+        // }
 
 
     </script>

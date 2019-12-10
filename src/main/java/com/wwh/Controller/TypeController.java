@@ -8,16 +8,18 @@ import com.wwh.VO.TypeNameVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController
-@Api(tags = "分类前台")
-@RequestMapping("/type")
+@Controller
+@RequestMapping("/admin")
 public class TypeController {
 
     @Autowired
@@ -26,41 +28,56 @@ public class TypeController {
     @Autowired
     TypeService typeService;
 
-    @Autowired
+    @GetMapping("/types")
+    public String types(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model){
+        model.addAttribute("page",typeService.listType(pageable));
+        return "admin/types";
+    }
 
+    @GetMapping("/types/input")
+    public String input(){
+        return "admin/types_input";
+    }
 
-    //分类总数（分类页面右上角个数）
-    @ApiOperation("分类总数（分类页面右上角个数）")
-    @GetMapping("/number")
-    public Integer getTypeNumber() throws Exception {
-        return typeRepository.findAll().size();
+    @PostMapping("/types")
+    public String post(Type type, RedirectAttributes redirectAttributes){
+        Type t = typeService.saveType(type);
+        if (t == null) {
+            redirectAttributes.addFlashAttribute("message","操作失败");
+        } else {
+            redirectAttributes.addFlashAttribute("message","操作成功");
+        }
+        return "redirect:/admin/types";
+    }
+
+    @GetMapping("/types/{id}/input")
+    public String editInput(@PathVariable Long id, Model model) {
+        model.addAttribute("type",typeService.getType(id));
+        return "admin/types_input";
+
+    }
+
+    @PostMapping("/types/{id}")
+    public String editPost(Type type, @PathVariable Long id,RedirectAttributes redirectAttributes){
+        Type t = typeService.updateType(id, type);
+        if (t == null) {
+            redirectAttributes.addFlashAttribute("message","操作失败");
+        } else {
+            redirectAttributes.addFlashAttribute("message","操作成功");
+        }
+        return "redirect:/admin/types";
     }
 
 
-    //分类查询
-    @ApiOperation("分类查询")
-    @GetMapping("/{id}/detail")
-    public Type getType(@PathVariable Long id) throws Exception {
-        return typeService.getType(id);
+    @GetMapping("/types/{id}/delete")
+    public String delete(@PathVariable Long id) throws Exception {
+        typeService.deleteType(id);
+        return "redirect:/admin/types";
     }
 
 
-    //获取分类列表+分类下文章个数
-    @ApiOperation("获取分类列表+分类下文章个数")
-    @GetMapping("/getTypeListAndNum")
-    public List<TypeNameVO> getTypeListAndNum() throws Exception {
-        return typeService.getTypeListAndNum();
-    }
 
-    //获取某分类下文章
-    @ApiOperation("获取某分类下文章")
-    @GetMapping("/{typeId}/getBlogsByTypeId")
-    public List<BlogNameVO> getBlogsOfTypeByTypeId(@PathVariable Long typeId) throws Exception {
-        return typeService.getBlogsOfTypeByTypeId(typeId);
-    }
-
-
-    //分类分页
 
 
 

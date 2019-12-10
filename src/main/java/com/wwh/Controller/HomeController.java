@@ -57,25 +57,25 @@ public class HomeController {
         return "admin/index";
     }
 
-    @RequestMapping(value = "/admin/blogs")
-    public String adminBlog() {
-        return "admin/blogs";
-    }
-
-    @RequestMapping(value = "/admin/blogs_input")
-    public String adminBlogInput() {
-        return "admin/blogs_input";
-    }
-
-    @RequestMapping(value = "/admin/types")
-    public String adminType() {
-        return "admin/types";
-    }
-
-    @GetMapping(value = "/admin/types_input")
-    public String adminTypeInput() {
-        return "admin/types_input";
-    }
+//    @RequestMapping(value = "/admin/blogs")
+//    public String adminBlog() {
+//        return "admin/blogs";
+//    }
+//
+//    @RequestMapping(value = "/admin/blogs_input")
+//    public String adminBlogInput() {
+//        return "admin/blogs_input";
+//    }
+//
+//    @RequestMapping(value = "/admin/types")
+//    public String adminType() {
+//        return "admin/types";
+//    }
+//
+//    @GetMapping(value = "/admin/types_input")
+//    public String adminTypeInput() {
+//        return "admin/types_input";
+//    }
 
 
     @GetMapping("/search")

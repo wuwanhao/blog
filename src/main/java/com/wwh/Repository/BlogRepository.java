@@ -3,13 +3,14 @@ package com.wwh.Repository;
 import com.wwh.Entity.Blog;
 import com.wwh.VO.BlogNameVO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface BlogRepository extends JpaRepository<Blog, Long> {
+public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificationExecutor<Blog> {
 
     //某一分类下文章个数
     @Query(value = "select * from blog where blog.type_id = ?1", nativeQuery = true)
