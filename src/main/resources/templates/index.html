@@ -57,8 +57,8 @@
                                         <div class="nine wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img class="ui avatar image" v-bind:src="list.user.avatar">
-                                                    <div class="content"><a class="header" th:href="@{/about}">{{list.auther.username}}</a></div>
+                                                    <img class="ui avatar image" v-bind:src="list.user.avatar" alt="">
+                                                    <div class="content"><a class="header" th:href="@{/about}">{{list.user.username}}</a></div>
                                                 </div>
                                                 <div class="item">
 
@@ -208,18 +208,18 @@
             mounted() {
                 axios.post("/blog/list",{"page": 0, "size": 10})
                     .then(res=>{
-                        console.log(res.data),
+                        console.log(res.data ,"博客列表"),
                         this.blogNameList = res.data.blogNameVOList
                         this.blogTotalNumber = res.data.blogNameVOList.length
                     })
                 axios.get("/type/getTypeListAndNum")
                 .then(res=>{
-                    console.log(res.data),
+                    console.log(res.data ,"分类列表"),
                     this.typeNames = res.data
                 })
                 axios.get("/blog/recommend")
                 .then(res=>{
-                    console.log(res.data)
+                    console.log(res.data , "推荐列表")
                     this.blogRecommend = res.data
                 })
             }
