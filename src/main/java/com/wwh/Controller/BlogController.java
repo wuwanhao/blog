@@ -47,8 +47,8 @@ public class BlogController {
     //查看博客详细信息
     @ApiOperation("查看博客详细信息")
     @GetMapping("/{id}/detail")
-    public BlogDetailVO getDetail(@PathVariable Long id) throws Exception {
-        return blogService.getDetail(id);
+    public Blog getDetail(@PathVariable Long id) throws Exception {
+        return blogService.getBlogDetail(id);
     }
 
     //搜索博客

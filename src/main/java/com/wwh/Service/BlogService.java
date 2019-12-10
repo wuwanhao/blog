@@ -2,6 +2,7 @@ package com.wwh.Service;
 
 import com.wwh.DTO.BlogDTO;
 import com.wwh.Entity.Blog;
+import com.wwh.Entity.User;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.VO.*;
@@ -127,6 +128,10 @@ public class BlogService {
 
         return blogDetailVO;
 
+    }
+    //获取博客（测试）
+    public Blog getBlogDetail(Long id) throws Exception{
+        return blogRepository.findById(id).get();
     }
 
 
