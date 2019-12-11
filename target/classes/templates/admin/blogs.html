@@ -36,8 +36,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">发布</a>
-                <a href="#" class="active teal item">列表</a>
+                <a href="#" th:href="@{/admin/blogs/input}" class="item">发布</a>
+                <a href="#" th:href="@{/admin/blogs}" class="active teal item">列表</a>
             </div>
         </div>
 
@@ -45,43 +45,8 @@
     <!--中间内容-->
     <div class="m-container-small m-padded-tb-big">
         <div class="ui container">
-<!--            <form class="ui segment form" action="#" method="post">-->
-<!--                <input type="hidden" name="page">-->
-<!--                <div class="inline fields">-->
-<!--                    <div class="field">-->
-<!--                        <input type="text" name="title" placeholder="标题">-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;功能下拉框&ndash;&gt;-->
-<!--                    <div class="field">-->
-<!--                        <div class="ui selection dropdown">-->
-<!--                            <input type="hidden" name="type">-->
-<!--                            <i class="dropdown icon"></i>-->
-<!--                            <div class="default text">分类</div>-->
-<!--                            <div class="menu">-->
-<!--                                <div class="item" data-value="1">错误日志</div>-->
-<!--                                <div class="item" data-value="2">开发者手册</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;是否推荐&ndash;&gt;-->
-<!--                    <div class="field">-->
-<!--                        <div class="ui checkbox">-->
-<!--                            <input type="checkbox" name="recommend" id="recommend">-->
-<!--                            <label for="recommend">推荐</label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;按钮&ndash;&gt;-->
-<!--                    <div class="field">-->
-<!--                        <button class="ui mini teal basic button"><i class="search icon"></i>搜索</button>-->
-<!--                    </div>-->
-<!--                    <div class="field">-->
-<!--                        <button class="ui mini blue basic button" th:href="@{/admin/blogs/input}"><i class="add icon"></i>新增</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </form>-->
-
-            <!--信息表格(局部渲染)-->
-            <table th:fragment="blogList" class="ui compact table">
+            <!--信息表格-->
+            <table class="ui compact table">
                 <thead>
                     <tr>
                         <th>序号</th>
@@ -111,6 +76,9 @@
                             <div class="ui mini right floated pagination menu" th:if="${page.totalPages}>1">
                                 <a class="item" th:href="@{/admin/blogs(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
                                 <a class="item" th:href="@{/admin/blogs(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                            </div>
+                            <div class="ui mini right floated pagination menu">
+                                <a class="item" th:href="@{/admin/blogs/input}">新增</a>
                             </div>
                         </th>
                     </tr>
@@ -187,14 +155,6 @@
         $('.ui.dropdown').dropdown();
 
 
-        // function page() {
-        //     $("[name='page']").val($(obj).data("page"));
-        // }
-        //
-        // function loadData() {
-        //     $("#table-container").load()
-        //
-        // }
 
 
     </script>
