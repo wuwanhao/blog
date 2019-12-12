@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //路由权限设置
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
+                .antMatchers("/lib/**").permitAll()
                 .antMatchers("/admin/**").permitAll();          // 需要有USER角色才可以登录到后台管理页面
 
         // 退出登录

@@ -21,7 +21,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.Session;
 import java.util.List;
 
 @Controller
@@ -57,8 +59,12 @@ public class BlogController {
         return "admin/blogs_input";
     }
 
+
+
     @PostMapping("/blogs")
-    public String post(Blog blog, RedirectAttributes redirectAttributes){
+    public String post(Blog blog ,RedirectAttributes redirectAttributes){
+
+        blog.setType(typeService.getType(blog.getType().getId()));
         Blog b = blogService.saveBlog(blog);
         if (b == null) {
             redirectAttributes.addFlashAttribute("message","操作失败");
@@ -68,9 +74,12 @@ public class BlogController {
         return "redirect:/admin/blogs";
     }
 
+    //博客修改页面
     @GetMapping("/blogs/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
-        model.addAttribute("type",blogService.getBlog(id));
+        //初始化分类
+        model.addAttribute("types", typeService.list());
+        model.addAttribute("type", blogService.getBlog(id));
         return "admin/blogs_input";
 
     }

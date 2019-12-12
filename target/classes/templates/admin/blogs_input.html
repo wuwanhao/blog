@@ -44,25 +44,16 @@
 
     </div>
     <!--中间内容-->
-    <div class="m-container-small m-padded-tb-big">
+    <div class="m-container m-padded-tb-big">
         <div class="ui container">
-            <form id="blog-form" method="post" th:action="@{/admin/blogs}" class="ui form">
+            <form id="blog-form" method="post" th:object="${blog}" th:action="@{/admin/blogs}" class="ui form">
                 <!--保存/发布的隐含域-->
                 <input type="hidden" name="published">
                 <!--标题部分-->
                 <div class="required field">
                     <div class="ui left labeled input">
-                        <div class="ui selection teal basic compact dropdown label">
-                            <input type="hidden" value="原创">
-                            <i class="dropdown icon"></i>
-                            <div class="text">原创</div>
-                            <div class="menu">
-                                <div class="item" data-value="原创">原创</div>
-                                <div class="item" data-value="转载">转载</div>
-                                <div class="item" data-value="翻译">翻译</div>
-                            </div>
-                        </div>
-                        <input type="text" name="title" placeholder="标题">
+                        <label class="ui teal basic label">标题</label>
+                        <input type="text" name="title" placeholder="请输入标题" th:value="*{title}">
                     </div>
                 </div>
                 <!--博客内容部分-->
@@ -70,7 +61,7 @@
                     <!--Markdown编辑器-->
                     <div id="md-content" style="z-index: 1 !important;">
                         <!--Markdown编辑器内容部分-->
-                        <textarea placeholder="博客内容" name="content" style="display: none"></textarea>
+                        <textarea placeholder="博客内容" name="content" style="display: none" th:value="*{content}"></textarea>
                     </div>
                 </div>
                 <div class="two fields">
@@ -80,10 +71,9 @@
                             <div class="ui fluid selection dropdown">
                                 <input type="hidden" name="type.id">
                                 <i class="dropdown icon"></i>
-                                <div class="default text">分类</div>
+                                <div class="default text" th:value="*{type}">分类</div>
                                 <div class="menu">
-                                    <div class="item" data-value="1">错误日志</div>
-                                    <div class="item" data-value="2">开发者手册</div>
+                                    <div th:each="type :${types}" class="item" th:data-value="${type.id}" th:text="${type.name}">分类1</div>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +82,7 @@
                         <!--首图引用地址：博客详情页面最上方的图片和博客列表里右边的图片-->
                         <div class="ui left labeled input">
                             <label class="ui teal basic label">首图</label>
-                            <input type="text" name="firstPicture" placeholder="首图引用地址">
+                            <input type="text" name="firstPicture" placeholder="首图引用地址" th:value="*{firstPicture}">
                         </div>
                     </div>
                 </div>
@@ -181,7 +171,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
-    <script>
+    <script type="text/javascript">
 
         //初始化markdown编辑器
         var contentEditor;
@@ -190,7 +180,7 @@
                 width   : "100%",
                 height  : 640,
                 syncScrolling : "single",
-                path    : "../static/lib/editormd/lib/"
+                path    : "/lib/editormd/lib/"
             });
         });
 
