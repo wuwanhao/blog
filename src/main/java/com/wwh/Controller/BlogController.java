@@ -5,6 +5,7 @@ import com.wwh.Entity.Type;
 import com.wwh.QO.BlogQO;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.BlogService;
+import com.wwh.Service.TypeService;
 import com.wwh.VO.BlogDetailVO;
 import com.wwh.VO.BlogNameItemVO;
 import com.wwh.VO.BlogNameVO;
@@ -29,7 +30,8 @@ public class BlogController {
 
 
 
-
+    @Autowired
+    TypeService typeService;
 
     @Autowired
     BlogService blogService;
@@ -41,13 +43,17 @@ public class BlogController {
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC)
                                     Pageable pageable, Model model){
+        model.addAttribute("types", typeService.list());
         model.addAttribute("page", blogService.listBlog(pageable));
         return "admin/blogs";
     }
 
 
     @GetMapping("/blogs/input")
-    public String input(){
+    public String input(Model model){
+        //初始化分类
+        model.addAttribute("types", typeService.list());
+        model.addAttribute("blog", new Blog());
         return "admin/blogs_input";
     }
 

@@ -65,6 +65,11 @@ public class TypeService {
         typeRepository.deleteById(id);
     }
 
+    //获得所有分类
+    public List<Type> list(){
+        return typeRepository.findAll();
+    }
+
 //    //分类名称修改
 //    public void updateType(Long id, String name) throws Exception {
 //        Type type = typeRepository.getOne(id);
