@@ -64,10 +64,19 @@ public class BlogService {
 //    }
 
 
+
+    //保存
     public Blog saveBlog(Blog blog) {
-        blog.setCreateTime(new Date());
-        blog.setUpdateTime(new Date());
-        blog.setViews(0);
+        if (blog.getId() == null) {
+            blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
+            blog.setViews(0);
+        } else {
+            System.out.println("博客创建时间：" + blog.getCreateTime());
+            blog.setUpdateTime(new Date());
+        }
+
+
         return blogRepository.save(blog);
     }
 

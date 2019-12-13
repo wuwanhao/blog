@@ -51,6 +51,7 @@ public class TypeController {
         return "redirect:/admin/types";
     }
 
+    //修改跳转
     @GetMapping("/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("type",typeService.getType(id));

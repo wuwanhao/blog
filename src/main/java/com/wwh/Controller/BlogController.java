@@ -51,16 +51,19 @@ public class BlogController {
     }
 
 
+    //新增
     @GetMapping("/blogs/input")
     public String input(Model model){
         //初始化分类
         model.addAttribute("types", typeService.list());
-        model.addAttribute("blog", new Blog());
+//        //初始化一个空的Blog对象
+//        model.addAttribute("blog", new Blog());
         return "admin/blogs_input";
     }
 
 
 
+    //发布与保存
     @PostMapping("/blogs")
     public String post(Blog blog ,RedirectAttributes redirectAttributes){
 
@@ -79,7 +82,8 @@ public class BlogController {
     public String editInput(@PathVariable Long id, Model model) {
         //初始化分类
         model.addAttribute("types", typeService.list());
-        model.addAttribute("type", blogService.getBlog(id));
+        Blog blog = blogService.getBlog(id);
+        model.addAttribute("blog", blog);
         return "admin/blogs_input";
 
     }
