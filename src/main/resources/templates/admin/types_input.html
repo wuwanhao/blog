@@ -46,7 +46,7 @@
     <!--中间内容-->
     <div class="m-container-small m-padded-tb-big">
         <div class="ui container">
-            <form method="post" action="#" th:object="${type}" th:action="*{id} == null ? @{/admin/types} : @{/admin/types/{id}(id=*{id})}" class="ui form">
+            <form method="post" action="#"  th:action="*{id} == null ? @{/admin/types} : @{/admin/types/{id}(id=*{id})}" class="ui form">
                 <!--首图引用地址：博客详情页面最上方的图片和博客列表里右边的图片-->
                 <!--隐含域-->
                 <input type="hidden" name="id" th:value="*{id}">

@@ -3,10 +3,14 @@ package com.wwh.Controller;
 import com.wwh.Entity.Blog;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.BlogService;
+import com.wwh.Service.TypeService;
 import com.wwh.Service.UserService;
 import com.wwh.VO.BlogDetailVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +29,17 @@ public class HomeController {
     @Autowired
     BlogService blogService;
 
+    @Autowired
+    TypeService typeService;
+
     @RequestMapping("/")
-    public String index() {
+    public String index(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model) throws Exception {
+        //拿到分页数据
+        model.addAttribute("page", blogService.listBlog(pageable));
+        System.out.println("666" + blogService.listBlog(pageable).getContent());
+        model.addAttribute("types", typeService.list());
+        model.addAttribute("recommends", blogService.recommend(3));
         return "index";
     }
 

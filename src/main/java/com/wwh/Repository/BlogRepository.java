@@ -2,6 +2,7 @@ package com.wwh.Repository;
 
 import com.wwh.Entity.Blog;
 import com.wwh.VO.BlogNameVO;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -24,5 +25,5 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
 
     //获得推荐博客
     @Query(value = "select * from blog where blog.recommend = 1", nativeQuery = true)
-    List<Blog> recommendBlog();
+    List<Blog> recommendBlog(Pageable pageable);
 }

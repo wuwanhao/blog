@@ -131,17 +131,11 @@ public class BlogService {
 
 
     //推荐博客
-    public List<BlogNameVO> recommend() throws Exception {
-        List<Blog> blogs = blogRepository.recommendBlog();
-        List<BlogNameVO> blogNameVOS = new ArrayList<>();
+    public List<Blog> recommend(Integer size) throws Exception {
 
+        Sort sort = new Sort(Sort.Direction.DESC,"update_time");
+        Pageable pageable = new PageRequest(0,size, sort);
+        return blogRepository.recommendBlog(pageable);
 
-        for (int i=0; i<blogs.size(); i++) {
-            BlogNameVO blogNameVO = new BlogNameVO();
-            BeanUtils.copyProperties(blogs.get(i), blogNameVO);
-            blogNameVOS.add(blogNameVO);
-        }
-
-        return blogNameVOS;
     }
 }

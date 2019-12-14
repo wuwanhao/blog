@@ -30,7 +30,7 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-padded-tb-big m-container" id="app">
+    <div class="m-padded-tb-big m-container">
         <div class="ui container">
             <div class="ui stackable grid">
                 <!--左边列表内容-->
@@ -42,45 +42,43 @@
                                 <h3 class="ui teal header">博客</h3>
                             </div>
                             <div class="column right aligned">
-                                共 <h2 class="ui orange header m-inline-block m-text-thin">{{blogTotalNumber}}</h2>篇
+                                共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">666</h2>篇
                             </div>
                         </div>
                     </div>
                     <!--content-->
-                    <div class="ui attached segment m-padded-tb-large" v-for="list in blogNameList">
+                    <div class="ui attached segment m-padded-tb-large">
                         <div class="ui padded vertical segment">
-                            <div class="ui mobile reversed stackable grid">
+                            <div class="ui middle aligned mobile reversed stackable grid" th:each="blog : ${page.content}">
                                 <div class="eleven wide column">
-                                    <h3 class="ui header" >{{list.title}}</h3>
-                                    <p class="m-text">{{list.content}}</p>
+                                    <h3 class="ui header" ><a th:href="@{/blog/id(id=${blog.id})}" class="m-black" th:text="${blog.title}" target="_blank">博客标题</a></h3>
+                                    <p class="m-text" th:text="${blog.content}">博客简介内容</p>
                                     <div class="ui grid">
                                         <div class="nine wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img class="ui avatar image" v-bind:src="list.user.avatar" alt="">
-                                                    <div class="content"><a class="header" th:href="@{/about}">{{list.user.username}}</a></div>
-                                                </div>
-                                                <div class="item">
+                                                    <!--作者-->
+                                                    <!--<img class="ui avatar image" th:src="@{${blog.user.avatar}}" alt="">-->
 
+                                                    <div class="content"><a class="header" th:href="@{/about}" th:text="${blog.user.username}">作者姓名</a></div>
                                                 </div>
-                                                <div class="item">
-
-                                                </div>
+                                                <div class="item"></div>
+                                                <div class="item"></div>
                                             </div>
                                         </div>
                                         <div class="right aligned seven wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <i class="calendar icon"></i> {{list.createTime}}
-                                                    <i class="eye icon"></i> {{list.views}}
+                                                    <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2018/8/9</span>
+                                                    <i class="eye icon"></i> <span th:text="${blog.views}"></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="five wide column">
-                                    <a v-bind:href="'/' + list.id + '/detail'" target="_blank">
-                                        <img class="ui rounded image" v-bind:src="list.firstPicture" alt="">
+                                    <a th:href="@{/blog/id(id=${blog.id})}" target="_blank">
+                                        <img class="ui rounded image" th:src="@{${blog.firstPicture}}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -89,13 +87,13 @@
 
                     </div>
                     <!--bottom-->
-                    <div class="ui bottom attached segment">
-                        <div class="ui middle aligned two column grid">
+                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned two column grid" >
                             <div class="column">
-                                <a href="#" class="ui mini teal basic button" onclick="getBlogList()">上一页</a>
+                                <a class="item" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
                             </div>
                             <div class="column right aligned">
-                                <a href="#" class="ui mini teal basic button">下一页</a>
+                                <a class="item" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
                             </div>
                         </div>
                     </div>
@@ -115,10 +113,10 @@
                             </div>
                         </div>
                         <div class="ui teal segment">
-                            <div class="ui fluid vertical menu">
-                                <a class="item" href="#" v-for="(typename,index) in typeNames.slice(0,2)">
-                                    {{typename.type.name}}
-                                    <div class="ui teal basic left pointing label">{{typename.numberOfType}}</div>
+                            <div class="ui fluid vertical menu" th:each="type : ${types}">
+                                <a class="item" href="#">
+                                    <span th:text="${type.name}">分类名</span>
+                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(types.blogs)}">该分类下文章数量</div>
                                 </a>
                             </div>
                         </div>
@@ -131,8 +129,8 @@
                                 <i class="bookmark icon"></i>推荐
                             </div>
                         </div>
-                        <div class="ui segment" v-for="recommend in blogRecommend">
-                            <a href="#" target="_blank" class="m-black m-text-thin">{{recommend.title}}</a>
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black m-text-thin">推荐名称</a>
                         </div>
                     </div>
                     <!--二维码-->

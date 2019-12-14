@@ -5,6 +5,7 @@ import lombok.Data;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -18,5 +19,8 @@ public class Type {
     //分类名
     @Column(nullable = false)
     private String name;
+
+    @OneToMany
+    private List<Blog> blogs;
 
 }
