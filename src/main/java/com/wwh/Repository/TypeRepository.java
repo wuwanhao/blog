@@ -1,6 +1,7 @@
 package com.wwh.Repository;
 
 import com.wwh.Entity.Type;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,5 +15,8 @@ public interface TypeRepository extends JpaRepository<Type, Long> {
     //分类模糊搜索
     @Query(value = "select * from type where type.id like %?1%", nativeQuery = true)
     List<Type> search(String name);
+
+    @Query("select t from Type t")
+    List<Type> findTop(Pageable pageable);
 
 }

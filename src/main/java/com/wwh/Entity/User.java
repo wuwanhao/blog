@@ -29,7 +29,7 @@ public class User implements UserDetails {
 
     private String email;
 
-    private String avatar;
+    //private String avatar;
 
     //用户类型
     private int type;

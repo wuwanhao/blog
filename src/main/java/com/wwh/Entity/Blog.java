@@ -24,6 +24,9 @@ public class Blog {
     @Column(nullable = false)
     private String content;
 
+    //描述
+    private String description;
+
     //首图
     private String firstPicture;
 
@@ -55,7 +58,6 @@ public class Blog {
 
     //类型
     @ManyToOne
-    @JoinColumn(name = "type_id")
     private Type type;
 
     //作者

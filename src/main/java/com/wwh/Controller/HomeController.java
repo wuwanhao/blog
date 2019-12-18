@@ -37,9 +37,11 @@ public class HomeController {
                                     Pageable pageable, Model model) throws Exception {
         //拿到分页数据
         model.addAttribute("page", blogService.listBlog(pageable));
+
         System.out.println("666" + blogService.listBlog(pageable).getContent());
-        model.addAttribute("types", typeService.list());
-        model.addAttribute("recommends", blogService.recommend(3));
+        model.addAttribute("types", typeService.listTypeTop(6));
+        System.out.println("999" + typeService.listTypeTop(6));
+        model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(4));
         return "index";
     }
 
@@ -70,34 +72,15 @@ public class HomeController {
         return "admin/index";
     }
 
-//    @RequestMapping(value = "/admin/blogs")
-//    public String adminBlog() {
-//        return "admin/blogs";
-//    }
-//
-//    @RequestMapping(value = "/admin/blogs_input")
-//    public String adminBlogInput() {
-//        return "admin/blogs_input";
-//    }
-//
-//    @RequestMapping(value = "/admin/types")
-//    public String adminType() {
-//        return "admin/types";
-//    }
-//
-//    @GetMapping(value = "/admin/types_input")
-//    public String adminTypeInput() {
-//        return "admin/types_input";
-//    }
 
 
-    @GetMapping("/search")
-    public String search(String keyWord, Model model) throws Exception {
-        List<Blog> blogs = blogRepository.searchBlog(keyWord);
-        model.addAttribute("blogSearchNum", blogs.size());
-        model.addAttribute("blogSearchList",blogs);
-
-        return "search_result";
+    @PostMapping("/search")
+    public String search(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+                                     @RequestParam String query, Pageable pageable, Model model) throws Exception {
+        model.addAttribute("page", blogService.listBlog(pageable, query));
+        System.out.println("666" + blogService.listBlog(pageable, query).getContent());
+        model.addAttribute("query", query);
+        return "search";
     }
 
     //查看博客详细信息
@@ -115,7 +98,7 @@ public class HomeController {
         model.addAttribute("type", blogDetailVO.getType().getName());
         model.addAttribute("username", blogDetailVO.getUser().getUsername());
         System.out.println("666" + blogDetailVO.getUser().getUsername());
-        model.addAttribute("userAvatar",blogDetailVO.getUser().getAvatar());
+        model.addAttribute("userAvatar",blogDetailVO.getUser());
 
         return "blog";
 

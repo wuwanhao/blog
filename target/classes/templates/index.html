@@ -47,18 +47,18 @@
                         </div>
                     </div>
                     <!--content-->
-                    <div class="ui attached segment m-padded-tb-large">
-                        <div class="ui padded vertical segment">
-                            <div class="ui middle aligned mobile reversed stackable grid" th:each="blog : ${page.content}">
+                    <div class="ui attached segment ">
+                        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned mobile reversed stackable grid" >
                                 <div class="eleven wide column">
-                                    <h3 class="ui header" ><a th:href="@{/blog/id(id=${blog.id})}" class="m-black" th:text="${blog.title}" target="_blank">博客标题</a></h3>
-                                    <p class="m-text" th:text="${blog.content}">博客简介内容</p>
+                                    <h3 class="ui header" ><a th:href="@{/blog/{id}(id=${blog.id})}" class="m-black" th:text="${blog.title}" target="_blank">博客标题</a></h3>
+                                    <p class="m-text" th:text="${blog.description}">博客简介内容</p>
                                     <div class="ui grid">
                                         <div class="nine wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
                                                     <!--作者-->
-                                                    <!--<img class="ui avatar image" th:src="@{${blog.user.avatar}}" alt="">-->
+<!--                                                    <img class="ui avatar image" th:src="@{${blog.user.avatar}}" alt="">-->
 
                                                     <div class="content"><a class="header" th:href="@{/about}" th:text="${blog.user.username}">作者姓名</a></div>
                                                 </div>
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="five wide column">
-                                    <a th:href="@{/blog/id(id=${blog.id})}" target="_blank">
+                                    <a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
                                         <img class="ui rounded image" th:src="@{${blog.firstPicture}}" alt="">
                                     </a>
                                 </div>
@@ -90,10 +90,10 @@
                     <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                         <div class="ui middle aligned two column grid" >
                             <div class="column">
-                                <a class="item" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                                <a class="ui mini teal basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
                             </div>
                             <div class="column right aligned">
-                                <a class="item" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                                <a class="ui mini teal basic button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
                             </div>
                         </div>
                     </div>
@@ -113,10 +113,10 @@
                             </div>
                         </div>
                         <div class="ui teal segment">
-                            <div class="ui fluid vertical menu" th:each="type : ${types}">
-                                <a class="item" href="#">
+                            <div class="ui fluid vertical menu">
+                                <a class="item" href="#" th:each="type : ${types}">
                                     <span th:text="${type.name}">分类名</span>
-                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(types.blogs)}">该分类下文章数量</div>
+                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">该分类下文章数量</div>
                                 </a>
                             </div>
                         </div>
@@ -129,8 +129,8 @@
                                 <i class="bookmark icon"></i>推荐
                             </div>
                         </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-black m-text-thin">推荐名称</a>
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin" th:text="${blog.title}">推荐名称</a>
                         </div>
                     </div>
                     <!--二维码-->

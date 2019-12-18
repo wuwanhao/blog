@@ -11,14 +11,6 @@
     <link rel="stylesheet" th:href="@{/lib/prism/prism.css}">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
-    <script>
-        function search() {
-            let searchContent = document.getElementById('input').value;
-            console.log(searchContent)
-            axios.get("/search?keyWord=" + searchContent)
-            .then()
-        }
-    </script>
 </head>
 <body>
 <!--导航-->
@@ -30,10 +22,13 @@
             <a th:href="@{/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
             <a th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini info icon"></i>关于我</a>
             <div class="right m-item item m-mobile-hide">
-                <div class="ui icon inverted transparent input" id="search">
-                    <input type="text" placeholder="Search..." id="input">
-                    <i class="search link icon" onclick="search()"></i>
-                </div>
+                <form name="search" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon inverted transparent input" id="search">
+                        <input type="text" name="query" placeholder="Search..." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

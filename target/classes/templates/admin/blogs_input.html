@@ -46,11 +46,13 @@
     <!--中间内容-->
     <div class="m-container m-padded-tb-big">
         <div class="ui container">
-            <form id="blog-form" method="post"  th:action="@{/admin/blogs}" class="ui form">
+            <form id="blog-form" method="post" th:object="${blog}" th:action="@{/admin/blogs}" class="ui form">
                 <!--保存/发布的隐含域-->
                 <input type="hidden" name="published">
+
                 <!--修改时的隐含域-->
                 <input type="hidden" name="id" th:value="*{id}">
+
                 <!--标题部分-->
                 <div class="required field">
                     <div class="ui left labeled input">
@@ -88,7 +90,15 @@
                         </div>
                     </div>
                 </div>
+                <!--博客描述-->
+                <div class="required field">
+                    <div class="ui fluid input">
+                        <label class="ui teal basic label">博客描述</label>
+                        <input type="text" placeholder="请输入博客描述..." th:value="*{description}">
+                    </div>
+                </div>
 
+                <!--单选框区域，推荐等-->
                 <div class="inline fields">
                     <div class="field">
                         <div class="ui checked checkbox">
@@ -115,6 +125,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <!--表单验证错误区域-->
                 <div class="ui error message"></div>
@@ -237,6 +248,13 @@
                     rules : [{
                         type : 'empty',
                         prompt : '请输入首图地址'
+                    }]
+                },
+                description : {
+                    identifier : 'description',
+                    rules : [{
+                        type : 'empty',
+                        prompt : '请输入博客描述'
                     }]
                 }
             }

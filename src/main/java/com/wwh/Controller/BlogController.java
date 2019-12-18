@@ -41,7 +41,7 @@ public class BlogController {
     @Autowired
     BlogRepository blogRepository;
 
-    //按照更新时间倒序排列
+    //列出博客列表
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC)
                                     Pageable pageable, Model model){
@@ -51,10 +51,10 @@ public class BlogController {
     }
 
 
-    //新增
+    //博客新增
     @GetMapping("/blogs/input")
     public String input(Model model){
-        //初始化分类
+        //初始化分类列表
         model.addAttribute("types", typeService.list());
 //        //初始化一个空的Blog对象
 //        model.addAttribute("blog", new Blog());
@@ -63,12 +63,19 @@ public class BlogController {
 
 
 
-    //发布与保存
+    //博客发布
     @PostMapping("/blogs")
-    public String post(Blog blog ,RedirectAttributes redirectAttributes){
+    public String post(Blog blog ,RedirectAttributes redirectAttributes) throws Exception {
 
         blog.setType(typeService.getType(blog.getType().getId()));
-        Blog b = blogService.saveBlog(blog);
+        Blog b;
+
+        if (blog.getId() == null) {
+            b = blogService.saveBlog(blog);
+        } else {
+            b = blogService.updateBlog(blog.getId(), blog);
+        }
+
         if (b == null) {
             redirectAttributes.addFlashAttribute("message","操作失败");
         } else {
@@ -83,11 +90,14 @@ public class BlogController {
         //初始化分类
         model.addAttribute("types", typeService.list());
         Blog blog = blogService.getBlog(id);
+        System.out.println("取到的博客为：" + blog);
         model.addAttribute("blog", blog);
         return "admin/blogs_input";
 
     }
 
+
+    //博客修改完成后保存
     @PostMapping("/blogs/{id}")
     public String editPost(Blog blog, @PathVariable Long id,RedirectAttributes redirectAttributes) throws Exception {
         Blog b = blogService.updateBlog(id, blog);
@@ -100,6 +110,7 @@ public class BlogController {
     }
 
 
+    //博客删除
     @GetMapping("/blogs/{id}/delete")
     public String delete(@PathVariable Long id) throws Exception {
         blogService.deleteBlog(id);

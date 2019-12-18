@@ -13,7 +13,9 @@ import com.wwh.utils.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
@@ -65,8 +67,15 @@ public class TypeService {
         typeRepository.deleteById(id);
     }
 
-    //获得所有分类
-    public List<Type> list(){
+    //获得按照大小由高到低排序的分类
+    public List<Type> listTypeTop(Integer size){
+
+        Sort sort = new Sort(Sort.Direction.DESC,"blogs.size");
+        Pageable pageable = new PageRequest(0,size,sort);
+        return typeRepository.findTop(pageable);
+    }
+
+    public List<Type> list() {
         return typeRepository.findAll();
     }
 
