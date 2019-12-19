@@ -30,10 +30,12 @@ public class UserController {
     public Result<?> addUser(@RequestBody AddUserDTO addUserDTO) throws Exception {
 
         //添加角色
-        List<Role> roles = new ArrayList<>();
+//        List<Role> roles = new ArrayList<>();
+
         Role role = roleRepository.findByName("USER");
-        roles.add(role);
-        System.out.println("333"+role);
+        System.out.println("角色：" + role);
+//        roles.add(role);
+//        System.out.println("333"+role);
 
         User newUser = new User();
         newUser.setUsername(addUserDTO.getUsername());
@@ -41,7 +43,8 @@ public class UserController {
 
         newUser.setPassword(addUserDTO.getPassword());
         System.out.println("密码：" + addUserDTO.getPassword());
-        newUser.setRoles(roles);
+        newUser.setRole(role);
+
 
 
         //保存

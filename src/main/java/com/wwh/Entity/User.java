@@ -22,9 +22,9 @@ public class User implements UserDetails {
 
 
     //角色
-    @Column
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Role> roles;
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @OneToOne
+    private Role role;
 
     public Long getId() {
         return id;
@@ -47,13 +47,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -62,7 +61,7 @@ public class User implements UserDetails {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + roles +
+                ", role=" + role +
                 '}';
     }
 
