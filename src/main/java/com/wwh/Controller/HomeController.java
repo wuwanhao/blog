@@ -83,27 +83,36 @@ public class HomeController {
         return "search";
     }
 
-    //查看博客详细信息
-    @ApiOperation("查看博客详细信息")
-    @GetMapping("/{id}/detail")
-    public String getDetail(@PathVariable Long id, Model model) throws Exception {
-        BlogDetailVO blogDetailVO = blogService.getDetail(id);
-        System.out.println("999" + blogDetailVO);
-        model.addAttribute("title", blogDetailVO.getTitle());
-        model.addAttribute("content", blogDetailVO.getContent());
-        model.addAttribute("firstPicture", blogDetailVO.getFirstPicture());
-        model.addAttribute("flag", blogDetailVO.getFlag());
-        model.addAttribute("views", blogDetailVO.getViews());
-        model.addAttribute("createTime", blogDetailVO.getCreateTime());
-        model.addAttribute("type", blogDetailVO.getType().getName());
-        model.addAttribute("username", blogDetailVO.getUser().getUsername());
-        System.out.println("666" + blogDetailVO.getUser().getUsername());
-        model.addAttribute("userAvatar",blogDetailVO.getUser());
 
+    //博客详情
+    @GetMapping("/blog/{id}")
+    public String blog(@PathVariable Long id, Model model){
+        model.addAttribute("blog", blogService.getAndConvert(id));
         return "blog";
-
-
     }
+
+    //查看博客详细信息
+    //todo
+//    @ApiOperation("查看博客详细信息")
+//    @GetMapping("/{id}/detail")
+//    public String getDetail(@PathVariable Long id, Model model) throws Exception {
+//        BlogDetailVO blogDetailVO = blogService.getDetail(id);
+//        System.out.println("999" + blogDetailVO);
+//        model.addAttribute("title", blogDetailVO.getTitle());
+//        model.addAttribute("content", blogDetailVO.getContent());
+//        model.addAttribute("firstPicture", blogDetailVO.getFirstPicture());
+//        model.addAttribute("flag", blogDetailVO.getFlag());
+//        model.addAttribute("views", blogDetailVO.getViews());
+//        model.addAttribute("createTime", blogDetailVO.getCreateTime());
+//        model.addAttribute("type", blogDetailVO.getType().getName());
+//        model.addAttribute("username", blogDetailVO.getUser().getUsername());
+//        System.out.println("666" + blogDetailVO.getUser().getUsername());
+//        model.addAttribute("userAvatar",blogDetailVO.getUser());
+//
+//        return "blog";
+//
+//
+//    }
 
 
 

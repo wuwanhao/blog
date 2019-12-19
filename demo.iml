@@ -139,6 +139,9 @@
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.16" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: com.atlassian.commonmark:commonmark:0.13.1" level="project" />
+    <orderEntry type="library" name="Maven: com.atlassian.commonmark:commonmark-ext-heading-anchor:0.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.atlassian.commonmark:commonmark-ext-gfm-tables:0.13.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.1.9.RELEASE" level="project" />

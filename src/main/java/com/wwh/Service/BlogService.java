@@ -1,9 +1,11 @@
 package com.wwh.Service;
 
+import com.fasterxml.jackson.databind.BeanProperty;
 import com.wwh.Entity.Blog;
 import com.wwh.Exception.NotFoundException;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.VO.*;
+import com.wwh.utils.MarkdownUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -24,6 +26,21 @@ public class BlogService {
     //取得博客信息
     public Blog getBlog(Long id){
         return blogRepository.findById(id).get();
+    }
+
+    //获取博客信息和转换
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.findById(id).get();
+        if (blog == null) {
+            throw new NotFoundException("博客不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        MarkdownUtils.markdownToHtmlExtensions(content);
+        b.setContent(content);
+        return b;
+
     }
 
     //获取博客列表

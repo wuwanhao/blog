@@ -37,30 +37,30 @@
             <div class="ui top attached segment">
                 <div class="ui horizontal link list">
                     <div class="item" th:href="@{/about}">
-                        <img class="ui avatar image" th:src="${userAvatar}">
-                        <div class="content"><a class="header" ><span th:text="${username}">武万浩</span></a></div>
+<!--                        <img class="ui avatar image" th:src="@{${blog.user}}">-->
+                        <div class="content"><a class="header" ><span th:text="${blog.user.getUsername()}">武万浩</span></a></div>
                     </div>
                     <div class="item">
-                        <i class="calendar icon"></i> <span th:text="${createTime}"></span>
+                        <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2018/8/9</span>
                     </div>
                     <div class="item">
-                        <i class="eye icon"></i> <span th:text="${views}"></span>
+                        <i class="eye icon"></i> <span th:text="${blog.views}"></span>
                     </div>
                 </div>
             </div>
             <div class="ui attached segment">
                <!--图片区域-->
-                <img class="ui fluid rounded image" th:src="${firstPicture}" alt="">
+                <img class="ui fluid rounded image" th:src="@{${blog.firstPicture}}" alt="">
             </div>
             <div class="ui attached padded segment">
                 <!--内容-->
                 <div class="ui right aligned basic segment">
-                    <div class="ui label basic orange" th:text="${flag}">原创</div>
+                    <div class="ui label basic orange" th:text="${blog.flag}">原创</div>
                 </div>
                 <!--文章标题-->
-                <h2 class="ui center aligned header" th:text="${title}">走向单体地狱</h2>
+                <h2 class="ui center aligned header" th:text="${blog.title}">走向单体地狱</h2>
                 <br>
-                <div id="content" class="m-padded-lr-responsive m-padded-tb-large typo typo-selection" th:text="${content}">
+                <div id="content" class="typo typo-selection m-padded-lr-responsive m-padded-tb-large" th:text="${blog.content}">
 
                 </div>
                 <!--赞赏按钮-->
@@ -87,10 +87,9 @@
                     <!--11宽文字说明部分，上线时加超链接-->
                     <div class="eleven wide column">
                         <ul class="list">
-                            <li>作者：<span th:text="${username}">武万浩001</span></li>
+                            <li>作者：<span th:text="${blog.getUser().getUsername()}">武万浩001</span></li>
+                            <li>发表时间：<span th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd')}"></span></li>
                             <li>友情链接：<a href="http://www.baidu.com">百度</a></li>
-                            <li>作者：武万浩03</li>
-                            <li>作者：武万浩04</li>
                         </ul>
                     </div>
                     <!--5宽-->
