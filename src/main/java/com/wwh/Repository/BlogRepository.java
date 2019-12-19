@@ -1,7 +1,6 @@
 package com.wwh.Repository;
 
 import com.wwh.Entity.Blog;
-import com.wwh.VO.BlogNameVO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,9 +13,6 @@ import java.util.List;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificationExecutor<Blog> {
 
-    //某一分类下文章个数
-    @Query(value = "select * from blog where blog.type_id = ?1", nativeQuery = true)
-    List<Blog> getBlogOfType(Long id);
 
 
     //博客模糊搜索

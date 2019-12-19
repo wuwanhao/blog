@@ -1,14 +1,11 @@
 package com.wwh.Controller;
 
-import com.wwh.Entity.Blog;
 import com.wwh.Entity.Type;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.BlogService;
 import com.wwh.Service.TypeService;
 import com.wwh.Service.UserService;
-import com.wwh.VO.BlogDetailVO;
 import com.wwh.VO.BlogQuery;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -108,8 +105,9 @@ public class HomeController {
         BlogQuery blogQuery = new BlogQuery();
         blogQuery.setTypeId(id);
         model.addAttribute("types",typeList);
-        System.out.println("999" + typeList);
         model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
+
+        System.out.println("999" + blogService.listBlog(pageable, blogQuery).getContent());
         model.addAttribute("activeTypeId", id);
 
         return "types";

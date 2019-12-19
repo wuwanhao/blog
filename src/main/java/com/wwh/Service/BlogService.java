@@ -1,6 +1,5 @@
 package com.wwh.Service;
 
-import com.fasterxml.jackson.databind.BeanProperty;
 import com.wwh.Entity.Blog;
 import com.wwh.Entity.Type;
 import com.wwh.Exception.NotFoundException;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -96,7 +94,6 @@ public class BlogService {
         if (blog.getId() == null) {
             blog.setCreateTime(new Date());
             blog.setUpdateTime(new Date());
-            blog.setViews(0);
         } else {
             System.out.println("博客创建时间：" + blog.getCreateTime());
             blog.setUpdateTime(new Date());
@@ -122,20 +119,7 @@ public class BlogService {
         return blogRepository.save(b);
     }
 
-    //获取博客详情
-    public BlogDetailVO getDetail(Long id) throws Exception {
-        Blog blog = blogRepository.findById(id).orElse(null);
 
-        if (blog == null) {
-            throw new Exception("找不到该博客");
-        }
-
-        BlogDetailVO blogDetailVO = new BlogDetailVO();
-        BeanUtils.copyProperties(blog, blogDetailVO);
-
-        return blogDetailVO;
-
-    }
 
 
 
