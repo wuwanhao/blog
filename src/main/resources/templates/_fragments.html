@@ -19,7 +19,7 @@
         <div class="ui inverted secondary stackable menu">
             <h1 class="ui teal header item">隔壁老憨的Blog</h1>
             <a th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>首页</a>
-            <a th:href="@{/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
+            <a th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
             <a th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini info icon"></i>关于我</a>
             <div class="right m-item item m-mobile-hide">
                 <form name="search" th:action="@{/search}" method="post" target="_blank">

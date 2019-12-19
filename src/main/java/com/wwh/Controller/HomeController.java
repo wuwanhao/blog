@@ -1,11 +1,13 @@
 package com.wwh.Controller;
 
 import com.wwh.Entity.Blog;
+import com.wwh.Entity.Type;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.Service.BlogService;
 import com.wwh.Service.TypeService;
 import com.wwh.Service.UserService;
 import com.wwh.VO.BlogDetailVO;
+import com.wwh.VO.BlogQuery;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -91,28 +93,27 @@ public class HomeController {
         return "blog";
     }
 
-    //查看博客详细信息
-    //todo
-//    @ApiOperation("查看博客详细信息")
-//    @GetMapping("/{id}/detail")
-//    public String getDetail(@PathVariable Long id, Model model) throws Exception {
-//        BlogDetailVO blogDetailVO = blogService.getDetail(id);
-//        System.out.println("999" + blogDetailVO);
-//        model.addAttribute("title", blogDetailVO.getTitle());
-//        model.addAttribute("content", blogDetailVO.getContent());
-//        model.addAttribute("firstPicture", blogDetailVO.getFirstPicture());
-//        model.addAttribute("flag", blogDetailVO.getFlag());
-//        model.addAttribute("views", blogDetailVO.getViews());
-//        model.addAttribute("createTime", blogDetailVO.getCreateTime());
-//        model.addAttribute("type", blogDetailVO.getType().getName());
-//        model.addAttribute("username", blogDetailVO.getUser().getUsername());
-//        System.out.println("666" + blogDetailVO.getUser().getUsername());
-//        model.addAttribute("userAvatar",blogDetailVO.getUser());
-//
-//        return "blog";
-//
-//
-//    }
+
+
+
+    //分类页面
+    @GetMapping("/types/{id}")
+    public String types(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC)
+            Pageable pageable,@PathVariable Long id, Model model) {
+
+        List<Type> typeList = typeService.listTypeTop(10000);
+        if (id == -1) {
+            id = typeList.get(0).getId();
+        }
+        BlogQuery blogQuery = new BlogQuery();
+        blogQuery.setTypeId(id);
+        model.addAttribute("types",typeList);
+        System.out.println("999" + typeList);
+        model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
+        model.addAttribute("activeTypeId", id);
+
+        return "types";
+    }
 
 
 

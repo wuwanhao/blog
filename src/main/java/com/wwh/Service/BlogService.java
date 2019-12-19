@@ -2,6 +2,7 @@ package com.wwh.Service;
 
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.wwh.Entity.Blog;
+import com.wwh.Entity.Type;
 import com.wwh.Exception.NotFoundException;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.VO.*;
@@ -9,12 +10,17 @@ import com.wwh.utils.MarkdownUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.criteria.Predicate;
 
 
 @Service
@@ -27,6 +33,27 @@ public class BlogService {
     public Blog getBlog(Long id){
         return blogRepository.findById(id).get();
     }
+
+    public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+                List<Predicate> predicates = new ArrayList<>();
+                if (!"".equals(blog.getTitle()) && blog.getTitle() != null) {
+                    predicates.add(cb.like(root.<String>get("title"), "%"+blog.getTitle()+"%"));
+                }
+                if (blog.getTypeId() != null) {
+                    predicates.add(cb.equal(root.<Type>get("type").get("id"), blog.getTypeId()));
+                }
+                if (blog.isRecommend()) {
+                    predicates.add(cb.equal(root.<Boolean>get("recommend"), blog.isRecommend()));
+                }
+                cq.where(predicates.toArray(new Predicate[predicates.size()]));
+                return null;
+            }
+        },pageable);
+    }
+
 
     //获取博客信息和转换
     public Blog getAndConvert(Long id) {

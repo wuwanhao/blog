@@ -60,7 +60,7 @@
                 <!--文章标题-->
                 <h2 class="ui center aligned header" th:text="${blog.title}">走向单体地狱</h2>
                 <br>
-                <div id="content" class="typo typo-selection m-padded-lr-responsive m-padded-tb-large" th:text="${blog.content}">
+                <div id="content" class="typo typo-selection m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
 
                 </div>
                 <!--赞赏按钮-->
