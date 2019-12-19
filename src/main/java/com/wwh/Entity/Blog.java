@@ -7,7 +7,6 @@ import java.util.Date;
 
 
 //博客实体
-@Data
 @Entity
 public class Blog {
 
@@ -29,8 +28,6 @@ public class Blog {
     //首图
     private String firstPicture;
 
-    //标记
-    private String flag;
 
 
     //是否开启赞赏
@@ -52,8 +49,8 @@ public class Blog {
 
     //类型
     @ManyToOne
+    @JoinColumn(name = "type_id")
     private Type type;
-
 
     public Long getId() {
         return id;
@@ -93,14 +90,6 @@ public class Blog {
 
     public void setFirstPicture(String firstPicture) {
         this.firstPicture = firstPicture;
-    }
-
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag;
     }
 
     public boolean isAppreciation() {
@@ -157,24 +146,5 @@ public class Blog {
 
     public void setType(Type type) {
         this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", description='" + description + '\'' +
-                ", firstPicture='" + firstPicture + '\'' +
-                ", flag='" + flag + '\'' +
-                ", appreciation=" + appreciation +
-                ", shareStatement=" + shareStatement +
-                ", published=" + published +
-                ", recommend=" + recommend +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", type=" + type +
-                '}';
     }
 }

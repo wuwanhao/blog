@@ -37,9 +37,9 @@ public class HomeController {
         //拿到分页数据
         model.addAttribute("page", blogService.listBlog(pageable));
 
-        System.out.println("666" + blogService.listBlog(pageable).getContent());
+        //System.out.println("666" + blogService.listBlog(pageable).getContent());
         model.addAttribute("types", typeService.listTypeTop(6));
-        System.out.println("999" + typeService.listTypeTop(6));
+        //System.out.println("999" + typeService.listTypeTop(6));
         model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(4));
         return "index";
     }
@@ -72,12 +72,12 @@ public class HomeController {
     }
 
 
-
+    //搜索接口
     @PostMapping("/search")
     public String search(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC)
                                      @RequestParam String query, Pageable pageable, Model model) throws Exception {
         model.addAttribute("page", blogService.listBlog(pageable, query));
-        System.out.println("666" + blogService.listBlog(pageable, query).getContent());
+        System.out.println("搜索到的内容为： " + blogService.listBlog(pageable, query).getContent());
         model.addAttribute("query", query);
         return "search";
     }
@@ -92,13 +92,12 @@ public class HomeController {
 
 
 
-
     //分类页面
     @GetMapping("/types/{id}")
     public String types(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC)
             Pageable pageable,@PathVariable Long id, Model model) {
 
-        List<Type> typeList = typeService.listTypeTop(10000);
+        List<Type> typeList = typeService.listTypeTop(100);
         if (id == -1) {
             id = typeList.get(0).getId();
         }
@@ -107,7 +106,7 @@ public class HomeController {
         model.addAttribute("types",typeList);
         model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
 
-        System.out.println("999" + blogService.listBlog(pageable, blogQuery).getContent());
+        System.out.println("分类取到的内容为： " + blogService.listBlog(pageable, blogQuery).getContent());
         model.addAttribute("activeTypeId", id);
 
         return "types";

@@ -33,7 +33,9 @@ public class TypeController {
 
     //分类新增页面
     @GetMapping("/types/input")
-    public String input(){
+    public String input(Model model){
+        //初始化一个新的Type
+        model.addAttribute("type", new Type());
         return "admin/types_input";
     }
 

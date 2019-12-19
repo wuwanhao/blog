@@ -33,7 +33,7 @@ public class TypeService {
     //获得分类
     @Transactional
     public Type getType(Long id){
-        return typeRepository.findById(id).get();
+        return typeRepository.getOne(id);
 
     }
 

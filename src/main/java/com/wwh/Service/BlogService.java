@@ -5,6 +5,7 @@ import com.wwh.Entity.Type;
 import com.wwh.Exception.NotFoundException;
 import com.wwh.Repository.BlogRepository;
 import com.wwh.VO.*;
+import com.wwh.utils.BeanUtil;
 import com.wwh.utils.MarkdownUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +63,7 @@ public class BlogService {
         Blog b = new Blog();
         BeanUtils.copyProperties(blog, b);
         String content = b.getContent();
-        MarkdownUtils.markdownToHtmlExtensions(content);
-        b.setContent(content);
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
         return b;
 
     }
@@ -114,7 +114,7 @@ public class BlogService {
         if (b == null) {
             throw new NotFoundException("博客不存在");
         }
-        BeanUtils.copyProperties(blog, b);
+        BeanUtils.copyProperties(blog, b, BeanUtil.getNullPropertyNames(blog));
         b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }

@@ -43,8 +43,8 @@ public class BlogController {
     public String input(Model model){
         //初始化分类列表
         model.addAttribute("types", typeService.list());
-//        //初始化一个空的Blog对象
-//        model.addAttribute("blog", new Blog());
+        //初始化一个空的Blog对象
+        model.addAttribute("blog", new Blog());
         return "admin/blogs_input";
     }
 
