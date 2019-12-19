@@ -1,5 +1,6 @@
 package com.wwh.Controller;
 
+import com.wwh.DTO.AddUserDTO;
 import com.wwh.Entity.Role;
 import com.wwh.Entity.User;
 import com.wwh.Repository.RoleRepository;
@@ -26,21 +27,21 @@ public class UserController {
 
     //添加用户
     @PostMapping("/add")
-    public Result<?> addUser(@RequestBody User user) throws Exception {
+    public Result<?> addUser(@RequestBody AddUserDTO addUserDTO) throws Exception {
 
         //添加角色
         List<Role> roles = new ArrayList<>();
         Role role = roleRepository.findByName("USER");
         roles.add(role);
+        System.out.println("333"+role);
 
         User newUser = new User();
-        newUser.setUsername(user.getUsername());
-        System.out.println("用户名：" + user.getUsername());
+        newUser.setUsername(addUserDTO.getUsername());
+        System.out.println("用户名：" + addUserDTO.getUsername());
 
-        newUser.setPassword(user.getPassword());
-        System.out.println("密码：" + user.getPassword());
+        newUser.setPassword(addUserDTO.getPassword());
+        System.out.println("密码：" + addUserDTO.getPassword());
         newUser.setRoles(roles);
-        System.out.println();
 
 
         //保存
