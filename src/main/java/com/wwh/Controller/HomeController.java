@@ -55,15 +55,15 @@ public class HomeController {
         return "about";
     }
 
-    @GetMapping("/auth/login")
+    @RequestMapping("/auth/login")
     public String loginPage(){
         return "login";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String register() {
+//        return "register";
+//    }
 
 
     //登陆成功后处理

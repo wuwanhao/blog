@@ -60,10 +60,7 @@
                                 <div class="nine wide column">
                                     <div class="ui mini horizontal link list">
                                         <div class="item">
-                                            <!--作者-->
-                                            <!--                                                    <img class="ui avatar image" th:src="@{${blog.user.avatar}}" alt="">-->
 
-<!--                                            <div class="content"><a class="header" th:href="@{/about}" th:text="${blog.user.username}">作者姓名</a></div>-->
                                         </div>
                                         <div class="item"></div>
                                         <div class="item"></div>
@@ -73,7 +70,6 @@
                                     <div class="ui mini horizontal link list">
                                         <div class="item">
                                             <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2018/8/9</span>
-<!--                                            <i class="eye icon"></i> <span th:text="${blog.views}"></span>-->
                                         </div>
                                     </div>
                                 </div>
@@ -138,34 +134,6 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
-
-        new Vue({
-            el: "#app",
-            data() {
-                return {
-                    typeNumber:"",
-                    typeNames:[],
-
-                }
-            },
-            //自定义方法（按钮等）
-            methods: {
-
-            },
-            //钩子函数
-            mounted() {
-                axios.get("/type/number")
-                    .then(res=>{
-                        console.log(res.data)
-                        this.typeNumber = res.data
-                }),
-                axios.get("/type/getTypeListAndNum")
-                    .then(res=>{
-                        console.log(res.data),
-                        this.typeNames = res.data
-                    })
-            }
-        })
 
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');

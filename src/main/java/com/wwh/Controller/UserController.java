@@ -26,32 +26,32 @@ public class UserController {
     RoleRepository roleRepository;
 
     //添加用户
-    @PostMapping("/add")
-    public Result<?> addUser(@RequestBody AddUserDTO addUserDTO) throws Exception {
-
-        //添加角色
-//        List<Role> roles = new ArrayList<>();
-
-        Role role = roleRepository.findByName("USER");
-        System.out.println("角色：" + role);
-//        roles.add(role);
-//        System.out.println("333"+role);
-
-        User newUser = new User();
-        newUser.setUsername(addUserDTO.getUsername());
-        System.out.println("用户名：" + addUserDTO.getUsername());
-
-        newUser.setPassword(addUserDTO.getPassword());
-        System.out.println("密码：" + addUserDTO.getPassword());
-        newUser.setRole(role);
-
-
-
-        //保存
-        User user1 = userService.addUser(newUser);
-
-        System.out.println("666" + user1);
-        return new Result(200,"添加成功");
-
-    }
+//    @PostMapping("/add")
+//    public Result<?> addUser(@RequestBody AddUserDTO addUserDTO) throws Exception {
+//
+//        //添加角色
+////        List<Role> roles = new ArrayList<>();
+//
+//        Role role = roleRepository.findByName("USER");
+//        System.out.println("角色：" + role);
+////        roles.add(role);
+////        System.out.println("333"+role);
+//
+//        User newUser = new User();
+//        newUser.setUsername(addUserDTO.getUsername());
+//        System.out.println("用户名：" + addUserDTO.getUsername());
+//
+//        newUser.setPassword(addUserDTO.getPassword());
+//        System.out.println("密码：" + addUserDTO.getPassword());
+//        newUser.setRole(role);
+//
+//
+//
+//        //保存
+//        User user1 = userService.addUser(newUser);
+//
+//        System.out.println("666" + user1);
+//        return new Result(200,"添加成功");
+//
+//    }
 }

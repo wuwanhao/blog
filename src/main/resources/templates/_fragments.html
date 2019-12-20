@@ -17,7 +17,7 @@
 <nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small m-opacity-large">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
-            <h1 class="ui teal header item">隔壁老憨的Blog</h1>
+            <h1 class="ui teal header item">隔壁老憨独立博客</h1>
             <a th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>首页</a>
             <a th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>分类</a>
             <a th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="smile ouline icon"></i>关于我</a>

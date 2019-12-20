@@ -13,7 +13,7 @@
     <nav th:replace="_fragments :: nav(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
-                <h2 class="ui teal header item">Blog</h2>
+                <h2 class="ui teal  header item">Blog</h2>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i>关于我</a>
@@ -39,7 +39,7 @@
                     <div class="ui top attached segment">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <h3 class="ui teal header">最新博客</h3>
+                                <h3 class="ui teal  header">最新博客</h3>
                             </div>
                             <div class="column right aligned">
                                 共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">666</h2>篇
@@ -57,10 +57,7 @@
                                         <div class="nine wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <!--作者-->
-<!--                                                    <img class="ui avatar image" th:src="@{${blog.user.avatar}}" alt="">-->
 
-<!--                                                    <div class="content"><a class="header" th:href="@{/about}" th:text="${blog.user.username}">作者姓名</a></div>-->
                                                 </div>
                                                 <div class="item"></div>
                                                 <div class="item"></div>
@@ -70,7 +67,6 @@
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
                                                     <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2018/8/9</span>
-<!--                                                    <i class="eye icon"></i> <span th:text="${blog.views}"></span>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -90,10 +86,10 @@
                     <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                         <div class="ui middle aligned two column grid" >
                             <div class="column">
-                                <a class="ui mini teal basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                                <a class="ui mini teal  basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
                             </div>
                             <div class="column right aligned">
-                                <a class="ui mini teal basic button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                                <a class="ui mini teal  basic button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
                             </div>
                         </div>
                     </div>
@@ -126,11 +122,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ui teal segment">
+                        <div class="ui teal  segment">
                             <div class="ui fluid vertical menu">
                                 <a class="item" th:href="@{/types/{id}(id=${type.id})}" target="_blank" th:each="type : ${types}">
                                     <span th:text="${type.name}">分类名</span>
-                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">该分类下文章数量</div>
+                                    <div class="ui teal  basic left pointing label" th:text="${#arrays.length(type.blogs)}">该分类下文章数量</div>
                                 </a>
                             </div>
                         </div>

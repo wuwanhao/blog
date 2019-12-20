@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,23 +13,26 @@
 </head>
 <body>
 <!--导航-->
-<nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small m-opacity-large">
+<nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small ">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">管理后台</h2>
-            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>博客</a>
-            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>分类</a>
+            <a th:href="@{/admin/index}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="large hand peace icon"></i>欢迎页</a>
+            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="large home icon"></i>博客</a>
+            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="large idea icon"></i>分类</a>
             <div class="m-item right menu m-mobile-hide">
-                <div class="ui dropdown item">
-                    <div class="text">
-                        <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                        武万浩
+                <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <span sec:authentication="name"></span>
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <button class="item" type="submit">注销</button>
+                        </div>
                     </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div th:href="@{/logout}" class="item" sec:authorize="isAuthenticated()">注销</div>
-                    </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -48,7 +51,7 @@
 </div>
 
 <!--底部-->
-<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity-large">
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
     <div class="ui center aligned container">
         <div class="ui inverted divided stackable grid">
             <div class="five wide column">
