@@ -28,6 +28,10 @@ public class BlogController {
     @Autowired
     BlogRepository blogRepository;
 
+
+    //博客点赞
+
+
     //列出博客列表
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC)

@@ -32,19 +32,16 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-container-small m-padded-tb-big animated fadeIn">
+    <div class="m-container-large m-padded-tb-big animated fadeIn">
         <div class="ui container">
+            <input type="hidden" id="id" th:value="${blog.id}">
             <div class="ui top attached segment">
                 <div class="ui horizontal link list">
-                    <div class="item" th:href="@{/about}">
-<!--                        <img class="ui avatar image" th:src="@{${blog.user}}">-->
-<!--                        <div class="content"><a class="header" ><span th:text="${blog.user.getUsername()}">武万浩</span></a></div>-->
+                    <div class="item">
+                        <i class="large calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2018/8/9</span>
                     </div>
                     <div class="item">
-                        <i class="calendar icon"></i> <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2018/8/9</span>
-                    </div>
-                    <div class="item">
-<!--                        <i class="eye icon"></i> <span th:text="${blog.views}"></span>-->
+                        <a id="thumbs" ><i class="large thumbs up icon"></i><span>点赞<span th:text="${blog.star}" id="thumbsNum">66</span></span></a>
                     </div>
                 </div>
             </div>
@@ -56,7 +53,7 @@
                 <!--内容-->
                 <a th:href="@{/types/{id}(id=${blog.type.id})}">
                     <div class="ui right aligned basic segment" >
-                        <div class="ui label basic orange" th:text="${blog.type.name}">原创</div>
+                        <div class="ui label basic green" th:text="${blog.type.name}">原创</div>
                     </div>
                 </a>
 
@@ -68,7 +65,7 @@
                 </div>
                 <!--赞赏按钮-->
                 <div class="ui center aligned basic segment" th:if="${blog.appreciation}">
-                    <button id="payButton" class="ui basic orange circular button">赞赏</button>
+                    <button id="payButton" class="ui orange button">觉得不错，赞赏一下！</button>
                     <div class="ui payQR flowing popup transition hidden">
                         <div class="ui orange basic label">
                             <div class="ui images">
@@ -150,6 +147,19 @@
             on : 'click',
             position : 'bottom center'
         })
+        $('#thumbs').click(function () {
+            $.ajax({
+                async:false,
+                url:"/blog/" + document.getElementById('id').value + "/star",
+                success: function (res) {
+                    console.log(res)
+                   document.getElementById('thumbsNum').innerText = res;
+                }
+            })
+        })
+
+
+
     </script>
 
 

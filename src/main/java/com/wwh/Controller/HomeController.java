@@ -6,6 +6,7 @@ import com.wwh.Service.BlogService;
 import com.wwh.Service.TypeService;
 import com.wwh.Service.UserService;
 import com.wwh.VO.BlogQuery;
+import com.wwh.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -66,7 +67,7 @@ public class HomeController {
 
 
     //登陆成功后处理
-    @RequestMapping(value = "/admin/index")
+    @RequestMapping("/admin/index")
     public String successfulPage() {
         return "admin/index";
     }
@@ -111,6 +112,8 @@ public class HomeController {
 
         return "types";
     }
+
+
 
 
 

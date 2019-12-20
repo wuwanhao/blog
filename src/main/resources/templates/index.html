@@ -30,7 +30,7 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-padded-tb-big m-container">
+    <div class="m-padded-tb m-container-large">
         <div class="ui container">
             <div class="ui stackable grid">
                 <!--左边列表内容-->
@@ -39,7 +39,7 @@
                     <div class="ui top attached segment">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <h3 class="ui teal header">博客</h3>
+                                <h3 class="ui teal header">最新博客</h3>
                             </div>
                             <div class="column right aligned">
                                 共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">666</h2>篇
@@ -126,7 +126,7 @@
                     <div class="ui segments m-margin-top-large">
                         <div class="ui secondary segment">
                             <div class="column">
-                                <i class="bookmark icon"></i>推荐
+                                <i class="bookmark icon"></i>最新推荐
                             </div>
                         </div>
                         <div class="ui segment" th:each="blog : ${recommendBlogs}">

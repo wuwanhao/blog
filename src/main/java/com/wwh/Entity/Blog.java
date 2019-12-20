@@ -28,6 +28,9 @@ public class Blog {
     //首图
     private String firstPicture;
 
+    //点赞数
+    private int star;
+
 
 
     //是否开启赞赏
@@ -51,6 +54,14 @@ public class Blog {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
 
     public Long getId() {
         return id;

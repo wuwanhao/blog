@@ -119,6 +119,14 @@ public class BlogService {
         return blogRepository.save(b);
     }
 
+    //博客点赞
+    public Integer starBlog(Long id){
+        Blog blog = blogRepository.getOne(id);
+        blog.setStar(blog.getStar() + 1);
+        Blog blog1 = blogRepository.save(blog);
+        return blog1.getStar();
+    }
+
 
 
 

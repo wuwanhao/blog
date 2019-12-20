@@ -100,6 +100,11 @@ body {
     margin: auto;
 }
 
+.m-container-large {
+    max-width: 150em;
+    margin: auto;
+}
+
 /*------颜色------*/
 .m-black {
     color: #333;
