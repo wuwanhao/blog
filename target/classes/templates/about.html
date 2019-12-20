@@ -29,50 +29,42 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-container-large m-padded-tb-big">
+    <div class="m-container-large m-padded-tb-big m-opacity-large">
         <div class="ui container">
             <div class="ui stackable grid">
                 <!--左边图片部分布局-->
                 <div class="eleven wide column">
                     <div class="ui segment">
-                        <img src="https://picsum.photos/1024/768?image=1005" class="ui rounded image" alt="">
+                        <img src="https://img.alicdn.com/i1/814910299/TB2bZrrXlOBJuJjSsplXXcd2pXa_!!814910299.jpg" class="ui rounded image" alt="">
                     </div>
                 </div>
                 <!--右边布局-->
                 <div class="five wide column">
                     <div class="ui top attached segment">
-                        <div class="ui header">关于我</div>
+                        <div class="ui header">关于隔壁老憨</div>
                     </div>
                     <!--个人介绍部分-->
                     <div class="ui attached segment">
-                        <p class="m-text-thin">这是我的个人博客，分享关于编程，思考相关的内容，希望可以给来到这里的人有所帮助...</p>
-                        <p class="m-text-thin">这是我的个人博客，分享关于编程，思考相关的内容，希望可以给来到这里的人有所帮助...</p>
+                        <p class="m-text-thin">希望你的眼睛一直笑，想要的都能得到。</p>
                     </div>
-                    <div class="ui attached segment">
-                        <div class="ui orange basic label m-margin-tb-tiny">编程</div>
-                        <div class="ui orange basic label m-margin-tb-tiny">编程</div>
-                        <div class="ui orange basic label m-margin-tb-tiny">编程</div>
-                        <div class="ui orange basic label m-margin-tb-tiny">编程</div>
-                        <div class="ui orange basic label m-margin-tb-tiny">编程</div>
-                    </div>
-                    <div class="ui attached segment">
-                        <div class="ui teal basic label m-margin-tb-tiny">java</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">javascript</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">Springboot</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">java</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">javascript</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">Springboot</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">java</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">javascript</div>
-                        <div class="ui teal basic label m-margin-tb-tiny">Springboot</div>
-                    </div>
-                    <!--联系方式圆形按钮-->
+
+<!--                    <div class="ui attached segment">-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">java</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">javascript</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">Springboot</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">java</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">javascript</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">Springboot</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">java</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">javascript</div>-->
+<!--                        <div class="ui teal basic label m-margin-tb-tiny">Springboot</div>-->
+<!--                    </div>-->
                     <!--鼠标指针悬浮弹出-->
                     <div class="ui bottom attached segment">
-                        <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
-                        <a href="#" class="ui circular icon button" data-content="1461282363"><i class="qq icon"></i></a>
-                        <a href="#" class="ui circular icon button"><i class="wechat icon"></i></a>
-                        <a href="#" class="ui circular icon button"><i class="mail icon"></i></a>
+                        <div  class="ui icon button" data-content="https://github.com/"><i class="github icon"></i></div>
+                        <div  class="ui icon button" data-content="1461282363"><i class="qq icon"></i></div>
+                        <div  class="ui icon button" data-content="15127735324"><i class="wechat icon"></i></div>
+                        <div  class="ui icon button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
                     </div>
                 </div>
             </div>
@@ -113,7 +105,8 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
     <script>
-        $('.qq').popup()
+        //初始化
+        $('.button').popup()
 
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');

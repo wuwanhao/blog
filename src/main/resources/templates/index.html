@@ -30,7 +30,7 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-padded-tb m-container-large">
+    <div class="m-padded-tb m-container-large m-opacity-large">
         <div class="ui container">
             <div class="ui stackable grid">
                 <!--左边列表内容-->
@@ -100,6 +100,20 @@
                 </div>
                 <!--右边卡片列表-->
                 <div class="five wide column">
+                    <!--个人介绍部分-->
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于隔壁老憨</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p class="m-text-thin">希望你的眼睛一直笑，想要的都能得到。</p>
+                    </div>
+                    <!--鼠标指针悬浮弹出-->
+                    <div class="ui bottom attached segment">
+                        <div  class="ui icon button" data-content="https://github.com/"><i class="github icon"></i></div>
+                        <div  class="ui icon button" data-content="1461282363"><i class="qq icon"></i></div>
+                        <div  class="ui icon button" data-content="15127735324"><i class="wechat icon"></i></div>
+                        <div  class="ui icon button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
+                    </div>
                     <!--分类-->
                     <div class="ui segments">
                         <div class="ui secondary segment">
@@ -132,11 +146,6 @@
                         <div class="ui segment" th:each="blog : ${recommendBlogs}">
                             <a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin" th:text="${blog.title}">推荐名称</a>
                         </div>
-                    </div>
-                    <!--二维码-->
-                    <h4 class="ui horizontal divider header m-text-thin m-margin-top-large">扫码关注我</h4>
-                    <div class="ui centered card" style="width: 11em">
-                        <img th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" >
                     </div>
                 </div>
             </div>
@@ -178,43 +187,8 @@
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script type="text/javascript">
 
-        var vm = new Vue({
-            el: '#app',
-            data() {
-                return {
-                    blogNameList:[],
-                    blogNameListNumber: "",
-                    blogTotalNumber: "",
-                    firstPicture: "",
-                    blogRecommend:[],
-                    typeNames:[]
-                }
-            },
-            methods: {
-                //自定义方法（按钮等）
-
-            },
-            //钩子函数
-            mounted() {
-                axios.post("/blog/list",{"page": 0, "size": 10})
-                    .then(res=>{
-                        console.log(res.data ,"博客列表"),
-                        this.blogNameList = res.data.blogNameVOList
-                        this.blogTotalNumber = res.data.blogNameVOList.length
-                    })
-                axios.get("/type/getTypeListAndNum")
-                .then(res=>{
-                    console.log(res.data ,"分类列表"),
-                    this.typeNames = res.data
-                })
-                axios.get("/blog/recommend")
-                .then(res=>{
-                    console.log(res.data , "推荐列表")
-                    this.blogRecommend = res.data
-                })
-            }
-
-        })
+        //初始化
+        $('.button').popup()
 
 
         //移动端适应

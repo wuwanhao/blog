@@ -23,7 +23,7 @@ public class User implements UserDetails {
 
     //角色
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Role role;
 
     public Long getId() {

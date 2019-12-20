@@ -34,7 +34,7 @@
             <i class="sidebar icon"></i>
         </a>
     </nav>
-    <div class="ui attached pointing menu">
+    <div class="ui attached pointing menu m-opacity-large">
         <div class="ui container">
             <div class="right menu">
                 <a href="#" th:href="@{/admin/types/input}" class="active teal item">发布</a>
@@ -44,7 +44,7 @@
 
     </div>
     <!--中间内容-->
-    <div class="m-container-small m-padded-tb-big">
+    <div class="m-container-small m-padded-tb-big m-opacity-large">
         <div class="ui container">
             <form method="post" th:object="${type}" th:action="*{id} == null ? @{/admin/types} : @{/admin/types/{id}(id=*{id})}" class="ui form">
                 <!--id隐含域-->

@@ -32,7 +32,7 @@
         </a>
     </nav>
     <!--中间内容-->
-    <div class="m-container-large m-padded-tb-big animated fadeIn">
+    <div class="m-container-large m-padded-tb-big animated fadeIn m-opacity-large">
         <div class="ui container">
             <input type="hidden" id="id" th:value="${blog.id}">
             <div class="ui top attached segment">
@@ -53,7 +53,7 @@
                 <!--内容-->
                 <a th:href="@{/types/{id}(id=${blog.type.id})}">
                     <div class="ui right aligned basic segment" >
-                        <div class="ui label basic orange" th:text="${blog.type.name}">原创</div>
+                        <div class="ui label basic green" th:text="${blog.type.name}">原创</div>
                     </div>
                 </a>
 

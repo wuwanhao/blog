@@ -33,7 +33,7 @@
             <i class="sidebar icon"></i>
         </a>
     </nav>
-    <div class="ui attached pointing menu">
+    <div class="ui attached pointing menu m-opacity-large">
         <div class="ui container">
             <div class="right menu">
                 <a href="#" th:href="@{/admin/blogs/input}" class="item">发布</a>
@@ -43,7 +43,7 @@
 
     </div>
     <!--中间内容-->
-    <div class="m-container-small m-padded-tb-big">
+    <div class="m-container-small m-padded-tb-big m-opacity-large">
         <div class="ui container">
             <!--信息表格-->
             <table class="ui compact table">
@@ -124,22 +124,6 @@
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
 
-        new Vue({
-            el: "#app",
-            data() {
-                return {
-                    BlogList:[],
-                }
-            },
-            methods: {
-                //自定义方法按钮等
-            },
-            //钩子函数
-            mounted() {
-                axios.get("")
-
-            }
-        })
 
 
         $('.menu.toggle').click(function () {

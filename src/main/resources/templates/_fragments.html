@@ -14,7 +14,7 @@
 </head>
 <body>
 <!--导航-->
-<nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small m-opacity-large">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h1 class="ui teal header item">隔壁老憨的Blog</h1>
@@ -24,7 +24,7 @@
             <div class="right m-item item m-mobile-hide">
                 <form name="search" th:action="@{/search}" method="post" target="_blank">
                     <div class="ui icon inverted transparent input" id="search">
-                        <input type="text" name="query" placeholder="Search..." th:value="${query}">
+                        <input type="text" name="query" placeholder="站内搜索..." th:value="${query}">
                         <i onclick="document.forms['search'].submit()" class="search link icon"></i>
                     </div>
                 </form>
@@ -39,17 +39,17 @@
 </nav>
 
 <!--底部-->
-<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
-    <div class="ui center aligned container">
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity-large">
+    <div class="ui center aligned container ">
         <div class="ui inverted divided stackable grid">
-            <div class="four wide column">
+            <div class="five wide column">
                 <div class="ui inverted link list">
                     <div class="item">
                         <img th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" style="width: 110px">
                     </div>
                 </div>
             </div>
-            <div class="four wide column">
+            <div class="five wide column">
                 <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
                 <div class="ui inverted link list">
                     <a href="#" class="item">Email：1461282363@qq.com</a>
@@ -57,13 +57,13 @@
                     <a href="#" class="item">QQ：1461282363</a>
                 </div>
             </div>
-            <div class="eight wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced">About Blog</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客，分享关于编程，思考相关的内容，希望可以给来到这里的人有所帮助...</p>
+            <div class="six wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">About This Blog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">希望你的眼睛一直笑，想要的都能得到。</p>
             </div>
         </div>
         <div class="ui inverted section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 GBLH Designed by WWH</p>
+        <p class="m-text-thin m-text-spaced ">Copyright © 2019 GBLH </p>
     </div>
 </footer>
 
