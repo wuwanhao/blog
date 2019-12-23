@@ -33,8 +33,10 @@
     <div class="m-padded-tb m-container-large m-opacity-large">
         <div class="ui container">
             <div class="ui stackable grid">
-                <!--左边列表内容-->
-                <div class="eleven wide column" >
+                <!--左边-->
+
+                <!--中间列表内容-->
+                <div class="ten wide column" >
                     <!--header-->
                     <div class="ui top attached segment">
                         <div class="ui middle aligned two column grid">
@@ -95,21 +97,8 @@
                     </div>
                 </div>
                 <!--右边卡片列表-->
-                <div class="five wide column">
-                    <!--个人介绍部分-->
-                    <div class="ui top attached segment">
-                        <div class="ui header">关于隔壁老憨</div>
-                    </div>
-                    <div class="ui attached segment">
-                        <p class="m-text-thin">希望你的眼睛一直笑，想要的都能得到。</p>
-                    </div>
-                    <!--鼠标指针悬浮弹出-->
-                    <div class="ui bottom attached segment">
-                        <div  class="ui icon button" data-content="https://github.com/"><i class="github icon"></i></div>
-                        <div  class="ui icon button" data-content="1461282363"><i class="qq icon"></i></div>
-                        <div  class="ui icon button" data-content="15127735324"><i class="wechat icon"></i></div>
-                        <div  class="ui icon button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
-                    </div>
+                <div class="five wide column" id="cards">
+
                     <!--分类-->
                     <div class="ui segments">
                         <div class="ui secondary segment">
@@ -141,6 +130,23 @@
                         </div>
                         <div class="ui segment" th:each="blog : ${recommendBlogs}">
                             <a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin" th:text="${blog.title}">推荐名称</a>
+                        </div>
+                    </div>
+
+                    <div class="ui sticky">
+                        <!--个人介绍部分-->
+                        <div class="ui top attached segment">
+                            <div class="ui header">关于隔壁老憨</div>
+                        </div>
+                        <div class="ui attached segment">
+                            <p class="m-text-thin">希望你的眼睛一直笑，想要的都能得到。</p>
+                        </div>
+                        <!--鼠标指针悬浮弹出-->
+                        <div class="ui bottom attached segment">
+                            <div  class="ui icon button" data-content="https://github.com/"><i class="github icon"></i></div>
+                            <div  class="ui icon button" data-content="1461282363"><i class="qq icon"></i></div>
+                            <div  class="ui icon button" data-content="15127735324"><i class="wechat icon"></i></div>
+                            <div  class="ui icon button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
                         </div>
                     </div>
                 </div>
@@ -191,6 +197,13 @@
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
         })
+
+        //黏贴固定
+        $('.ui.sticky')
+            .sticky({
+                context: '#cards'
+            });
+
     </script>
 
 
