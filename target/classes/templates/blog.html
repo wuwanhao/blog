@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../static/css/me.css">
     <link rel="stylesheet" href="../static/css/animate.min.css">
     <link rel="stylesheet" href="../static/lib/prism/prism.css">
+    <script src="../static/lib/prism/prism.js"></script>
 </head>
 <body>
     <!--导航-->
@@ -43,6 +44,7 @@
                     <div class="item">
                         <a id="thumbs" ><i class="large thumbs up icon"></i><span>点赞<span th:text="${blog.star}" id="thumbsNum">66</span></span></a>
                     </div>
+
                 </div>
             </div>
             <div class="ui attached segment">
@@ -60,17 +62,22 @@
                 <!--文章标题-->
                 <h2 class="ui center aligned header" th:text="${blog.title}">走向单体地狱</h2>
                 <br>
+
+
                 <div id="content" class="typo typo-selection m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
 
                 </div>
+
+
                 <!--赞赏按钮-->
                 <div class="ui center aligned basic segment" th:if="${blog.appreciation}">
                     <button id="payButton" class="ui orange button">觉得不错，赞赏一下！</button>
+                    <!--赞赏码弹出层-->
                     <div class="ui payQR flowing popup transition hidden">
-                        <div class="ui orange basic label">
+                        <div class="ui basic label">
                             <div class="ui images">
                                 <div class="image">
-                                    <img th:src="@{/images/wpay.png}" class="ui rounded bordered image" style="width: 120px">
+                                    <img th:src="@{/images/wpay.jpg}" class="ui rounded bordered image" style="width: 120px">
                                 </div>
                                 <div class="image">
                                     <img th:src="@{/images/zpay.jpg}" class="ui rounded bordered image" style="width: 120px">
@@ -88,8 +95,8 @@
                     <!--11宽文字说明部分，上线时加超链接-->
                     <div class="eleven wide column">
                         <ul class="list">
-                            <li>作者：<a th:href="@{/about}">武万浩</a></li>
-                            <li>发表时间：<span th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd')}"></span></li>
+                            <li>博客拥有者：<a th:href="@{/about}">隔壁老憨</a></li>
+                            <li>文章刊登时间：<span th:text="${#dates.format(blog.createTime, 'yyyy-MM-dd')}"></span></li>
                             <li>友情链接：<a href="http://www.baidu.com">百度</a></li>
                         </ul>
                     </div>
@@ -134,7 +141,7 @@
     </footer>
 
 
-    <script src="../../static/lib/prism/prism.js"></script>
+
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/semantic-ui/2.2.4//semantic.min.js"></script>
     <script>
