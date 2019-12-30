@@ -54,6 +54,24 @@
                         <div  class="ui icon button" data-content="15127735324"><i class="wechat icon"></i></div>
                         <div  class="ui icon button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
                     </div>
+
+                    <div class="ui segment">
+                        <div class="ui header">给老憨留言</div>
+<!--                        <form name="message" th:action="@{/message}" method="post">-->
+<!--                            <div class="ui fluid action input">-->
+<!--                                <input type="text" placeholder="输入留言内容...">-->
+<!--                                <div class="ui button" onclick="document.forms['message'].submit()">留言</div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+
+                        <form name="message" action="/message" method="post">
+                            <div class="ui fluid action input">
+                                <input type="text" placeholder="输入留言内容...">
+                                <div class="ui button" onclick="alert('功能正在完善...')">留言</div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
