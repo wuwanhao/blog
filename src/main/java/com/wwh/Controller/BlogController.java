@@ -109,21 +109,4 @@ public class BlogController {
     }
 
 
-
-
-//    //定义局部渲染
-//    @GetMapping("/blogs/search")
-//    public String search(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC)
-//                                Pageable pageable, Blog blog, Model model){
-//        model.addAttribute("blog", blogService.listBlog(pageable));
-//        return "admin/blogs :: blogList";
-//    }
-
-
-
-
-
-
-
-
 }

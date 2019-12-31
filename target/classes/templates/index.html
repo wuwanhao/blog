@@ -88,10 +88,10 @@
                     <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                         <div class="ui middle aligned two column grid" >
                             <div class="column">
-                                <a class="ui mini teal  basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                                <a class="ui mini teal  button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
                             </div>
                             <div class="column right aligned">
-                                <a class="ui mini teal  basic button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                                <a class="ui mini teal  button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
                             </div>
                         </div>
                     </div>
@@ -109,10 +109,10 @@
                             </div>
                             <!--鼠标指针悬浮弹出-->
                             <div class="ui bottom attached segment">
-                                <div  class="ui icon button" data-content="https://github.com/"><i class="github icon"></i></div>
-                                <div  class="ui icon button" data-content="1461282363"><i class="qq icon"></i></div>
-                                <div  class="ui icon button" data-content="15127735324"><i class="wechat icon"></i></div>
-                                <div  class="ui icon button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
+                                <div  class="ui icon purple button" data-content="https://github.com/"><i class="github icon"></i></div>
+                                <div  class="ui icon blue button" data-content="1461282363"><i class="qq icon"></i></div>
+                                <div  class="ui icon green button" data-content="15127735324"><i class="wechat icon"></i></div>
+                                <div  class="ui icon orange button" data-content="1461282363@qq.com"><i class="mail icon"></i></div>
                             </div>
                         </div>
 
@@ -121,18 +121,18 @@
                             <div class="ui secondary segment">
                                 <div class="ui two column grid">
                                     <div class="column">
-                                        <i class="idea icon"></i>分类
+                                        <i class="large idea icon"></i>分类
                                     </div>
                                     <div class="right aligned column">
-                                        <a th:href="@{/types/-1}" target="_blank">more <i class="angle double right icon"></i></a>
+                                        <a th:href="@{/types/-1}" target="_blank">更多 <i class="angle double right icon"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ui teal  segment">
+                            <div class="ui  segment">
                                 <div class="ui fluid vertical menu">
                                     <a class="item" th:href="@{/types/{id}(id=${type.id})}" target="_blank" th:each="type : ${types}">
                                         <span th:text="${type.name}">分类名</span>
-                                        <div class="ui teal  basic left pointing label" th:text="${#arrays.length(type.blogs)}">该分类下文章数量</div>
+                                        <div class="ui teal left pointing label" th:text="${#arrays.length(type.blogs)}">该分类下文章数量</div>
                                     </a>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                         <div class="ui segments m-margin-top-large">
                             <div class="ui secondary segment">
                                 <div class="column">
-                                    <i class="bookmark icon"></i>最新推荐
+                                    <i class="large bookmark icon"></i>最新推荐
                                 </div>
                             </div>
                             <div class="ui segment" th:each="blog : ${recommendBlogs}">
@@ -199,11 +199,11 @@
             $('.m-item').toggleClass('m-mobile-hide');
         })
 
-        // //黏贴固定(移动端存在问题)
-        // $('.ui.sticky')
-        //     .sticky({
-        //         context: '#cards'
-        //     });
+        //黏贴固定(移动端存在问题)
+        $('.ui.sticky')
+            .sticky({
+                context: '#cards'
+            });
 
     </script>
 

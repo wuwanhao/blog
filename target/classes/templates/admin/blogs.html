@@ -64,7 +64,7 @@
                         <td th:text="${blog.title}">标题</td>
                         <td th:text="${blog.type.name}">分类</td>
                         <td th:text="${blog.recommend} ? '是' : '否'">是</td>
-                        <td th:text="${blog.published} ? '是' : '否'">是</td>
+                        <td th:text="${blog.published} ? '否' : '是'">是</td>
                         <td th:text="${blog.updateTime}">2015/8/8</td>
                         <td>
                             <a class="ui mini teal button" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}">编辑</a>

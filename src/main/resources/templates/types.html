@@ -45,7 +45,7 @@
             <!--分类标签区域-->
             <div class="ui bottom attached segment m-padded-tb-large">
                 <div class="ui labeled button m-margin-tb-tiny" th:each="type : ${types}">
-                    <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui basic button" th:classappend="${type.id == activeTypeId} ? 'teal'" th:text="${type.name}">分类名</a>
+                    <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui button" th:classappend="${type.id == activeTypeId} ? 'teal'" th:text="${type.name}">分类名</a>
                     <div class="ui basic left pointing label" th:classappend="${type.id == activeTypeId} ? 'teal'" th:text="${#arrays.length(type.blogs)}">篇</div>
                 </div>
             </div>
@@ -89,10 +89,10 @@
             <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                 <div class="ui middle aligned two column grid" >
                     <div class="column">
-                        <a class="ui mini teal basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                        <a class="ui mini teal button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
                     </div>
                     <div class="column right aligned">
-                        <a class="ui mini teal basic button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                        <a class="ui mini teal button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
                     </div>
                 </div>
             </div>
