@@ -17,10 +17,10 @@ public class UserService {
 
 
     //添加用户，注册时使用
-    public void addUser(User user) throws Exception {
+    public User addUser(User user) throws Exception {
         String password = passwordEncoder.encode(user.getPassword());
         user.setPassword(password);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
 }

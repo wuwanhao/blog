@@ -1,5 +1,9 @@
 body {
     background: url("../images/bg.png");
+    /*background-color: rgb(24,25,26);*/
+    background-position: center;
+
+
 
 }
 .m-padded-lr-responsive {
@@ -80,11 +84,20 @@ body {
     line-height: 1.8;
 }
 /*-----透明度-----*/
+.m-opacity-large {
+    opacity: 0.9 !important;
+}
 .m-opacity-mini {
     opacity: 0.8 !important;
 }
 .m-opacity-tiny {
     opacity: 0.6 !important;
+}
+.m-opacity-superTiny {
+    opacity: 0.5 !important;
+}
+.m-opacity-none {
+    opacity: 1 !important;
 }
 
 /*---显示---*/
@@ -97,6 +110,11 @@ body {
 }
 .m-container-small {
     max-width: 60em;
+    margin: auto;
+}
+
+.m-container-large {
+    max-width: 150em;
     margin: auto;
 }
 

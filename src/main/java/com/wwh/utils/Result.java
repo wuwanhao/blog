@@ -1,7 +1,9 @@
 package com.wwh.utils;
 
 import lombok.Data;
-
+/**
+ * 结果类
+ */
 @Data
 public class Result<T> {
     // 状态码

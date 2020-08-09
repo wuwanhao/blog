@@ -3,12 +3,27 @@
 .typo p {
   font-size: 16px;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.8;
   text-align: justify;
 }
 
+.typo li {
+  font-weight: 300;
+  padding: 4px 0;
+}
+
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+.typo article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  display: block;
+}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+.typo audio, canvas, video {
+  display: inline-block;
+}
+
 /* 要注意表单元素并不继承父级 font 的问题 */
-.typo button,.typo input, .typo select, .typo textarea {
+.typo button, input, select, textarea {
   font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
@@ -25,7 +40,7 @@
 }
 
 /* 去除默认边框 */
-.typo fieldset, .typo img {
+.typo fieldset, img {
   border: 0;
 }
 
@@ -40,16 +55,15 @@
 }
 
 @media only screen and ( max-width: 640px ) {
-  blockquote {
+  .typo blockquote {
     margin: 1em 0;
   }
 }
 
 /* Firefox 以外，元素没有下划线，需添加 */
-.typo acronym, .typo abbr {
+.typo acronym, abbr {
   border-bottom: 1px dotted;
   font-variant: normal;
-  text-decoration: none;
 }
 
 /* 添加鼠标问号，进一步确保应用的语义是正确的（要知道，交互他们也有洁癖，如果你不去掉，那得多花点口舌） */
@@ -62,33 +76,33 @@
   text-decoration: line-through;
 }
 
-.typo address, .typo caption, .typo cite, .typo code, .typo dfn, .typo em, .typo th, .typo var {
+.typo address, caption, cite, code, dfn, em, th, var {
   font-style: normal;
   font-weight: 400;
 }
 
 /* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
-.typo ul,. typo ol {
+.typo ul, ol {
   list-style: none;
 }
 
 /* 对齐是排版最重要的因素, 别让什么都居中 */
-.typo caption, .typo th {
+.typo caption, th {
   text-align: left;
 }
 
-q:before, q:after {
+.typo q:before,.typo  q:after {
   content: '';
 }
 
 /* 统一上标和下标 */
-.typo sub, .typo sup {
+.typo sub,.typo  sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
 }
 
-:root sub, :root sup {
+.typo :root sub,.typo  :root sup {
   vertical-align: baseline; /* for ie9 and other modern browsers */
 }
 
@@ -120,7 +134,7 @@ q:before, q:after {
 }
 
 /* 默认不显示下划线，保持页面简洁 */
-ins, a {
+.typo ins,.typo  a {
   text-decoration: none;
 }
 
@@ -130,12 +144,12 @@ ins, a {
  * 被放弃的是 4，之前一直搞错 http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
  * 一篇关于 <u> 标签的很好文章：http://html5doctor.com/u-element/
  */
-u, .typo-u {
+.typo u,.typo  .typo-u {
   text-decoration: underline;
 }
 
 /* 标记，类似于手写的荧光笔的作用 */
-mark {
+.typo mark {
   background: #fffdd1;
   border-bottom: 1px solid #ffedce;
   padding: 2px;
@@ -143,7 +157,7 @@ mark {
 }
 
 /* 代码片断 */
-.typo pre, .typo code, .typo pre tt {
+.typo pre,.typo  code,.typo  pre tt {
   font-family: Courier, 'Courier New', monospace;
 }
 
@@ -164,48 +178,48 @@ mark {
 }
 
 /* 底部印刷体、版本等标记 */
-small, .typo-small,
+.typo small,.typo  .typo-small,
   /* 图片说明 */
-figcaption {
+.typo figcaption {
   font-size: 0.9em;
   color: #888;
 }
 
-strong, b {
+.typo strong,.typo  b {
   font-weight: bold;
   color: #000;
 }
 
 /* 可拖动文件添加拖动手势 */
-[draggable] {
+.typo [draggable] {
   cursor: move;
 }
 
-.clearfix:before, .clearfix:after {
+.typo .clearfix:before,.typo  .clearfix:after {
   content: "";
   display: table;
 }
 
-.clearfix:after {
+.typo .clearfix:after {
   clear: both;
 }
 
-.clearfix {
+.typo .clearfix {
   zoom: 1;
 }
 
 /* 强制文本换行 */
-.textwrap, .textwrap td, .textwrap th {
+.typo .textwrap,.typo .textwrap td,.typo  .textwrap th {
   word-wrap: break-word;
   word-break: break-all;
 }
 
-.textwrap-table {
+.typo .textwrap-table {
   table-layout: fixed;
 }
 
 /* 提供 serif 版本的字体设置: iOS 下中文自动 fallback 到 sans-serif */
-.serif {
+.typo .serif {
   font-family: Palatino, Optima, Georgia, serif;
 }
 
@@ -215,7 +229,7 @@ strong, b {
   margin-bottom: 1.2em
 }
 
-.typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6 {
+.typo h1,.typo  h2,.typo  h3,.typo  h4,.typo  h5,.typo  h6 {
   font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-weight: 100;
   color: #000;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +7,32 @@
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" th:href="@{/css/typo.css}">
     <link rel="stylesheet" th:href="@{/css/me.css}">
+    <link rel="stylesheet" th:href="@{/lib/editormd/css/editormd.min.css}">
     <link rel="stylesheet" th:href="@{/css/animate.min.css}">
     <link rel="stylesheet" th:href="@{/lib/prism/prism.css}">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <!--导航-->
-<nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:fragment="nav(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small ">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
             <h2 class="ui teal header item">管理后台</h2>
-            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>博客</a>
-            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
+            <a th:href="@{/admin/index}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="large hand peace icon"></i>欢迎页</a>
+            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="large home icon"></i>博客</a>
+            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="large idea icon"></i>分类</a>
             <div class="m-item right menu m-mobile-hide">
-                <div class="ui dropdown item">
-                    <div class="text">
-                        <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                        武万浩
+                <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <span sec:authentication="name"></span>
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <button class="item" type="submit">注销</button>
+                        </div>
                     </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div th:href="@{/logout}" class="item" sec:authorize="isAuthenticated()">注销</div>
-                    </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -52,22 +54,14 @@
 <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
     <div class="ui center aligned container">
         <div class="ui inverted divided stackable grid">
-            <div class="three wide column">
+            <div class="five wide column">
                 <div class="ui inverted link list">
                     <div class="item">
                         <img th:src="@{/images/wechat.jpg}" class="ui rounded image" alt="" style="width: 110px">
                     </div>
                 </div>
             </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事（User Story）</a>
-                    <a href="#" class="item">用户故事（User Story）</a>
-                    <a href="#" class="item">用户故事（User Story）</a>
-                </div>
-            </div>
-            <div class="three wide column">
+            <div class="five wide column">
                 <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
                 <div class="ui inverted link list">
                     <a href="#" class="item">Email：1461282363@qq.com</a>
@@ -75,13 +69,13 @@
                     <a href="#" class="item">QQ：1461282363</a>
                 </div>
             </div>
-            <div class="seven wide column">
+            <div class="six wide column">
                 <h4 class="ui inverted header m-text-thin m-text-spaced">About Blog</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客，分享关于编程，思考相关的内容，希望可以给来到这里的人有所帮助...</p>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">希望你的眼睛一直笑，想要的都能得到。</p>
             </div>
         </div>
         <div class="ui inverted section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 GBLH Designed by WWH</p>
+        <p class="m-text-thin m-text-spaced ">Copyright © 2019 GBLH </p>
     </div>
 </footer>
 
