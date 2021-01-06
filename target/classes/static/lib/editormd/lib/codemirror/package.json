@@ -16,7 +16,7 @@
                     "test": "node ./test/run.js"
           },
           "devDependencies": {
-                    "axios": "^0.19.0",
+                    "axios": "^0.21.1",
                     "blint": ">=0.1.1",
                     "node-static": "0.6.0",
                     "phantomjs": "1.9.2-5"
